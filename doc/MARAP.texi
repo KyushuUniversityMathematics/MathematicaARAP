@@ -1,0 +1,118 @@
+\input texinfo
+@iftex
+@catcode`@#=6
+@def@fref#1{@xrefX[#1,,@code{#1},,,]}
+@def@b#1{{@bf@gt #1}}
+@catcode`@#=@other
+@end iftex
+@overfullrule=0pt
+@c -*-texinfo-*-
+@comment %**start of header
+
+@setfilename MMGLmanual
+
+@settitle Mathematica Module for Graph Laplacians
+
+@comment %**end of header
+@comment %@setchapternewpage odd
+
+@titlepage
+
+@title Mathematica Module for ARAP Interpolation
+@subtitle MARAP User's Manual
+@subtitle Version 0.1
+@subtitle @today{}
+
+@author  by Tomomi Hirano, Kyushu University.
+@table @t
+@item Ver. 0.1
+13 September 2016
+@end table
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2016 Kyushu University, All rights reserved.
+@page
+@end titlepage
+
+@synindex vr fn
+
+@node Top,, (dir), (dir)
+
+@menu
+* Introduction::
+* Basic Functions::
+* Matrix Functions::
+* Local Interpolations::
+* Grobal Interpolations::
+* Draw Animation::
+* Index::
+@end menu
+
+@c ======================================================
+@contents
+@node Introduction,Basic Functions,, Top
+@chapter Introduction
+
+This is a Mathematica Module for analysing graphs,
+especially using Laplacian Matrices of graphs.
+This module depends on the Mathematica modules
+"Combinatorica`" and "ComputationalGeometry`".
+
+To use this package "GraphLaplacian`",
+users should set a directory where the modules is stored.
+
+@example
+[Example]
+
+SetDirectory[FileNameJoin[{$HomeDirectory, "--- Some Folder ---"}]];
+<< GraphLaplacian`;
+@end example
+
+@vskip 0pt plus 1filll
+@noindent
+This module was used and introduced in the followings:
+@table @t
+@item [1] 
+K.K.K.R. Perera, Y. Mizoguchi,
+@uref{http://j-mi.org/contents_file/contents_files/loader/0/Article/287/file/default/JMI2013A-8.pdf,Bipartition of graphs based on the normalized cut and spectral methods},
+Part I: Minimum normalized cut,
+Journal of Math-for-industory, Vol.5(2013A-8),pp.59-72.
+@item [2]
+Y. Mizoguchi,
+Mathematical Aspects of Interpolation Technique for Computer Graphics,
+Forum ``Math-for-Industry'' 2012, Information Recovery and Discovery,
+22 October 2022. @uref{http://fmi2012.imi.kyushu-u.ac.jp/}
+@item [3]
+Mathematica Module for Graph Laplacians @* 
+@uref{https://github.com/ymizoguchi/MathematicaGraphLaplacian.git}
+@end table
+
+@node Basic Functions,Matrix Functions,Introduction, Top
+@include BasicFunctions.texi
+
+@node Matrix Functions,Local Interpolations,Basic Functions, Top
+@include MatrixFunctions.texi
+
+@node Local Interpolations,Grobal Interpolations,Matrix Functions,, Top
+@include LocalInterpolations.texi
+
+@node Grobal Interpolations,Draw Animation,Local Interpolations, Top
+@include GrobalInterpolations.texi
+
+@node Draw Animation,Index,Grobal Interpolations, Top
+@include DrawAnimation.texi
+
+@node Index,,Draw Animation, Top
+@unnumbered Index
+
+@printindex fn
+
+@c @printindex cp
+@c ky: @kindex, pg: @pindex, tp: @tindex
+@iftex
+@vfill @eject
+@end iftex
+@c @summarycontents
+
+@bye
+
+
