@@ -1,0 +1,162 @@
+@chapter Draw Animation
+
+
+
+
+@c ---------------------------ShowStatus
+
+@node ShowStatus,DrawTriangles,f1, Draw Animation
+@section @code{ShowStatus}
+@findex ShowStatus
+
+@table @t
+@item ShowStatus[@var{st},@var{en},@var{tri},@var{plotrange}]
+:: Draw start and end of Graphic
+@end table
+
+@table @var
+@item @var{st}
+start state of vertex set
+@item @var{en}
+end state of vertex set
+@item @var{tri}
+constitution of triangle
+@item @var{plotrange}
+Display range
+@item return
+graph of start and end status
+@end table
+
+@example
+[Example] 
+ShowStatus[dataS2, dataE2, dataT2, 4.5]
+@image{img/exShowState,4cm}
+@end example
+
+
+@c ---------------------------DrawAnimation
+
+@node DrawAnimation,DrawAnimationa,ShowStatus, Draw Animation
+@section @code{DrawAnimation}
+@findex DrawAnimation
+
+@table @t
+@item DrawAnimation[@var{local},@var{energy},@var{const},@var{conf}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{local}
+Choice of local interpolation
+@item @var{energy}
+Choice of energy interpolation
+@item @var{const}
+Choice of constraint interpolation
+@item @var{conf}
+@{start vertex set,end vertex set,constitution of triangle@}
+@item return
+animation
+@end table
+
+@example
+[Example] 
+DrawAnimation[LocalAlexa, FrobeniusEnergy, Const2, Configuration2]
+@end example
+
+@c ---------------------------DrawAnimationa
+
+@node DrawAnimationa,ListAnimation,DrawAnimation, Draw Animation
+@section @code{DrawAnimationa}
+@findex DrawAnimationa
+
+@table @t
+@item DrawAnimationa[@var{local},@var{energy},@var{const} ,@var{conf}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{local}
+Choice of local interpolation
+@item @var{energy}
+Choice of energy interpolation
+@item @var{const}
+Choice of constraint interpolation
+@item @var{conf}
+@{start vertex set,end vertex set,constitution of triangle@}
+@item return
+animation
+@end table
+
+@example
+[Example] 
+DrawAnimationa[LocalAlexa, QuadraticFormSim2,ConstPair[1, 2], Configuration2]
+@end example
+
+
+
+@c ---------------------------ListAnimation
+
+@node ListAnimation,ListAnimationa,DrawAnimationa, Draw Animation
+@section @code{ListAnimation}
+@findex ListAnimation
+
+@table @t
+@item ListAnimation[@var{k},@var{local},@var{energy},@var{const},@var{conf}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{k}
+number of frame division
+@item @var{local}
+Choice of local interpolation
+@item @var{energy}
+Choice of energy interpolation
+@item @var{const}
+Choice of constraint interpolation
+@item @var{conf}
+@{start vertex set,end vertex set,constitution of triangle@}
+@item return
+list of graph
+@end table
+
+@example
+[Example] 
+ListAnimation[k_,n_,c_,e_,st_,en_,tri_,plotrange]
+@image{img/exListAnimation,10cm}
+@end example
+
+@c ---------------------------ListAnimationa
+
+@node ListAnimationa,,ListAnimation, Draw Animation
+@section @code{ListAnimationa}
+@findex ListAnimationa
+
+@table @t
+@item ListAnimationa[@var{k},@var{local},@var{energy},@var{const},@var{conf}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{k}
+number of frame division
+@item @var{local}
+Choice of local interpolation
+@item @var{energy}
+Choice of energy function
+@item @var{const}
+Choice of constraint function
+@item @var{conf}
+@{start vertex set,end vertex set,constitution of triangle@}
+@item return
+list of graph
+@end table
+
+@example
+[Example] 
+ListAnimationa[5, LocalAlexa, QuadraticFormAlexa, ConstPair[1], Configuration2]
+@image{img/exListAnimationa,10cm}
+@end example
+
+
+

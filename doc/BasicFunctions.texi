@@ -1,0 +1,580 @@
+@chapter Basic Functions
+
+@c ---------------------------MakePolygon
+
+@node MakePolygon,HorizontalSnake,, Basic Functions
+@section @code{MakePolygon}
+@findex MakePolygon
+
+@table @t
+@item MakePolygon[@var{V},@var{tindex}]
+:: Make polygon
+@end table
+
+@table @var
+@item @var{V}
+vertex set
+@item @var{tindex}
+constitution of triangle
+@item return
+polygon
+@end table
+
+@example
+[Example] 
+Graphics[MakePolygon[dataS2,dataT2]]
+
+@image{img/exMakePolygon,4cm}
+@end example
+
+@c ---------------------------HorizontalSnake
+
+@node HorizontalSnake,VerticalSnake,MakePolygon,  Basic Functions
+@section @code{HorizontalSnake}
+@findex HorizontalSnake
+
+@table @t
+@item HorizontalSnake[@var{n}]
+:: Make vertexes of horizontally long rectangle 
+@end table
+
+@table @var
+@item @var{n}
+rectangle size
+@item return
+vertex set of rectangle
+@end table
+
+@example
+[Example] 
+HorizontalSnake[5]
+=@{@{0, 0@}, @{0, 1@}, @{1, 0@}, @{1, 1@}, @{2, 0@}, @{2, 1@}, @{3, 0@}, @{3, 1@}, @{4, 0@}, @{4, 1@}@}
+@end example
+
+@c ---------------------------VerticalSnake
+
+@node VerticalSnake,SnakeTriangle,HorizontalSnake, Basic Functions
+@section @code{VerticalSnake}
+@findex VerticalSnale
+
+@table @t
+@item VerticalSnake[@var{n}]
+:: Make vertexes of vertically long rectangle 
+@end table
+
+@table @var
+@item @var{n}
+rectangle size
+@item return
+vertex set
+@end table
+
+@example
+[Example] 
+VerticalSnake[5]
+=@{@{1, 0@}, @{0, 0@}, @{1, 1@}, @{0, 1@}, @{1, 2@}, @{0, 2@}, @{1, 3@}, @{0, 3@}, @{1, 4@}, @{0, 4@}@}
+
+@end example
+
+@c ---------------------------SnakeTriangle
+
+@node SnakeTriangle,AnimationRange,VerticalSnale, Basic Functions
+@section @code{SnakeTriangle}
+@findex SnakeTriangle
+
+@table @t
+@item SnakeTriangle[@var{n}]
+:: Triangulate Horizontal/Vertex Snake
+@end table
+
+@table @var
+@item @var{n}
+rectangle size
+@item return
+constitution of triangle
+@end table
+
+@example
+[Example] 
+
+Graphics[MakePolygon[HorizontalSnake[10], SnakeTriangle[10]]]
+@image{img/exHSnake,4cm}
+
+Graphics[MakePolygon[VerticalSnake[10], SnakeTriangle[10]]]
+@image{img/exVSnake,0.5cm}
+
+@end example
+
+
+@c ---------------------------AnimationRange
+
+@node AnimationRange,Polar,SnakeTriangle, Basic Functions
+@section @code{AnimationRange}
+@findex AnimationRange
+
+@table @t
+@item AnimationRange[@var{conf}]
+:: size of Display conforming with polygon
+@end table
+
+@table @var
+@item @var{conf}
+@{ start vertex set , end vertex set@}
+@item return
+coordinates of display
+@end table
+
+@example
+[Example] 
+
+AnimationRange[Configuration2]
+=@{@{-2, 4@}, @{-3, 5@}@}
+
+@end example
+
+
+@c ---------------------------Polar
+
+@node Polar,Cartesian,SnakeTriangle, Basic Functions
+@section @code{Polar}
+@findex Polar
+
+@table @t
+@item Polar[@var{a}]
+:: Convert cartesian coordinates to polar coordinates
+@end table
+
+@table @var
+@item @var{a}
+cartesian coordinates
+@item return
+polar coordinates
+@end table
+
+@example
+[Example] 
+Polar[@{0,1@}]
+=@{1,@math{2\pi}@}
+@end example
+
+
+@c ---------------------------Cartesian
+
+@node Cartesian,LinearInterpolate,Polar, Basic Functions
+@section @code{Cartesian}
+@findex Cartesian
+
+@table @t
+@item Cartesian[@var{a}]
+:: Convert polar coordinates to cartesian coordinates
+@end table
+
+@table @var
+@item @var{a}
+polar coordinates
+@item return
+cartesian coordinate
+@end table
+
+@example
+[Example] 
+Cartesian[@{1,@math{2\pi}@}]
+=@{0,1@}
+@end example
+
+@c ---------------------------LinearInterpolate
+
+@node LinearInterpolate,LinearInterpolation,Cartesian, Basic Functions
+@section @code{LinearInterpolate}
+@findex LinearInterpolate
+
+@table @t
+@item LinearInterpolate[@var{a},@var{b},@var{t}]
+:: Perform linear interpolation of point
+@end table
+
+@table @var
+@item @var{a}
+a start point
+@item @var{b}
+an end point
+@item @var{t}
+time
+@item return
+an interpolated point
+@end table
+
+@example
+[Example] 
+LinearInterpolate[@{1, 1@}, @{2, 2@}, 0.5]
+=@{1.5, 1.5@}
+@end example
+
+
+@c ---------------------------LinearInterpolation
+
+@node LinearInterpolation,PolarInterpolate,LinearInterpolate, Basic Functions
+@section @code{LinearInterpolation}
+@findex LinearInterpolation
+
+@table @t
+@item LinearInterpolation[@var{p},@var{q},@var{t}]
+:: Perform linear interpolation of vertex set
+@end table
+
+@table @var
+@item @var{p}
+start vertex set
+@item @var{q}
+end vertex set
+@item @var{t}
+time
+@item return
+interpolated vertex set
+@end table
+
+@example
+[Example] 
+Graphics[MakePolygon[LinearInterpolation[dataS2, dataE2, #], dataT2]] & /@ @{0, 0.25, 0.5, 0.75, 1@}
+@image{img/exLinearInterpolation,12cm}
+@end example
+
+@c ---------------------------PolarInterpolate
+
+@node PolarInterpolate,PolarInterpolation,LinearInterpolation, Basic Functions
+@section @code{PolarInterpolate}
+@findex PolarInterpolate
+
+@table @t
+@item PolarInterpolate[@var{a},@var{b},@var{t}]
+:: Perform Polar interpolation of point
+@end table
+
+@table @var
+@item @var{a}
+a start point
+@item @var{b}
+an end point
+@item @var{t}
+time
+@item return
+an interpolated point
+@end table
+
+@example
+[Example] 
+PolarInterpolate[@{1, 1@}, @{2, 2@}, 0.5]
+=@{1.5, 1.5@}
+@end example
+
+
+@c ---------------------------PolarInterpolation
+
+@node PolarInterpolation,LinearInterpolateSnake2D,PolarInterpolate, Basic Functions
+@section @code{PolarInterpolation}
+@findex PolarInterpolation
+
+@table @t
+@item PolarInterpolation[@var{p},@var{q},@var{t}]
+:: Perform Polar interpolation of vertex set
+@end table
+
+@table @var
+@item @var{p}
+start vertex set
+@item @var{q}
+end vertex set
+@item @var{t}
+time
+@item return
+interpolated vertex set
+@end table
+
+@example
+[Example] 
+Graphics[MakePolygon[PolarInterpolation[dataS2, dataE2, #], dataT2]] & /@ @{0, 0.25, 0.5, 0.75, 1@}
+@image{img/exPolarInterpolation,12cm}
+@end example
+
+
+@c ---------------------------LinearInterpolateSnake2D
+
+@node LinearInterpolateSnake2D,PolarInterpolateSnake2D,PolarInterpolation, Basic Functions
+@section @code{LinearInterpolateSnake2D}
+@findex PolarInterpolateSnake2D
+
+@table @t
+@item LinearInterpolateSnake2D[@var{n},@var{t}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{n}
+Snake size
+@item @var{t}
+time (0~1)
+@item return
+interpolated snake rectangle
+@end table
+
+@example
+[Example] 
+Graphics[LinearInterpolateSnake2D[10, #]] & /@ @{0, 0.25, 0.5, 0.75, 1@}
+@image{img/exLinearInterpolateSnake2D,8cm}
+@end example
+
+
+@c ---------------------------PolarInterpolateSnake2D
+
+@node PolarInterpolateSnake2D,PolarDecomposition,PolarInterpolateSnake2D, Basic Functions
+@section @code{PolarInterpolateSnake2D}
+@findex PolarInterpolateSnake2D
+
+@table @t
+@item PolarInterpolateSnake2D[@var{n},@var{t}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{n}
+Snake size
+@item @var{t}
+time (0~1)
+@item return
+interpolated snake rectangle
+@end table
+
+@example
+[Example] 
+Graphics[PolarInterpolateSnake2D[10, #]] & /@ @{0, 0.25, 0.5, 0.75, 1@}
+@image{img/exPolarInterpolateSnake2D,8cm}
+@end example
+
+@c ---------------------------PolarDecomposition
+
+@node PolarDecomposition,PolarDecompositionPlus,PolarInterpolateSnake2D, Basic Functions
+@section @code{PolarDecomposition}
+@findex PolarDecomposition
+
+@table @t
+@item PolarDecomposition[@var{m}]
+:: Perform polar decomposition
+@end table
+
+@table @var
+@item @var{m}
+matrix
+@item return
+orthogonal matrix and positive-semidefinite matrix
+@end table
+
+@example
+[Example] 
+PolarDecomposition[@{@{1, 1@}, @{-1, -1@}@}]
+=@{@{@{0., 1.@}, @{-1., 0.@}@}, @{@{1., 1.@}, @{1., 1.@}@}@}
+@end example
+
+@c ---------------------------PolarDecompositionPlus
+
+@node PolarDecompositionPlus,RotateAngle,PolarDecomposition, Basic Functions
+@section @code{PolarDecompositionPlus}
+@findex PolarDecompositionPlus
+
+@table @t
+@item PolarDecompositionPlus[@var{m}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{m}
+aiueo
+@item return
+aiueo
+@end table
+
+@example
+[Example] 
+PolarDecompositionPlus[m_]
+@end example
+
+@c ---------------------------RotateAngle
+
+@node RotateAngle,CogTrans,PolarDecompositionPlus, Basic Functions
+@section @code{RotateAngle}
+@findex RotateAngle
+
+@table @t
+@item RotateAngle[@var{m}]
+:: Compute angle of Rotation matrix that is performed polar decomposition
+@end table
+
+@table @var
+@item @var{m}
+matrix
+@item return
+angle
+@end table
+
+@example
+[Example] 
+RotateAngle[@{@{1, 2@}, @{3, 4@}@}]
+=ArcTan[3]
+@end example
+
+@c ---------------------------CogTrans
+
+@node CogTrans,PolygonToTriangles,RotateAngle, Basic Functions
+@section @code{CogTrans}
+@findex CogTrans
+
+@table @t
+@item CogTrans[@var{pl}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{pl}
+aiueo
+@item return
+aiueo
+@end table
+
+@example
+[Example] 
+CogTrans[pl_]
+@end example
+
+
+@c ---------------------------PolygonToTriangles
+
+@node PolygonToTriangles,TrianglesToTriangles,CogTrans, Basic Functions
+@section @code{PolygonToTriangles}
+@findex PolygonToTriangles
+
+@table @t
+@item PolygonToTriangles[@var{l}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{l}
+aiueo
+@item return
+aiueo
+@end table
+
+@example
+[Example] 
+PolygonToTriangles[l_]
+@end example
+
+
+@c ---------------------------TrianglesToTriangles
+
+@node TrianglesToTriangles,TrianglesToPolygon,PolygonToTriangles, Basic Functions
+@section @code{TrianglesToTriangles}
+@findex TrianglesToTriangles
+
+@table @t
+@item TrianglesToTriangles[@var{offset},@var{cog}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{offset}
+aiueo
+@item @var{cog}
+aiueo
+@item return
+aiueo
+@end table
+
+@example
+[Example] 
+TrianglesToTriangles[offset_,cog_]
+@end example
+
+
+@c ---------------------------TrianglesToPolygon
+
+@node TrianglesToPolygon,ValNames,TrianglesToTriangles, Basic Functions
+@section @code{TrianglesToPolygon}
+@findex TrianglesToPolygon
+
+@table @t
+@item TrianglesToPolygon[@var{tl}]
+:: aiueo
+@end table
+
+@table @var
+@item @var{tl}
+aiueo
+@item return
+aiueo
+@end table
+
+@example
+[Example] 
+TrianglesToPolygon[tl_]
+@end example
+
+
+@c ---------------------------ValNames
+
+@node ValNames,NormF,TrianglesToPolygon, Basic Functions
+@section @code{ValNames}
+@findex ValNames
+
+@table @t
+@item ValNames[@var{n}]
+:: Name variable
+@end table
+
+@table @var
+@item @var{n}
+number of variable
+@item return
+neme of variable 
+@end table
+
+@example
+[Example] 
+ValNames[3]
+=@{@{v1x, v1y@}, @{v2x, v2y@}, @{v3x, v3y@}@}
+@end example
+
+
+@c ---------------------------NormF
+
+@node NormF,,ValNames, Basic Functions
+@section @code{NormF}
+@findex NormF
+
+@table @t
+@item NormF[@var{m}]
+:: Calculate Frobenius norm
+@end table
+
+@table @var
+@item @var{m}
+matrix
+@item return
+resultant value of Frobenius norm
+@end table
+
+@example
+[Example] 
+NormF[{{1,2},{3,4}}]
+=30
+@end example
+
+
+
+
+
+
+
+
+
+
+

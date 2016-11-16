@@ -1,0 +1,687 @@
+@chapter Matrix Functions
+
+@c --------------- 
+@node ,QuadraticFormMatrix + LinearFormVector,FindMatrix,
+@section @code{QuadraticFormMatrix + LinearFormVector}
+@findex QuadraticFormMatrix + LinearFormVector
+
+@node ,QuadraticFormVariableMatrix,
+@subsection @code{QuadraticFormVariableMatrix}
+@findex QuadraticFormVariableMatrix
+
+@table @t
+@item QuadraticFormVariableMatrix[@var{vl}]
+:: QuadraticFormVariableMatrix
+@end table
+
+@table @var
+@item @var{vl}
+list of values
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+QuadraticFormVariableMatrix[@{1,2,3@}]
+@{@{1, 2, 3@}, @{2, 4, 6@}, @{3, 6, 9@}@}
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,Div2if,
+@subsection @code{Div2if}
+@findex Div2if
+
+@table @t
+@item Div2if[@var{n},@var{l}]
+:: divide all elements  except n-th element  of l by 2 
+@end table
+
+@table @var
+@item @var{n},@var{l}
+index,list of values
+@item return
+vector divided all elements  except n-th element  of l by 2
+@end table
+
+@example
+[Example] 
+Div2if[3, @{3, 6, 7, 5, 1@}]
+@{3/2, 3, 7, 5/2, 1/2@}
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,Div2Matrix,
+@subsection @code{Div2Matrix}
+@findex Div2Matrix
+
+@table @t
+@item Div2Matrix[@var{m}]
+:: divide all elements except diagonal ones of m by 2
+@end table
+
+@table @var
+@item @var{m}
+matrix
+@item return
+matrix divided all elements except diagonal ones of m by 2
+
+@end table
+
+@example
+[Example] 
+Div2Matrix[@{@{1, 3@}, @{7, 4@}@}]
+@{@{1, 3/2@}, @{7/2, 4@}@}
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,QuadraticFormMatrix,
+@subsection @code{QuadraticFormMatrix}
+@findex QuadraticFormMatrix
+
+@table @t
+@item QuadraticFormMatrix[@var{poly},@var{vl}]
+:: QuadraticFormMatrix
+@end table
+
+@table @var
+@item @var{poly},@var{vl}
+polynomial,list of values
+@item return
+QuadraticFormMatrix
+@end table
+
+@example
+[Example] 
+QuadraticFormMatrix[(a*x^2 + b*x + c-y)^2, @{a, b, c@}]
+@{@{x^4, x^3, x^2@}, @{x^3, x^2, x@}, @{x^2, x, 1@}@}
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,LinearFormVector,
+@subsection @code{LinearFormVector}
+@findex LinearFormVector
+
+@table @t
+@item LinearFormVector[@var{poly},@var{vl}]
+:: LinearFormVector
+@end table
+
+@table @var
+@item @var{poly},@var{vl}
+polynominal,list of values
+@item return
+LinearFormVector
+@end table
+
+@example
+[Example] 
+LinearFormVector[(a*x^2 + b*x + c - y)^2, @{a, b, c@}]
+@{-2 x^2 y, -2 x y, -2 y@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,FindMatrix etc,
+@section @code{FindMatrix etc}
+@findex FindMatrix etc
+
+@node ,VtoTriangle,
+@subsection @code{VtoTriangle}
+@findex VtoTriangle
+
+@table @t
+@item VtoTriangle[@var{V},@var{t}]
+:: return coordinates of triangle
+@end table
+
+@table @var
+@item @var{V},@var{t}
+list of vertices,list of triangulation
+@item return
+list of coordinates of vertices of triangle
+@end table
+
+@example
+[Example] 
+VtoTriangle[@{@{-1, 1@}, @{0, -2@}, @{1, 1@}, @{0, 2@}@}, @{1, 2, 4@}]
+@{@{-1, 1@}, @{0, -2@}, @{0, 2@}@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,VtoTriangles,
+@subsection @code{VtoTriangles}
+@findex VtoTriangles
+
+@table @t
+@item VtoTriangles[@var{V},@var{T}]
+:: return coordinates of triangles
+@end table
+
+@table @var
+@item @var{V},@var{T}
+list of vertices,list of triangulation
+@item return
+list of coordinates of vertices of triangles
+@end table
+
+@example
+[Example] 
+VtoTriangles[@{@{-1, 1@}, @{0, -2@}, @{1, 1@}, @{0, 2@}@}, @{@{1, 2, 3@}, @{1, 2, 4@}, @{2, 3, 4@}@}]
+@{@{@{-1, 1@}, @{0, -2@}, @{1, 1@}@}, @{@{-1, 1@}, @{0, -2@}, @{0, 2@}@}, @{@{0, -2@}, @{1,1@}, @{0, 2@}@}@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,Cog,
+@subsection @code{Cog}
+@findex Cog
+
+@table @t
+@item Cog[@var{P}]
+:: return triangle center
+@end table
+
+@table @var
+@item @var{P}
+triangle
+@item return
+triangle center of P
+@end table
+
+@example
+[Example] 
+Cog[@{@{-1, 1@}, @{0, -2@}, @{0, 2@}@}]
+@{-(1/3), 1/3@}
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,Trans,
+@subsection @code{Trans}
+@findex Trans
+
+@table @t
+@item Trans[@var{P},@var{l}]
+:: parallel shift by l
+@end table
+
+@table @var
+@item @var{P},@var{l}
+triangle,vector
+@item return
+triangle
+@end table
+
+@example
+[Example] 
+Trans[@{@{1, 2@}, @{5, -3@}, @{-4, 1@}@}, @{5, 6@}]
+@{@{-4, -4@}, @{0, -9@}, @{-9, -5@}@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,FindMatrix,
+@subsection @code{FindMatrix}
+@findex FindMatrix
+
+@table @t
+@item FindMatrix[@var{P1},@var{P2}]
+:: find matrix converts P1 to P2
+@end table
+
+@table @var
+@item @var{P1},@var{P2}
+triangles whose center is origin
+@item return
+matrix convert P1 to P2
+@end table
+
+@example
+[Example] 
+P11 = @{@{0, 2@}, @{-3, -1@}, @{3, -1@}@};
+P21 = @{@{-4, 3@}, @{1, -2@}, @{3, -1@}@};
+FindMatrix[P11, P21]
+@{@{1/3, -2@}, @{1/6, 3/2@}@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,FindMatrix1,
+@subsection @code{FindMatrix1}
+@findex FindMatrix1
+
+@table @t
+@item FindMatrix1[@var{P1},@var{P2}]
+:: find matrix converts P1 to P2
+@end table
+
+@table @var
+@item @var{P1},@var{P2}
+triangles whose center is origin
+@item return
+matrix convert P1 to P2
+@end table
+
+@example
+[Example] 
+P11 = @{@{0, 2@}, @{-3, -1@}, @{3, -1@}@};
+P21 = @{@{-4, 3@}, @{1, -2@}, @{3, -1@}@};
+FindMatrix1[P11, P21]
+@{@{1/3, -2@}, @{1/6, 3/2@}@}
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,FindMatrices,
+@subsection @code{FindMatrices}
+@findex FindMatrices
+
+@table @t
+@item FindMatrices[@var{V1},@var{V2},@var{T}]
+:: find matrices converts each triangles represented by V1 and T to ones represented by V2 and T
+@end table
+
+@table @var
+@item @var{V1},@var{V2},@var{T}
+V1,V2:list of vertices T:list of triangulation
+@item return
+matrices
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,FindAffineMatrix,
+@subsection @code{FindAffineMatrix}
+@findex FindAffineMatrix
+
+@table @t
+@item FindAffineMatrix[@var{P1},@var{P2}]
+:: find affine matrix converts P1 to P2 
+@end table
+
+@table @var
+@item @var{P1},@var{P2}
+triangles
+@item return
+matrix converts P1 to P2
+@end table
+
+@example
+[Example] 
+FindAffineMatrix[@{@{-1, 1@}, @{0, -2@}, @{0, 2@}@}, @{@{-4, 3@}, @{1, -2@}, @{3, 0@}@}]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,FindAffineMatrices,
+@subsection @code{FindAffineMatrices}
+@findex FindAffineMatrices
+
+@table @t
+@item FindAffineMatrices[@var{V1},@var{V2},@var{T}]
+:: find affine matrix convert each triangles 
+@end table
+
+@table @var
+@item @var{V1},@var{V2},@var{T}
+V1,V2:list of vertices T:list of triangulation
+@item return
+matrices
+@end table
+
+@example
+[Example] 
+V1 = @{@{-1, 1@}, @{0, 2@}, @{1, -3@}, @{4, -5@}@};
+V2 = @{@{-3, 3@}, @{-2, 5@}, @{2, 1@}, @{3, 1@}@};
+T = @{@{1, 2, 3@}, @{1, 2, 4@}, @{2, 3, 4@}@};
+FindAffineMatrices[V1, V2, T]
+@{@{@{3/2, -(1/2), -1@}, @{1, 1, 3@}, @{0, 0, 1@}@}, 
+@{@{12/11, -(1/11), -(20/11)@}, @{10/11, 12/11, 31/11@}, @{0, 0, 1@}@}, 
+@{@{-(3/13), -(11/13), -(4/13)@}, @{8/13, 12/13, 41/13@}, @{0, 0, 1@}@}@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,EmbedMatrix EmbedVector,
+@section @code{EmbedMatrix,EmbedVector}
+@findex EmbedMatrix,EmbedVector
+
+@node ,En,
+@subsection @code{En}
+@findex En
+
+@table @t
+@item En[@var{P1},@var{P2},@var{A}]
+:: En
+@end table
+
+@table @var
+@item @var{P1},@var{P2},@var{A}
+P1,P2:triangles A:matrix
+@item return
+?
+@end table
+
+@example
+[Example] 
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,En2,
+@subsection @code{En2}
+@findex En2
+
+@table @t
+@item En2[@var{P1},@var{P2},@var{A}]
+:: ?
+@end table
+
+@table @var
+@item @var{P1},@var{P2},@var{A}
+P1,P2:triangles A:matrix
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,F1,
+@subsection @code{F1}
+@findex F1
+
+@table @t
+@item F1[@var{P1},@var{P2},@var{A}]
+:: ?
+@end table
+
+@table @var
+@item @var{P1},@var{P2},@var{A}
+P1,P2:triangles A:matrix
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,F2,
+@subsection @code{F2}
+@findex F2
+
+@table @t
+@item F2[@var{P1},@var{P2},@var{A}]
+:: ?
+@end table
+
+@table @var
+@item @var{P1},@var{P2},@var{A}
+P1,P2:triangles A:matrix
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,F1a,
+@subsection @code{F1a}
+@findex F1a
+
+@table @t
+@item F1a[@{@{@var{a1x},@var{a1y}@},@{@var{b1x},@var{b1y}@},@{@var{c1x},@var{c1y}@}@},@{@{@var{m11},@var{m12}@},@{@var{m21},@var{m22}@}@}]
+:: ?
+@end table
+
+@table @var
+@item @{@{@var{a1x},@var{a1y}@},@{@var{b1x},@var{b1y}@},@{@var{c1x},@var{c1y}@}@},@{@{@var{m11},@var{m12}@},@{@var{m21},@var{m22}@}@}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,EmbedMatrix,
+@subsection @code{EmbedMatrix}
+@findex EmbedMatrix
+
+@table @t
+@item EmbedMatrix[@var{n},@var{i},@var{j},@var{M}]
+:: embed 2-degree matrix M in n-degree 0 matrix 
+@end table
+
+@table @var
+@item @var{n},@var{i},@var{j},@var{M}
+degree,index,index,matrix
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+EmbedMatrix[6, 2, 4, @{@{1, 2@}, @{3, 4@}@}]
+@{@{0, 0, 0, 0, 0, 0@}, 
+ @{0, 1, 0, 2, 0, 0@}, 
+ @{0, 0, 0, 0, 0, 0@}, 
+ @{0, 3, 0, 4, 0, 0@}, 
+ @{0, 0, 0, 0, 0, 0@}, 
+ @{0, 0, 0, 0, 0, 0@}@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,EmbedMatrix,
+@subsection @code{EmbedMatrix}
+@findex EmbedMatrix
+
+@table @t
+@item EmbedMatrix[@var{n},@var{i},@var{j},@var{k},@var{M}]
+:: embed 2-degree matrix M in n-degree 0 matrix 
+@end table
+
+@table @var
+@item @var{n},@var{i},@var{j},@var{k},@var{M}
+degree,index,index,index,matrix
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+EmbedMatrix[8, 2, 4, 7, @{@{1, 2, 3@}, @{4, 5, 6@}, @{7, 8, 9@}@}]
+@{@{0, 0, 0, 0, 0, 0, 0, 0@},
+ @{0, 1, 0, 2, 0, 0, 3, 0@},
+ @{0, 0, 0, 0, 0, 0, 0, 0@},
+ @{0, 4, 0, 5, 0, 0, 6, 0@},
+ @{0, 0, 0, 0, 0, 0, 0, 0@},
+ @{0, 0, 0, 0, 0, 0, 0, 0@},
+ @{0, 7, 0, 8, 0, 0, 9, 0@},
+ @{0, 0, 0, 0, 0, 0, 0, 0@}@}
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,EmbedMatrix2,
+@subsection @code{EmbedMatrix2}
+@findex EmbedMatrix2
+
+@table @t
+@item EmbedMatrix2[@var{n},@var{i},@var{j},@var{k},@var{M}]
+:: ?
+@end table
+
+@table @var
+@item @var{n},@var{i},@var{j},@var{k},@var{M}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,F1v,
+@subsection @code{F1v}
+@findex F1v
+
+@table @t
+@item F1v[@{@{@var{a1x},@var{a1y}@},@{@var{b1x},@var{b1y}@},@{@var{c1x},@var{c1y}@}@},@{@{@var{m11},@var{m12}@},@{@var{m21},@var{m22}@}@}]
+:: ?
+@end table
+
+@table @var
+@item @{@{@var{a1x},@var{a1y}@},@{@var{b1x},@var{b1y}@},@{@var{c1x},@var{c1y}@}@},@{@{@var{m11},@var{m12}@},@{@var{m21},@var{m22}@}@}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,F2v,
+@subsection @code{F2v}
+@findex F2v
+
+@table @t
+@item F2v[@var{P1},@var{P2},@var{A}]
+:: ?
+@end table
+
+@table @var
+@item @var{P1},@var{P2},@var{A}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,EmbedVector,
+@subsection @code{EmbedVector}
+@findex EmbedVector
+
+@table @t
+@item EmbedVector[@var{n},@var{i},@var{j},@var{k},@var{V}]
+:: ?
+@end table
+
+@table @var
+@item @var{n},@var{i},@var{j},@var{k},@var{V}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,Fn,
+@subsection @code{Fn}
+@findex Fn
+
+@table @t
+@item Fn[@var{P},@var{V},@var{T},@var{A}]
+:: ?
+@end table
+
+@table @var
+@item @var{P},@var{V},@var{T},@var{A}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,Fn2,
+@subsection @code{Fn2}
+@findex Fn2
+
+@table @t
+@item Fn2[@var{P},@var{V},@var{T},@var{A}]
+:: ?
+@end table
+
+@table @var
+@item @var{P},@var{V},@var{T},@var{A}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node ,Ln,
+@subsection @code{Ln}
+@findex Ln
+
+@table @t
+@item Ln[@var{P},@var{V},@var{T},@var{A}]
+:: ?
+@end table
+
+@table @var
+@item @var{P},@var{V},@var{T},@var{A}
+?
+@item return
+?
+@end table
+
+@example
+[Example] 
+?
+
+@c @image{img/RoachGraph,,4cm}
+@end example
+@c ****************************
+
+
+

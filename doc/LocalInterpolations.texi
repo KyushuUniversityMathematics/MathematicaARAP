@@ -1,0 +1,161 @@
+@chapter Local Interpolations
+
+@node RotateAngle,NewfindMatrices,,LocalInterpolations
+@section @code{RotateAngle}
+@findex RotateAngle
+
+@table @t
+@item RotateAngle[@var{m}_,@var{flag}_]
+::controlled rotate angle of m by flag 
+@end table
+
+@table @var
+@item @var{m}
+
+@item @var{flag}
+1 or 0 or -1, control the rotate angle
+@item return
+angle
+@end table
+
+@example
+[Example] 
+RotateAngle[m,1]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node NewFindMatrices,LocalLinear,RotateAngle,LocalInterpolations
+@section @code{NewFindMatrices}
+@findex NewFindMatrices
+
+@table @t
+@item NewFindMatrices[@var{conf}_]
+::find matrices converted each triangles
+@end table
+
+@table @var
+@item @var{conf}
+configuration
+@item return
+matrices 
+@end table 
+
+@example
+[Example] 
+NewFindMatrices[Configuration2]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node LocalLinear,LocalPolar,NewFindMatrices,LocalInterpolations
+@section @code{LocalLinear}
+@findex LocalLinear
+
+@table @t
+@item LocalLinear[@var{m}_]
+::compute a local linear interpolations depend on time
+@end table
+
+@table @var
+@item @var{m}
+matrices computed by NewFindMatrices[@var{conf_}]
+@item return
+matrices of local linear interpolation
+@end table
+
+@example
+[Example] 
+LocalLiner[NewFindMatrices[Configuration2]]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node LocalPolar,LocalAlexa,LocalLinear,LocalInterpolations
+@section @code{LocalPolar}
+@findex LocalPolar
+
+@table @t
+@item LocalPolar[@var{m}_]
+::compute a local polar interpolations depend on time
+@end table
+
+@table @var
+@item @var{m}
+matrices computed by NewFindMatrices[@var{conf_}]
+@item return
+matrices of local polar interpolation
+@end table
+
+@example
+[Example] 
+LocalPolar[NewFindMatrices[Configuration2]]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node LocalAlexa,LocalLogExp,LocalPolar,LocalInterpolations
+@section @code{LocalAlexa}
+@findex LocalAlexa
+
+@table @t
+@item LocalAlexa[@var{m}_]
+::compute a local ARAP interpolations depend on time
+@end table
+
+@table @var
+@item @var{m}
+matrices computed by NewFindMatrices[@var{conf_}]
+@item return
+matrices of local alexa interpolation
+@end table
+
+@example
+[Example] 
+LocalAlexa[NewFindMatrices[Configuration2]]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node LocalLogExp,LocalInterpolations,LocalAlexa,LocalInterpolations
+@section @code{LocalLogExp}
+@findex LocalLogExp
+
+@table @t
+@item LocalLogExp[@var{m}_]
+::compute a local log-exp interpolations depend on time
+@end table
+
+@table @var
+@item @var{m}
+matrices computed by NewFindMatrices[@var{conf_}]
+@item return
+matrices of local log-exp interpolation
+@end table
+
+@example
+[Example] 
+LocalLogExp[NewFindMatrices[Configuration2]]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+@node LocalInterpolations,LocalInterpolations,RotateAngle, Special Graphs
+@section @code{LocalInterpolations}
+@findex LocalInterpolations
+
+@table @t
+@item LocalInterpolations[@var{local}_,@var{conf}_]
+::compute local interpolations that you choice
+@end table
+
+@table @var
+@item @var{local}
+LocalLinear/LocalPolar/LocalAlexa/LocalLogExp
+@item @var{conf}
+configuration
+@item return
+@end table
+
+@example
+[Example] 
+LocalInterpolations[LocalPolar,Configuration2]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
