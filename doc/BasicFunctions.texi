@@ -108,7 +108,7 @@ Graphics[MakePolygon[VerticalSnake[10], SnakeTriangle[10]]]
 
 @c ---------------------------AnimationRange
 
-@node AnimationRange,Polar,SnakeTriangle, Basic Functions
+@node AnimationRange,AnimationRange2,SnakeTriangle, Basic Functions
 @section @code{AnimationRange}
 @findex AnimationRange
 
@@ -120,6 +120,35 @@ Graphics[MakePolygon[VerticalSnake[10], SnakeTriangle[10]]]
 @table @var
 @item @var{conf}
 @{ start vertex set , end vertex set@}
+@item return
+coordinates of display
+@end table
+
+@example
+[Example] 
+
+AnimationRange[Configuration2]
+=@{@{-2, 4@}, @{-3, 5@}@}
+
+@end example
+
+@c ---------------------------AnimationRange2
+
+@node AnimationRange2,Polar,AnimationRange, Basic Functions
+@section @code{AnimationRange2}
+@findex AnimationRange2
+
+@table @t
+@item AnimationRange2[@var{range1},@var{range2}]
+:: size of Display
+@end table
+
+@table @var
+@item @var{range1}
+
+@table @var
+@item @var{range2}
+
 @item return
 coordinates of display
 @end table
@@ -429,19 +458,20 @@ RotateAngle[@{@{1, 2@}, @{3, 4@}@}]
 
 @table @t
 @item CogTrans[@var{pl}]
-:: aiueo
+:: move to triangles (trigangles center og gravity(0,0))
 @end table
 
 @table @var
 @item @var{pl}
-aiueo
-@item return
-aiueo
+list of a coordinate triangle
+@item return 
+list of a coordinate triangle
 @end table
 
 @example
 [Example] 
-CogTrans[pl_]
+CogTrans[@{@{0,3@},@{3,3@},@{0,-3@}@}]
+=@{@{-1, 2@}, @{2, 2@}, @{-1, -4@}@}
 @end example
 
 
@@ -453,19 +483,20 @@ CogTrans[pl_]
 
 @table @t
 @item PolygonToTriangles[@var{l}]
-:: aiueo
+:: Set  polygon to vertex set of triangle(Center of gravity(0,0))
 @end table
 
 @table @var
 @item @var{l}
-aiueo
+Polygon
 @item return
-aiueo
+vertex of triangles
 @end table
 
 @example
 [Example] 
-PolygonToTriangles[l_]
+Graphics[TrianglesToPolygon[PolygonToTriangles[MakePolygon[dataS2, dataT2]]]]
+@image{img/exPolygonToTriangles,8cm}
 @end example
 
 
@@ -477,21 +508,23 @@ PolygonToTriangles[l_]
 
 @table @t
 @item TrianglesToTriangles[@var{offset},@var{cog}]
-:: aiueo
+:: @var{cog} run vertexes in a parallel direction
 @end table
 
 @table @var
 @item @var{offset}
-aiueo
+vertex set
 @item @var{cog}
-aiueo
+coordinate
 @item return
-aiueo
+vertex set
 @end table
 
 @example
 [Example] 
-TrianglesToTriangles[offset_,cog_]
+TrianglesToTriangles[@{@{@{-1, 1@}, @{0, -2@}, @{0, 2@}, @{1, 1@}@}, @{@{1, 1@}@}@}, @{@{1, -1@}, @{0, 1@}@}]
+=@{@{@{0, 0@}, @{1, -3@}, @{1, 1@}, @{2, 0@}@}, @{@{1, 2@}@}@}
+
 @end example
 
 
@@ -503,19 +536,20 @@ TrianglesToTriangles[offset_,cog_]
 
 @table @t
 @item TrianglesToPolygon[@var{tl}]
-:: aiueo
+::  Set vertex set of triangle to polygon
 @end table
 
 @table @var
 @item @var{tl}
-aiueo
+list of triangle vertex set
 @item return
-aiueo
+polygon
 @end table
 
 @example
 [Example] 
-TrianglesToPolygon[tl_]
+Graphics[TrianglesToPolygon[{{{1, 1}, {1, 2}, {-1, 3}}, {{-1, 1}, {-1,2}, {1, 3}}}]]
+@image{img/exTrianglesToPolygon,8cm}
 @end example
 
 
