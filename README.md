@@ -6,5 +6,5 @@
 in SCA '12 Proceedings of the ACM SIGGRAPH/Eurographics Symposium on Computer Animation,
 pp.71-76.
 
-  This repository is maintained by Y.Mizoguchi, T.Hirano, A.hirakawa, N.Miyaki and C.Matsufuji.
+This repository is maintained by T.Hirano, A.hirakawa, N.Miyaki, C.Matsufuji and Y.Mizoguchi.
 
