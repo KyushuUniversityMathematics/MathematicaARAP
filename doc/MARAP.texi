@@ -78,7 +78,7 @@ S.Kaji, S.Hirose, S.Sakata, Y.Mizoguchi,
 @uref{http://dl.acm.org/citation.cfm?id=2422368,
 Mathematical analysis on affine maps for 2D shape interpolagion},
 SCA '12 Proceedings of the ACM SIGGRAPH/Eurographics Symposium on Computer Animation,
-pp.71-76/ 
+pp.71-76. 
 @item [2]
 Y. Mizoguchi,
 Mathematical Aspects of Interpolation Technique for Computer Graphics,
