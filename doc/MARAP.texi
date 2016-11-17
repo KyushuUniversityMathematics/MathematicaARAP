@@ -20,10 +20,11 @@
 
 @title Mathematica Module for ARAP Interpolation
 @subtitle MARAP User's Manual
-@subtitle Version 0.1
+@subtitle Version 0.24
 @subtitle @today{}
 
-@author  by Tomomi Hirano, Kyushu University.
+@author  Tomomi Hirano, Kyushu University,
+@author  Yoshihiro Mizoguchi, Kyushu University.
 @table @t
 @item Ver. 0.1
 13 September 2016
@@ -52,19 +53,20 @@ Copyright @copyright{} 2016 Kyushu University, All rights reserved.
 @node Introduction,Basic Functions,, Top
 @chapter Introduction
 
-This is a Mathematica Module for analysing graphs,
-especially using Laplacian Matrices of graphs.
-This module depends on the Mathematica modules
-"Combinatorica`" and "ComputationalGeometry`".
+This is a Mathematica Module for investigating an interpolation
+in Computer Graphics, called the ARAP (as rigid as possible) interpolation.
+Our module contains about 100 functions of lementary matrix
+operations, matrix and polygon interpolatins
+and drawing polygons.
 
-To use this package "GraphLaplacian`",
+To use this package "ARAPlibv024`",
 users should set a directory where the modules is stored.
 
 @example
 [Example]
 
 SetDirectory[FileNameJoin[{$HomeDirectory, "--- Some Folder ---"}]];
-<< GraphLaplacian`;
+<< ARAPlibv024`;
 @end example
 
 @vskip 0pt plus 1filll
@@ -72,10 +74,11 @@ SetDirectory[FileNameJoin[{$HomeDirectory, "--- Some Folder ---"}]];
 This module was used and introduced in the followings:
 @table @t
 @item [1] 
-K.K.K.R. Perera, Y. Mizoguchi,
-@uref{http://j-mi.org/contents_file/contents_files/loader/0/Article/287/file/default/JMI2013A-8.pdf,Bipartition of graphs based on the normalized cut and spectral methods},
-Part I: Minimum normalized cut,
-Journal of Math-for-industory, Vol.5(2013A-8),pp.59-72.
+S.Kaji, S.Hirose, S.Sakata, Y.Mizoguchi,
+@uref{http://dl.acm.org/citation.cfm?id=2422368,
+Mathematical analysis on affine maps for 2D shape interpolagion},
+SCA '12 Proceedings of the ACM SIGGRAPH/Eurographics Symposium on Computer Animation,
+pp.71-76/ 
 @item [2]
 Y. Mizoguchi,
 Mathematical Aspects of Interpolation Technique for Computer Graphics,
