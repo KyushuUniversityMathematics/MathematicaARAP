@@ -338,12 +338,6 @@ configuration
 @{matrix,vector@}
 @end table
 
-@example
-[Example] 
-QuadraticFormAlexa[LocalPolar,Configuration2]
-@c @image{img/RoachGraph,,4cm}
-@end example
-
 
 @node QuadraticFormSim,ARAPa,QuadraticFormAlexa,Grobal Interpolations
 @subsection @code{QuadraticFormSim}
@@ -362,12 +356,6 @@ configuration
 @item return
 @{matrix,vector@}
 @end table
-
-@example
-[Example] 
-QuadraticFormSim[LocalLogExp,Configuration2]
-@c @image{img/RoachGraph,,4cm}
-@end example
 
 
 @node ARAP,,QuadraticFormSim,Grobal Interpolations
