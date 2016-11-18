@@ -1,0 +1,290 @@
+@chapter Constraint Functions
+
+@node ConstMatrix,ConstVector,,Constraint Function and Energy Function
+@section @code{ConstMatrix}
+@findex ConstMatrix
+
+@table @t
+@item ConstMatrix[@var{m}_,@var{st}_]
+::
+@end table
+
+@table @var
+@item @var{m}
+choice of vertex
+@item@var{st}
+list of start coordinates
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+ConstMatrix[1,dataS2]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstVector,ConstMatrixM,ConstMatrix, Constraint Function and Energy Function
+@section @code{ConstVector}
+@findex ConstVector
+
+@table @t
+@item ConstVector[@var{m}_,@var{st}_,@var{en}_,@var{t}_]
+::
+@end table
+
+@table @var
+@item @var{m}
+choice of vertex
+@item @var{st}
+list of start coordinates
+@item @var{en}
+list of end coordinates
+@item @var{t}
+parameter of time(0...1)
+@item return
+vector
+@end table
+
+@example
+[Example] 
+ConstVector[1,dataS2,dataE2,0.5]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstMatrixM,ConstVectorM,ConstVector, Constraint Function and Energy Function
+@section @code{ConstMatrixM}
+@findex ConstMatrixM
+
+@table @t
+@item ConstMatrixM[@var{st}_,@var{en}_,@var{tri}_,@var{t}_]
+::
+@end table
+
+@table @var
+@item @var{st}
+list of start coordinates
+@item @var{en}
+list of end coordinates
+@item @var{tri}
+list of triangulation
+@item @var{t}
+parameter of time(0...1)
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+ConstMatrixM[dataS2,dataE2,dataT2,0.5]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstVectorM,ConstMatrix2,ConstMatrixM, Constraint Function and Energy Function
+@section @code{ConstVectorM}
+@findex ConstVectorM
+
+@table @t
+@item ConstVectorM[@var{st}_,@var{en}_,@var{tri}_,@var{t}_]
+::
+@end table
+
+@table @var
+@item @var{st}
+list of start coordinates
+@item @var{en}
+list of end coordinates
+@item @var{tri}
+list of triangulation
+@item @var{t}
+parameter of time(0...1)
+@item return
+vector
+@end table
+
+@example
+[Example] 
+ConstVectorM[dataS2,dataE2,dataT2,0.5]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstMatrix2,ConstfixMatrix,ConstVectorM, Constraint Function and Energy Function
+@section @code{ConstMatrix2}
+@findex ConstMatrix2
+
+@table @t
+@item ConstMatrix2[@var{n}_,@var{k}_,@var{l}_]
+::
+@end table
+
+@table @var
+@item @var{n}
+weight of constraint function
+@item @var{k},@var{l}
+Choice two numbers you want to fix.
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+ConstMatrix2[2,1,2]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstfixMatrix,ConstfixVector,ConstMatrix2, Constraint Function and Energy Function
+@section @code{ConstfixMatrix}
+@findex ConstfixMatrix
+
+@table @t
+@item ConstfixMatrix[@var{n}_,@var{k}_,@var{l}_,@var{st}_]
+::
+@end table
+
+@table @var
+@item @var{n}
+weight of constraint function
+@item @var{k},@var{l}
+Choice two numbers you want to fix.
+@item @var{st}
+list of start coordinates
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+ConstfixMatrix[2,1,2,dataS2]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstfixVector,Constfix2Vector,ConstfixMatrix, Constraint Function and Energy Function
+@section @code{ConstfixVector}
+@findex ConstfixVector
+
+@table @t
+@item ConstfixVector[@var{n}_,@var{k}_,@var{l}_,@var{st}_]
+::
+@end table
+
+@table @var
+@item @var{n}
+weight of constraint function
+@item @var{k},@var{l}
+Choice two numbers you want to fix.
+@item @var{st}
+list of start coordinates
+@item return
+vector
+@end table
+
+@example
+[Example] 
+ConstfixVector[2,1,2,dataS2]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node Constfix2Vector,TriangleA,ConstfixVector, Constraint Function and Energy Function
+@section @code{Constfix2Vector}
+@findex Constfix2Vector
+
+@table @t
+@item Constfix2Vector[@var{n}_,@var{k}_,@var{l}_,@var{st}_,@var{t}_]
+::
+@end table
+
+@table @var
+@item @var{n}
+weight of constraint function
+@item @var{k},@var{l}
+Choice two numbers you want to fix.
+@item @var{st}
+list of start coordinates
+@item @var{t}
+parameter of time(0...1)
+@item return
+vector
+@end table
+
+@example
+[Example] 
+Constfix2Vector[1,1,2,dataS2,0.5]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstPair,ConstPair,Constfix2Vector,Constraint Function and Energy Function
+@section @code{ConstPair}
+@findex ConstPair
+
+@table @t
+@item ConstPair[@var{m}_]
+::
+@end table
+
+@table @var
+@item @var{m}
+choice of vertex
+@item return
+@{matrix,vector@}
+@end table
+
+@example
+[Example] 
+ConstPair[1]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node ConstPair,DoubleMatrix,ConstPair,Constraint Function and Energy Function
+@section @code{ConstPair}
+@findex ConstPair
+
+@table @t
+@item ConstPair[@var{m}_,@var{n}_]
+::
+@end table
+
+@table @var
+@item @var{m},@var{n}
+choice of vertex
+@item return
+@{matrix,vector@}
+@end table
+
+@example
+[Example] 
+ConstPair[1,2]
+@c @image{img/RoachGraph,,4cm}
+@end example
+
+
+@node DoubleMatrix,,ConstPair,Constraint Function and Energy Function
+@section @code{DoubleMatrix}
+@findex DoubleMatrix
+
+@table @t
+@item DoubleMatrix[@var{m}_]
+::
+@end table
+
+@table @var
+@item @var{m}
+matrix
+@item return
+matrix
+@end table
+
+@example
+[Example] 
+DoubleMatrix[]
+@c @image{img/RoachGraph,,4cm}
+@end example
+

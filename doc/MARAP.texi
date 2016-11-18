@@ -43,7 +43,7 @@ Copyright @copyright{} 2016 Kyushu University, All rights reserved.
 * Basic Functions::
 * Matrix Functions::
 * Local Interpolations::
-* Grobal Interpolations::
+* Global Interpolations::
 * Draw Animation::
 * Index::
 @end menu
@@ -98,13 +98,16 @@ Mathematica Module for ARAP Interpolation @*
 @node Matrix Functions,Local Interpolations,Basic Functions, Top
 @include MatrixFunctions.texi
 
-@node Local Interpolations,Grobal Interpolations,Matrix Functions,, Top
+@node Local Interpolations,Constraint Functions,Matrix Functions,Top
 @include LocalInterpolations.texi
 
-@node Grobal Interpolations,Draw Animation,Local Interpolations, Top
-@include GrobalInterpolations.texi
+@node Constraint Functions,Global Interpolations,LocalInterpolations,Top
+@include ConstraintFunctions.texi
 
-@node Draw Animation,Index,Grobal Interpolations, Top
+@node Global Interpolations,Draw Animation,Constraint Functions,Top
+@include GlobalInterpolations.texi
+
+@node Draw Animation,Index,Global Interpolations, Top
 @include DrawAnimation.texi
 
 @node Index,,Draw Animation, Top
