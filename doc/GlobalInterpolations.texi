@@ -6,7 +6,7 @@
 
 @table @t
 @item QuadraticFormAlexa[@var{local}_,@var{conf}_]
-::
+::Compute a global error function of Alexa's method.
 @end table
 
 @table @var
