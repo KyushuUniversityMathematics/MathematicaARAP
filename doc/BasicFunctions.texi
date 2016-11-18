@@ -145,10 +145,7 @@ AnimationRange[Configuration2]
 
 @table @var
 @item @var{range1}
-
-@table @var
 @item @var{range2}
-
 @item return
 coordinates of display
 @end table
