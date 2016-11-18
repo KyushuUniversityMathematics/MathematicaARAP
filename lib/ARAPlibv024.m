@@ -1,7 +1,8 @@
 (* ::Package:: *)
 
-(* ::Text:: *)
-(*ARAPlibv023(11/8)*)
+(* ::Chapter:: *)
+(*ARAPlib.m (Mathematica Modules 2016/11/17)*)
+(*Kyushu University 2016*)
 
 
 (* ::Section:: *)
@@ -88,7 +89,7 @@ Table[ToExpression["v"~StringJoin~ToString[i]~StringJoin~"y"],{i,1,n}]}];
 NormF[m_]:=Total[Map[#^2&,Flatten[m]]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*QuadraticFormMatrix + LinearFormVector*)
 
 
@@ -106,7 +107,7 @@ allzero=Map[#->0&,vl];
 Map[Coefficient[poly,#]/.allzero&,vl]]
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*FindMatrix etc*)
 
 
@@ -131,7 +132,7 @@ Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]]];
 FindAffineMatrices[V1_,V2_,tindex_]:=FindAffineMatrix[VtoTriangle[V1,#],VtoTriangle[V2,#]]&/@ tindex
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*EmbedMatrix,EmbedVector*)
 
 
@@ -255,7 +256,7 @@ F1v[VtoTriangle[P,T[[i]]],A]]
 ,{i,1,Length[T]}]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Local Interpolation*)
 
 
@@ -293,7 +294,7 @@ LocalInterpolations[local_,conf_]:=Function[{t},
 (local[#][t]&)/@ NewFindMatrices[conf]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Constraint,Energy*)
 
 
@@ -350,7 +351,7 @@ X0[l_]:=Flatten[Transpose[{l,Table[0,{Length[l]}]}]];
 Y0[l_]:=Flatten[Transpose[{Table[0,{Length[l]}],l}]];Flatten[Map[{X0[#],Y0[#]}&,m],1]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Global Interpolation*)
 (*(Embed\:3092\:7528\:3044\:305f\:3082\:306e\:3001Alexa)*)
 
