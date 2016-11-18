@@ -23,7 +23,8 @@
 @subtitle Version 0.24
 @subtitle @today{}
 
-@author Editor: Yoshihiro Mizoguchi, Kyushu University.
+@author Tomomi Hirano, Kyushu University.
+@author Yoshihiro Mizoguchi, Kyushu University.
 @table @t
 @item Ver. 0.1
 13 September 2016
