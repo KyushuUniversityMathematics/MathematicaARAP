@@ -1,0 +1,536 @@
+\documentclass[8pt]{article}
+\addtolength{\textheight}{3.5cm}
+\addtolength{\topmargin}{-1.5cm}
+\addtolength{\textwidth}{4cm}
+\addtolength{\oddsidemargin}{-2cm}
+\addtolength{\evensidemargin}{-2cm}
+
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,ascmac}
+\usepackage{array,arydshln,color}
+\usepackage{multirow,url}
+\newtheorem{prop}{\bf Proposition}
+\pagestyle{empty}
+\title{A Mathematica module for two-dimensional computer graphics\\
+--Data structure and Interpolation algorithms--
+}
+\author{Tomomi Hirano\\
+Graduate School of Mathematics, Kyushu University
+\footnote{ma215037@math.kyushu-u.ac.jp}
+}
+
+
+\begin{document}
+\maketitle
+\section{Introduction}
+2D shape interpolation is widely used in Computer Graphics.
+In 2000, Alexa and Xu suggested new algorithm preserving rigidity for algorithm of this interpolation \cite{Alexa2000} .These algorithm consists of local interpolations and a global interpolation.
+The local interpolation means an interpolation between one souce mesh and target mesh. 
+Kaji gave the new parameterization method, a computation algorithm, and applications to shape deformation  using Lie group and Lie algebra in \cite{Kaji2012}.
+In \cite{Kaji2013}, they presented the algorithms to achieve global interpolation, each of which minimizes an error function with user-specified constraints. 
+We introduce a Mathematica module for drawing,transformation,interpolation of two-dimensional polygon figure using results \cite{Alexa2000}  and  \cite{Kaji2012}.
+We can analyse and investigate critical examples of interpolations using our module.
+Symbolic computations in Mathmatica enable us a simple method to evaluate those examples
+using several mathematical formulas.
+In  \cite{Kaji2012}, they showed a closed form for the similarity invariant error function.
+Further, since it is a quadratic polynomial, we can computate a time-independent
+matrix used for getting the minimizer.
+In our module, it contains a function to produce a time-independent matrix
+by given coordinates of an source figure and a target figure.
+Giving those coordinates as variable symbols, our function returns a matrix
+which elements are polynomials of variable symbols.
+Those polynomials are used for hard cording in another language
+such as C which does not have a facility of symbolic computations.
+This means, we can execute faster after compiling the extracted cord.Our module will be publish in Github \footnote{\url{https://github.com/KyushuUniversityMathematics/MathematicaARAP}}.
+
+\section{Preliminary}
+We consider a $2\times 2$-matrix
+$\displaystyle A = 
+\left(
+\begin{array}{cc}
+ m_{11} & m_{12} \\
+ m_{21} & m_{22}
+\end{array}
+\right)$,
+and an affine matrix
+$\left(
+     \begin{array}{ccc}
+ 	\multicolumn{2}{c}{\multirow{2}{*}{\mbox {\smash{\Large $B$ }}}}&\alpha \\
+    	\multicolumn{2}{c}{}&\beta\\
+      0&0&1   
+     \end{array}
+\right)$
+which transform three points
+$(a_x,a_y)$, $(b_x,b_y)$ and $(c_x,c_y)$
+to
+$(v_{1x},v_{1y})$, $(v_{2x},v_{2y})$ and $(v_{3x},v_{3y})$,
+respectively.
+That is
+\begin{eqnarray*}
+\left(
+     \begin{array}{ccc}
+ 	\multicolumn{2}{c}{\multirow{2}{*}{\mbox {\smash{\Large $B$ }}}}&\alpha \\
+    	\multicolumn{2}{c}{}&\beta\\
+      0&0&1   
+     \end{array}
+  \right) &=&
+  \left(
+    \begin{array}{ccc}
+      v_{1x} & v_{2x} & v_{3x} \\
+      v_{1y} & v_{2y} & v_{3y} \\
+      1 & 1 & 1
+    \end{array}
+  \right)
+  \left(
+    \begin{array}{ccc}
+     a_x & b_x & c_x \\
+     a_y & b_y & c_y \\
+      1 & 1 & 1
+    \end{array}
+  \right)^{-1}.
+\end{eqnarray*}
+Let 
+$\displaystyle R_\delta =
+\left(
+\begin{array}{cc}
+ \cos \delta & -\sin \delta \\
+ \sin \delta & \cos \delta
+\end{array}
+\right)$
+be a rotation matrix.
+The Frobenius norm $|| M ||_F$ of a matrix $M=(m_{i,j})$
+is defined by $\displaystyle ||M||^2_F=Tr(M\cdot M^T)=\sum_{i,j} m^2_{i,j}$.
+
+For a given $A$ and $B$,
+we want to find a values of
+$(v_{1x},v_{1y})$, $(v_{2x},v_{2y})$ and $(v_{3x},v_{3y})$,
+which minimize $||B - A||^2_F$.
+Since $||B - A||^2_F$ is a quadratic polynomials of $v_{ix}$ and
+$v_{iy}$,
+we can find them using the least square method.
+To solve the problem, we prepare a pre-computed
+quadratic form matrix defined by simple components of polynomials.
+\begin{prop}\label{prop:arap}
+\begin{eqnarray*}
+||B - A||^2_F &=&
+\frac{1}{q}
+\left(
+\begin{array}{cccccc}
+ v_{1x} & v_{2x} & v_{3x} &  v_{1y} & v_{2y} & v_{3y}
+\end{array}
+\right)
+\left(
+\begin{array}{cccccc}
+ p_{11} & p_{12} & p_{13} & 0 & 0 & 0 \\
+ p_{12} & p_{22} & p_{23} & 0 & 0 & 0 \\
+ p_{13} & p_{23} & p_{33} & 0 & 0 & 0 \\
+ 0 & 0 & 0 & p_{11} & p_{12} & p_{13} \\
+ 0 & 0 & 0 &p_{12} & p_{22} & p_{23} \\
+ 0 & 0 & 0 &p_{13} & p_{23} & p_{33} \\
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+ v_{1x} \\ v_{2x} \\ v_{3x}\\
+ v_{1y} \\ v_{2y} \\ v_{3y}
+\end{array}
+\right) \\
+&& +
+\left(
+\begin{array}{cccccc}
+k_1 & k_2 & k_3 & k_4 & k_5 & k_6
+\end{array}
+\right)
+\left(
+\begin{array}{c}
+ v_{1x} \\ v_{2x} \\ v_{3x}\\
+ v_{1y} \\ v_{2y} \\ v_{3y}
+\end{array}
+ \right)
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+q&=&(a_{y} b_{x}-a_{x} b_{y}-a_{y} c_{x}+b_{y} c_{x}+a_{x} c_{y}-b_{x} c_{y})^2, \\
+p_{11}&=&b_{x}^2+b_{y}^2-2 b_{x} c_{x}+c_{x}^2-2 b_{y} c_{y}+c_{y}^2, \\
+ p_{12}&=&-(a_{x} b_{x}+a_{y} b_{y}-a_{x} c_{x}-b_{x}
+  c_{x}+c_{x}^2-a_{y} c_{y}-b_{y} c_{y}+c_{y}^2), \\
+p_{13}&=&-b_{x}^2+a_{x} (b_{x}-c_{x})+b_{x} c_{x}+(a_{y}-b_{y}) (b_{y}-c_{y}), \\
+p_{22}&=&a_{x}^2+a_{y}^2-2 a_{x} c_{x}+c_{x}^2-2 a_{y} c_{y}+c_{y}^2, \\
+p_{23}&=&-(a_{x}^2+a_{y}^2+b_{x} c_{x}-a_{x} (b_{x}+c_{x})
+  +b_{y} c_{y}-a_{y} (b_{y}+c_{y})), \mbox{\ and} \\
+p_{33}&=&a_{x}^2+a_{y}^2-2 a_{x} b_{x}+b_{x}^2-2 a_{y} b_{y}+b_{y}^2. \\
+\end{eqnarray*}
+\end{prop}
+
+\begin{screen}
+We have implemented a function $F1a$ which compute the
+quadratic form matrix, i.e.
+$$
+F1a(
+\left(
+\left( \begin{array}{c} a_{x} \\ a_{y} \end{array} \right),
+\left( \begin{array}{c} b_{x} \\ b_{y} \end{array} \right),
+\left( \begin{array}{c} c_{x} \\ c_{y} \end{array} \right)
+\right),
+\left(
+\begin{array}{cc}
+ m_{11} & m_{12} \\
+ m_{21} & m_{22}
+\end{array}
+\right)
+) = 
+\frac{1}{q}
+\left(
+\begin{array}{ccc}
+ p_{11} & p_{12} & p_{13} \\
+ p_{12} & p_{22} & p_{23} \\
+ p_{13} & p_{23} & p_{33}
+\end{array}
+\right).
+$$
+
+We can verify the fact in Proposition~\ref{prop:arap}
+by using a symboic computation using Mathematica.
+\begin{eqnarray*}
+&&A=\left(
+\begin{array}{cc}
+ m_{11} & m_{12} \\
+ m_{21} & m_{22} \\
+\end{array}
+\right);B=\left(\left(
+\begin{array}{ccc}
+ v_{1 x} & v_{2 x} & v_{3 x} \\
+ v_{1 y} & v_{2 y} & v_{3 y} \\
+ 1 & 1 & 1 \\
+\end{array}
+\right).\left(
+\begin{array}{ccc}
+ a_x & b_x & c_x \\
+ a_y & b_y & c_y \\
+ 1 & 1 & 1 \\
+\end{array}
+\right){}^{-1}\right)[[1\text{;;}2,1\text{;;}2]]; \\
+&& 
+\text{F1a}(
+\left(
+\left( \begin{array}{c} a_{x} \\ a_{y} \end{array} \right),
+\left( \begin{array}{c} b_{x} \\ b_{y} \end{array} \right),
+\left( \begin{array}{c} c_{x} \\ c_{y} \end{array} \right)
+\right), A
+) == \\
+&&
+ \text{QuadraticFormMatrix}\left(\text{NormF}(B-A),
+			    \left\{v_{1 x},v_{2 x},v_{3 x},v_{1 y},v_{2 y},v_{3 y}
+			    \right\}\right)[[1\text{;;}3,1\text{;;}3]]
+ //
+ \text{FullSimplify}\\
+ && \text{\it \color{blue}True}
+\end{eqnarray*}
+\end{screen}
+
+A similarity distance between two $2\times 2$ matrices
+$\min_{s,\delta \in \mathbb{R}}||sR_\delta A - B||_F^2$
+can be represented by a closed formula
+using trace and determinant functions.
+
+\begin{prop}
+{\bf \cite{Kaji2012}} \label{propsim}
+\begin{eqnarray*}
+\min_{s,\delta \in \mathbb{R}}||sR_\delta A - B||_F^2 &=& ||B||^2_F - \frac{||B \cdot A^T||_F^2 + 2 \mathrm {det}(B \cdot A^T)}{||A||^2_F}
+\end{eqnarray*}
+\end{prop}
+
+Since the similarity distance
+$\min_{s,\delta \in \mathbb{R}}||sR_\delta A - B||_F^2$
+is also represented by a quadratic polynomials of $v_{ix}$ and $v_{iy}$,
+We also prepare a pre-computed
+quadratic form matrix defined by simple components of polynomials.
+
+\begin{prop}\label{prop:sim}
+\begin{eqnarray*}
+ &&min_{s,\delta\in\mathbf{R}}||B - sR_\delta A||^2_F\\
+ &=&
+\frac{1}{f_m X^2}
+\left(
+\begin{array}{cccccc}
+ v_{1x} & v_{1y} & v_{2x} & v_{2y} & v_{3x} & v_{3y}
+\end{array}
+\right)
+\left(
+ \begin{array}{cccccc}
+  Y_5 & 0 & Y_4 & -t_2 & Y_1 & t_2 \\
+  0 & Y_5 & t_2 & Y_4 & -t_2 & Y_1 \\
+  Y_4 & t_2 & Y_6 & 0 & -Y_2 & -t_2 \\
+  -t_2 & Y_4 & 0 & Y_6 & t_2 & -Y_2 \\
+  Y_1 & -t_2 & -Y_2 & t_2 & Y_3 & 0 \\
+  t_2 & Y_1 & -t_2 & -Y_2 & 0 & Y_3
+ \end{array}
+\right)
+\left(
+\begin{array}{c}
+ v_{1x} \\ v_{1y} \\ v_{2x} \\ v_{2y} \\ v_{3x}\\ v_{3y}
+\end{array}
+\right)
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+ f_{m}&=&m_{11}^2+m_{12}^2+m_{21}^2+m_{22}^2, \\
+ f_{1} &=&m_{11}^2+m_{21}^2, \\
+ f_{2} &=&m_{12}^2+m_{22}^2, \\
+ t_{1}&=&m_{11} m_{12}+m_{21} m_{22}, \\
+ t_{2} &= & m_{12} m_{21}-m_{11} m_{22}, \\
+ X &= & a_{y} (b_{x}-c_{x})+b_{y} c_{x}-b_{x} c_{y}+a_{x} (-b_{y}+c_{y}) \\
+Y_1 &= & -b_{x}^2 f_{1}+a_{x} (b_{y} t_{1}-c_{y} t_{1}
+ +(b_{x}-c_{x}) f_{1}) \\
+ && +b_{x} ((a_{y}-2 b_{y}+c_{y}) t_{1}+c_{x} f_{1})
+  +(a_{y}-b_{y}) (-c_{x} t_{1}+(b_{y}-c_{y}) f_{2}), \\
+Y_2 &= &(-a_{y} b_{x} t_{1}-a_{y} c_{x} t_{1}+b_{y}
+  c_{x} t_{1}+b_{x} c_{y} t_{1}+a_{x}^2 f_{1}+b_{x} c_{x} f_{1} \\
+&&-a_{x} ((-2 a_{y}+b_{y}+c_{y}) t_{1}+(b_{x}+c_{x})
+f_{1})+(a_{y}-b_{y})
+(a_{y}-c_{y}) f_{2}), \\
+Y_3 &=& ((a_{x}-b_{x}) (2 a_{y} t_{1}-2 b_{y} t_{1}+(a_{x}-b_{x})
+ f_{1})
+ +(a_{y}-b_{y})^2 f_{2}), \\
+ Y_4 & = & (-a_{y} b_{x} t_{1}-a_{x} b_{y} t_{1}+a_{x} c_{y} c{m}
+  +b_{x} c_{y} t_{1}-c_{x}^2 m_{11}^2-a_{x} b_{x} f_{1}, \\
+&&  +a_{x} c_{x} f_{1}+b_{x} c_{x} f_{1}+a_{y} c_{x}
+  m_{11} m_{12}+b_{y} c_{x} m_{11} m_{12}, \\
+&&  -2 c_{x} c_{y} m_{11} m_{12}-a_{y} b_{y} m_{12}^2
+  +a_{y} c_{y} m_{12}^2+b_{y} c_{y} m_{12}^2
+  -c_{y}^2 m_{12}^2-c_{x}^2 m_{21}^2,  \\
+&&  +c_{x} (a_{y}+b_{y}-2 c_{y}) m_{21} m_{22}
+  +(a_{y}-c_{y}) (-b_{y}+c_{y}) m_{22}^2), \\
+Y_5 &= & ((b_{x}-c_{x}) (2 b_{y} t_{1}-2 c_{y} t_{1}+(b_{x}-c_{x})
+ f_{1}) +(b_{y}-c_{y})^2 f_{2}), \mbox{\ and} \\
+ Y_6 &= & ((a_{x}-c_{x}) (2 a_{y} t_{1}-2
+  c_{y} t_{1}+(a_{x}-c_{x}) f_{1})+(a_{y}-c_{y})^2 f_{2}).
+\end{eqnarray*}
+\end{prop}
+
+\begin{screen}
+ We have implemented a function $F2a$ which compute the
+ quadratic form matrix, i.e.
+ {\small
+$$
+F2a(
+\left(
+\left( \begin{array}{c} a_{x} \\ a_{y} \end{array} \right),
+\left( \begin{array}{c} b_{x} \\ b_{y} \end{array} \right),
+\left( \begin{array}{c} c_{x} \\ c_{y} \end{array} \right)
+\right),
+\left(
+\begin{array}{cc}
+ m_{11} & m_{12} \\
+ m_{21} & m_{22}
+\end{array}
+\right)
+) = 
+\frac{1}{f_m X^2}
+\left(
+ \begin{array}{cccccc}
+  Y_5 & 0 & Y_4 & -t_2 & Y_1 & t_2 \\
+  0 & Y_5 & t_2 & Y_4 & -t_2 & Y_1 \\
+  Y_4 & t_2 & Y_6 & 0 & -Y_2 & -t_2 \\
+  -t_2 & Y_4 & 0 & Y_6 & t_2 & -Y_2 \\
+  Y_1 & -t_2 & -Y_2 & t_2 & Y_3 & 0 \\
+  t_2 & Y_1 & -t_2 & -Y_2 & 0 & Y_3
+ \end{array}
+\right).
+$$}
+We can verify the fact in Proposition~\ref{prop:sim}
+by using a symboic computation using Mathematica.
+\begin{eqnarray*}
+&&A=\left(
+\begin{array}{cc}
+ m_{11} & m_{12} \\
+ m_{21} & m_{22} \\
+\end{array}
+\right);B=\left(\left(
+\begin{array}{ccc}
+ v_{1 x} & v_{2 x} & v_{3 x} \\
+ v_{1 y} & v_{2 y} & v_{3 y} \\
+ 1 & 1 & 1 \\
+\end{array}
+\right).\left(
+\begin{array}{ccc}
+ a_x & b_x & c_x \\
+ a_y & b_y & c_y \\
+ 1 & 1 & 1 \\
+\end{array}
+\right){}^{-1}\right)[[1\text{;;}2,1\text{;;}2]]; \\
+&& 
+\text{F2a}(
+\left(
+\left( \begin{array}{c} a_{x} \\ a_{y} \end{array} \right),
+\left( \begin{array}{c} b_{x} \\ b_{y} \end{array} \right),
+\left( \begin{array}{c} c_{x} \\ c_{y} \end{array} \right)
+\right), A
+) == \\
+ &&
+\text{QuadraticFormMatrix}\left[
+ \text{NormF}(B)- \frac{2 \left| B.A^T \right|
+ +\text{NormF} \left(B.A^T\right)}{\text{NormF}(A)}
+,\left\{v_{1 x},v_{1 y},v_{2 x},v_{2 y},v_{3 x},v_{3
+  y}\right\}\right] \\
+ && // \text{FullSimplify} \\
+ && \text{\it \color{blue}True}
+\end{eqnarray*}
+\end{screen}
+
+
+\section{ARAP}
+
+Let n,m $ \in \mathbb{N} ,\bar{n} = \{ 1,2, \cdots ,n \}.$ A polygon F $ = ( \{P_1,P_2, \cdots ,P_n\}, \Delta  ) $ \\
+is a pair of a point set  $\{ P_1,P_2, \cdots ,P_n\}$ and a triangle set $ \Delta = \{ k_1,k_2, \cdots ,k_m\} $ ,\\
+where $ k_j \in \bar{n} \times \bar{n} \times\bar{n}$ and $ P_i \in \mathbb{R}^2$.We denote $k_j = (k_j(1),k_j(2),k_j(3))$  and  $P_i = (P_{ix},P_{iy}).$\\
+Let $\mathbf{v}^t = (v_{1x}, \cdots ,v_{nx},v_{1y}, \cdots ,v_{ny})$ and $\mathbf{v}_k^t = (v_{k(1)x},v_{k(2)x},v_{k(3)x},v_{k(1)y},v_{k(2)y},v_{k(3}y)$. \\
+
+Let $F_0 = (\{S_1,\cdots ,S_n\},\Delta)$, and $F_1 =(\{T_1,\cdots ,T_n\},\Delta)$be polygons.\\
+For $k \in \Delta$, we define $A_k(t) , B_k \in \mathbb{R}^{2 \times 2}$ by \\
+\begin{eqnarray*}
+\left(
+     \begin{array}{ccc}
+ 	\multicolumn{2}{c}{\multirow{2}{*}{\mbox {\smash{\Large $A_k(t)$ }}}}&\alpha \\
+    	\multicolumn{2}{c}{}&\beta\\
+      0&0&1   
+     \end{array}
+  \right) &=&
+  \left(
+    \begin{array}{ccc}
+      T_{k(1)x} & T_{k(2)x} & T_{k(3)x} \\
+      T_{k(1)y} & T_{k(2)y} & T_{k(3)y} \\
+      1 & 1 & 1
+    \end{array}
+  \right)
+  \left(
+    \begin{array}{ccc}
+      S_{k(1)x} & S_{k(2)x} & S_{k(3)x} \\
+      S_{k(1)y} & S_{k(2)y} & S_{k(3)y} \\
+      1 & 1 & 1
+    \end{array}
+  \right)^{-1}  \\
+\left(
+     \begin{array}{ccc}
+ 	\multicolumn{2}{c}{\multirow{2}{*}{\mbox {\smash{\Large $B_k(t)$ }}}}&\alpha \\
+    	\multicolumn{2}{c}{}&\beta\\
+      0&0&1   
+     \end{array}
+  \right) &=&
+  \left(
+    \begin{array}{ccc}
+      v_{k(1)x} & v_{k(2)x} & v_{k(3)x} \\
+      v_{k(1)y} & v_{k(2)y} & v_{k(3)y} \\
+      1 & 1 & 1
+    \end{array}
+  \right)
+  \left(
+    \begin{array}{ccc}
+      S_{k(1)x} & S_{k(2)x} & S_{k(3)x} \\
+      S_{k(1)y} & S_{k(2)y} & S_{k(3)y} \\
+      1 & 1 & 1
+    \end{array}
+  \right)^{-1}.  \\
+\end{eqnarray*}
+
+And we assume $A_k(t) = A^P_k(t)$ or $ A^E_k(t)$.\\
+$||B_k - A_k(t)||^2_F$ can be denoted by\\
+\begin{eqnarray*}
+||B_k - A_k(t)||^2_F &=& Tr(B_k - A_k(t))^t(B_k - A_k(t))\\
+&=& \mathbf{v}^t_k Q_k(t) \mathbf{v}_k + L_k(t) \mathbf{v}_k\\
+&=& \mathbf{v}^t Q' (t) \mathbf{v} + L'(t) \mathbf{v}
+\end{eqnarray*}
+using a symmetric $4 \times 4$ matrix $Q_k(t)$ $4$ vector $L_k(t)$. We also denote it using a symmetric $2n \times 2n$ matrix $Q'_k$ and a $2n$ vector $L'_k$.\\
+
+A constraint function $C(\mathbf{v})$ is defined by 
+$
+C(\mathbf{v}) := \mathbf{v}^t C_M \mathbf{v} + C_V \mathbf{v}
+$
+using $C_M$ be a $2n \times 2n$ symmetric matrix, and $C_V$ a $2n$ vector.\\
+So we can define an energy function 
+\begin{eqnarray*}
+E_F &=& \sum_{k \in \Delta} ||B_k - A_k(t)||^2_F + C(\mathbf{v})\\
+	&=& \sum_{k \in \Delta} (\mathbf{v}^t_k Q_k(t) \mathbf{v}_k + L_k(t) \mathbf{v}_k )+ \mathbf{v}^t C_M \mathbf{v} + C_V^t \mathbf{v} \\
+	&=& \sum_{k \in \Delta} (\mathbf{\mathbf{v}}^t Q'_k(t) \mathbf{v} + L'_k(t) \mathbf{v}) +  \mathbf{v}^t C_M \mathbf{v} + C_V^t \mathbf{v} \\
+	&=& \mathbf{v}^t (\sum_{k \in \Delta} Q'_k(t) + C_M)\mathbf{v} + (\sum_{k \in \Delta}L'_k(t + C_V^t) \mathbf{v}\\
+	&=& \mathbf{v}^t (Q'(t) + C_M)\mathbf{v} + (L' (t)+ C_V^t) \mathbf{v}\\
+\end{eqnarray*}
+where $\displaystyle Q' (t)= \sum_{k \in \Delta}Q'_k(t)$ and $ \displaystyle L'(t) = \sum_{k \in \Delta}L'_k(t)$.\\
+
+\begin{prop}
+For any s,r $\in \mathbb{R}$,we have $Q'(s) = Q'(t) $ and $C_M(s) = C_M(t)$.
+\end{prop}
+
+We note $E_F$ is minimum if $\mathbf{v} = - \frac{1}{2}(Q' + C_M)^{-1}(L' + C_V)$.Using this $\mathbf{v}$, we can construct $B_k(k \in \Delta)$ \\
+which minimize $E_F$.何か嬉しいこと.\\
+
+\begin{screen}
+$Q'$はtによらないので,$(Q' + C_M)^{-1}$は一回だけ計算すれば良く,高速計算が可能.
+\end{screen}
+In our Mathematica library we can compute $Q' $ using the function QuadraticFormEnergy,\\
+($C_M$ by ConstMatrix,and $C_V$ by ConstVector).\\
+
+
+By Proposition \ref{propsim}, $ \displaystyle \min_{s,r \in \mathbb{R}} ||sR_\delta A_k(t) - B_k||_F^2$ can be also denoted by
+\begin{eqnarray*}
+\min_{s,\delta \in \mathbb{R}}||sR_\delta A_k(t) - B_k||_F^2 &=& ||B||^2_F - \frac{||B \cdot A^T||_F^2 + 2 \mathrm {det}(B \cdot A^T)}{||A||^2_F} \\
+&=& \mathbf{v}_k^t U_k(t) \mathbf{v}_k\\
+&=& \mathbf{v}^t U'_k(t) \mathbf{v}
+\end{eqnarray*}
+using  a symmetric $4 \times 4$ matrix $U_k(t)$ 4 vector $L_k$.We also denote it using a symmetric $2n \times 2n$ matrix $U'_k(t)$.\\
+
+And we have
+\begin{eqnarray*}
+E_S &=& \sum_{k \in \Delta}\min_{s, \delta \in \mathbb{R}}||sR_{\delta}A_k(t) - B_k||_F^2 + C(\mathbf{v})\\
+	&=& \sum_{k \in \Delta}\mathbf{v}_k^t U_k(t) \mathbf{v}_k + (\mathbf{v}^t C_M \mathbf{v} + C_V^t \mathbf{v}) \\
+	&=& \mathbf{v}^t (U'(t) + C_M)\mathbf{v} + C_V^t \mathbf{v}\\
+\end{eqnarray*}
+where $ \displaystyle U' (t)=  \sum_{k \in \Delta}U_k(t)$ .\\
+For $E_S$, a Mathematica function for $U'$,$C_M$,and $C_V$ are 
+
+\begin{prop}
+There exist  s,r $\in \mathbb{R}$, such that $U'(s) \not= U'(r)$.
+\end{prop}
+
+SimEnergyはtime-independentではないけど、tも含めて計算することができる関数がある。\\
+\\
+\noindent
+[2016.10.17追記]\\
+$p \in \mathbb{R}^2$  point\\
+$p = \{ p_1 , \cdots, p_m \} \in ( \mathbb{R}^2 )^* $ : points\\
+$t \in \mathbb{N}$ : Triangle Index\\
+$T = \{ t_1, \cdots , t_n \} \in ( \mathbb{N}^3 )^*$ :Triangle Indexes\\
+$ \{p , t \} \in ( \mathbb{R}^2 )^* \times \mathbb{N}^3$ : Polygon\\
+Note $t = \{ t_1 , t_2 , t_3 \} ,p = \{p_1,p_2,p_3 \} $のとき、(保留).\\
+$ \{p,q,r \} \in (\mathbb{R}^2)^* \times (\mathbb{R}^2)^* \times (\mathbb{N}^3)^*$ : Configuration\\
+\\
+\noindent 
+Triangle :$ (\mathbb{R}^2)^3 \rightarrow $ Triangles :$(( \mathbb{R}^2)^3)^*$\\
+Polygon $\rightarrow $ Triangles\\
+$( p, q, T ) \rightarrow (t_1, \cdots ,t_n)$\\
+\\
+\noindent
+Triangle $ \times$ Triangle $\rightarrow$ Affine Matrix\\
+$
+((p_1 , p_2 , p_3) , (q_1 , q_2 , q_3)) \rightarrow 
+\left(
+    \begin{array}{ccc}
+      a_{11} & a_{12} & b_1 \\
+      a_{21} & a_{22} & b_2 \\
+      0 & 0 & 1
+    \end{array}
+  \right)$\\
+\\
+\noindent
+Triangle $\rightarrow$ Triangle :重心を0にする.\\
+Local Interpolation:Triangle $ \times $ Triangle $ \times \mathbb{R} \rightarrow $ Matrix\\(Linear,Alexa,Log-Exp...)\\
+Local Interpolations : (Localの関数名) $ \times $ configuration$ \rightarrow (\mathbb{R} \rightarrow $ Matrices)\\
+Grobal Interpolation : $(Local) \times (Const) \times$ configuration $\rightarrow ( \mathbb{R} \rightarrow$ Polygon)\\
+
+
+\nocite{Igarashi2005,Igarashi2009,Werman1995}
+\bibliographystyle{plain}
+\bibliography{fmi2016}
+
+\end{document}
+
