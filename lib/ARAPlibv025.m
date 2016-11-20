@@ -120,7 +120,20 @@ Cog[P_]:= Mean[P];
 Trans[P_,l_] :=  {#[[1]]-l[[1]],#[[2]]-l[[2]]}&/@P;
 
 (*\:91cd\:5fc3\:304c\:539f\:70b9\:3067\:3042\:308b\:5834\:5408 2\:901a\:308a\:306e\:884c\:5217\:3092\:6c42\:3081\:308b\:95a2\:6570*)
-FindMatrix[Tri1_,Tri2_]:=(Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]])[[1;;2,1;;2]];
+(*
+FindMatrix[Tri1_,Tri2_]:=
+(Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]])[[1;;2,1;;2]];
+*)
+FindMatrix=Compile[{{tri1,_Real,2},{tri2,_Real,2}},
+Module[{a,b,c},a=Table[1.0,3,3];b=Table[1.0,3,3];c=Table[1.0,3,3];
+a[[1,1]]=tri1[[1,1]];a[[2,1]]=tri1[[1,2]];
+a[[1,2]]=tri1[[2,1]];a[[2,2]]=tri1[[2,2]];
+a[[1,3]]=tri1[[3,1]];a[[2,3]]=tri1[[3,2]];
+b[[1,1]]=tri2[[1,1]];b[[2,1]]=tri2[[1,2]];
+b[[1,2]]=tri2[[2,1]];b[[2,2]]=tri2[[2,2]];
+b[[1,3]]=tri2[[3,1]];b[[2,3]]=tri2[[3,2]];
+c=b.Inverse[a];
+{{c[[1,1]],c[[1,2]]},{c[[2,1]],c[[2,2]]}}]];
 FindMatrix1[Tri1_,Tri2_]:=Transpose[Take[Tri2,2]].Inverse[Transpose[Take[Tri1,2]]];
 FindMatrices[V1_,V2_,tindex_]:=FindMatrix1[
 Trans[VtoTriangle[V1,#],Cog[VtoTriangle[V1,#]]],
@@ -307,11 +320,13 @@ Module[{p,q,\[Theta]},
 {p,q}=PolarDecompositionPlus[m];
 \[Theta]=RotateAngle[p,0];
 RotationMatrix[t \[Theta]].((1-t) IdentityMatrix[2] + t q)]];
+(**)
 LocalAlexa[m_]:=Function[{t},
 Module[{p,q,\[Theta]},
 {p,q}=PolarDecompositionPlus[m];
 \[Theta]=RotateAngle[p,0];
-RotationMatrix[t \[Theta]].((1-t) IdentityMatrix[2] + t q)]];
+RotationMatrix[t \[Theta]].((1-t) {{1.0,0.0},{0.0,1.0}} + t q)]];
+(**)
 LocalLogExp[m_]:=Function[{t},
 Module[{p,q,s,\[Theta],evec,eval},
 {p,q}=PolarDecompositionPlus[m];
@@ -519,9 +534,13 @@ range=AnimationRange2[range,AnimationRange[{V,{},{}}]];
 MakePolygon[V,conf[[3]]],{i,0,k-1}];
 Map[Graphics[#,PlotRange->range]&,table]];
 (**)
-DrawAnimationc[conf_]:=
-Animate[
-Show[Graphics[MakePolygon[
-ARAPc[conf[[1]],conf[[2]],conf[[3]],x],conf[[3]]],
-PlotRange -> AnimationRange[conf]]],{x,0,1}, 
-AnimationRunning->False,AnimationRepetitions->1];
+DrawAnimationc[k_,conf_]:=
+DynamicModule[{GU,V,range,table},
+range = {conf[[1,1]],conf[[1,1]]};
+table=Table[
+V=ARAPc[conf[[1]],conf[[2]],conf[[3]],N[i/(k-1)]];
+range=AnimationRange2[range,AnimationRange[{V,{},{}}]];
+MakePolygon[V,conf[[3]]],{i,0,k-1}];
+Animate[Graphics[table[[Floor[x(k-1)]+1]],
+PlotRange -> range],{x,0,1}, 
+AnimationRunning->False,AnimationRepetitions->1]];
