@@ -319,12 +319,18 @@ Ekl[k_,l_]:=Function[{conf,t},RotationMatrix[2\[Pi] t].(conf[[1,k]]-conf[[1,l]])
 Constfix2[k_,l_]:=Function[{conf,t},Total[#^2&/@(ValNames[Length[conf[[1]]]][[k]]
 -ValNames[Length[conf[[1]]]][[l]]-Ekl[k,l][conf,t])]];
 (*vkx\[Times]vlx\:306e\:9805*)
-ConstMatrix2[n_,k_,l_]:=Table[Switch[i,
+(*ConstMatrix2[n_,k_,l_]:=Table[Switch[i,
 2k-1,Switch[j,2l-1,1,_,0],
 2k,Switch[j,2l,1,_,0],_,0],{i,1,2n},{j,1,2n}];
+ConstfixMatrix\:306e\:4e2d\:306b\:7d44\:307f\:8fbc\:307f\:6e08*)
 (*\:4e8c\:6b21\:306e\:9805\:3092\:307e\:3068\:3081\:308b*)
-ConstfixMatrix[n_,k_,l_,st_]:=n ConstMatrix[Length[st],k]+n ConstMatrix[Length[st],l]
--n ConstMatrix2[Length[st],k,l]-n ConstMatrix2[Length[st],l,k];
+ConstfixMatrix[n_,k_,l_,st_]:=Module[{M1,M2},
+M1 = Table[Switch[i,2k-1,Switch[j,2l-1,1,_,0],2k,Switch[j,2l,1,_,0],_,0],
+{i,1,2Length[st]},{j,1,2Length[st]}];
+M2 = Table[Switch[i,2l-1,Switch[j,2k-1,1,_,0],2l,Switch[j,2k,1,_,0],_,0],
+{i,1,2Length[st]},{j,1,2Length[st]}]; 
+n ConstMatrix[Length[st],k]+n ConstMatrix[Length[st],l]-n M1 -n M2];
+
 ConstfixVector[n_,k_,l_,st_]:=Table[Switch[i,
 2k-1,-2(st[[k,1]]-st[[l,1]]),2k,-2(st[[k,2]]-st[[l,2]]),
 2l-1,2(st[[k,1]]-st[[l,1]]),2l,2(st[[k,2]]-st[[l,2]]),_,0],{i,1,2Length[st]}];
@@ -361,7 +367,8 @@ x+y];
 (**)
 DoubleMatrix[m_]:=Module[{X0,Y0},
 X0[l_]:=Flatten[Transpose[{l,Table[0,{Length[l]}]}]];
-Y0[l_]:=Flatten[Transpose[{Table[0,{Length[l]}],l}]];Flatten[Map[{X0[#],Y0[#]}&,m],1]];
+Y0[l_]:=Flatten[Transpose[{Table[0,{Length[l]}],l}]];
+Flatten[Map[{X0[#],Y0[#]}&,m],1]];
 
 
 (* ::Section:: *)
