@@ -299,9 +299,9 @@ LocalInterpolations[local_,conf_]:=Function[{t},
 
 
 (*Const\:306evn^2\:306e\:4fc2\:6570,m:\:9802\:70b9\:9078\:629e*)
-(*ConstMatrix[m_,st_]:=Table[Switch[i,
+ConstMatrix[m_,st_]:=Table[Switch[i,
 2m-1,Switch[j,2m-1,1,_,0],
-2m,Switch[j,2m,1,_,0],_,0],{i,1,2Length[st]},{j,1,2Length[st]}]*)
+2m,Switch[j,2m,1,_,0],_,0],{i,1,2Length[st]},{j,1,2Length[st]}]
 (*Const\:306evn\:306e\:4fc2\:6570,m:\:9802\:70b9\:9078\:629e*)
 (*ConstVector[m_,st_,en_,t_]:=Table[Switch[i,
 2m-1,-2((1-t)st[[m,1]]+t en[[m,1]]),
