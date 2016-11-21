@@ -57,17 +57,17 @@
 @numsecentry{@code {ConstMatrix}}{5.1}{ConstMatrix}{21}
 @numsecentry{@code {ConstMatrixM}}{5.2}{ConstMatrixM}{21}
 @numsecentry{@code {ConstVectorM}}{5.3}{ConstVectorM}{21}
-@numsecentry{@code {ConstfixMatrix}}{5.4}{ConstfixMatrix}{21}
+@numsecentry{@code {ConstfixMatrix}}{5.4}{ConstfixMatrix}{22}
 @numsecentry{@code {ConstfixVector}}{5.5}{ConstfixVector}{22}
 @numsecentry{@code {ConstPair}}{5.6}{ConstPair}{22}
-@numsecentry{@code {ConstPair}}{5.7}{ConstPair}{22}
-@numsecentry{@code {DoubleMatrix}}{5.8}{DoubleMatrix}{22}
-@numchapentry{Grobal Interpolations}{6}{Global Interpolations}{23}
-@numsecentry{@code {QuadraticFormAlexa}}{6.1}{QuadraticFormAlexa}{23}
-@numsecentry{@code {QuadraticFormSim}}{6.2}{QuadraticFormSim}{23}
-@numsecentry{@code {ARAP}}{6.3}{ARAP}{23}
-@numchapentry{Draw Animation}{7}{Draw Animation}{24}
-@numsecentry{@code {ShowStatus}}{7.1}{ShowStatus}{24}
-@numsecentry{@code {DrawAnimation}}{7.2}{DrawAnimation}{24}
-@numsecentry{@code {ListAnimation}}{7.3}{ListAnimation}{25}
-@unnchapentry{Index}{10001}{Index}{27}
+@numsecentry{@code {ConstPair}}{5.7}{ConstPair}{23}
+@numsecentry{@code {DoubleMatrix}}{5.8}{DoubleMatrix}{23}
+@numchapentry{Grobal Interpolations}{6}{Global Interpolations}{24}
+@numsecentry{@code {QuadraticFormAlexa}}{6.1}{QuadraticFormAlexa}{24}
+@numsecentry{@code {QuadraticFormSim}}{6.2}{QuadraticFormSim}{24}
+@numsecentry{@code {ARAP}}{6.3}{ARAP}{24}
+@numchapentry{Draw Animation}{7}{Draw Animation}{25}
+@numsecentry{@code {ShowStatus}}{7.1}{ShowStatus}{25}
+@numsecentry{@code {DrawAnimation}}{7.2}{DrawAnimation}{25}
+@numsecentry{@code {ListAnimation}}{7.3}{ListAnimation}{26}
+@unnchapentry{Index}{10001}{Index}{28}
