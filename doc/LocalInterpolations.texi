@@ -18,13 +18,6 @@
 angle
 @end table
 
-@example
-[Example] 
-RotateAngle[m,1]
-@c @image{img/RoachGraph,,4cm}
-@end example
-
-
 @node NewFindMatrices,LocalLinear,RotateAngle,LocalInterpolations
 @section @code{NewFindMatrices}
 @findex NewFindMatrices
@@ -43,10 +36,10 @@ matrices
 
 @example
 [Example] 
-NewFindMatrices[Configuration2]
+NewFindMatrices[Configuration2]@math{=}
+@{@{@{-(5/4), -(3/4)@}, @{-1, -1@}@}, @{@{-(7/4), -(3/4)@}, @{2, -1@}@}@}
 @c @image{img/RoachGraph,,4cm}
 @end example
-
 
 @node LocalLinear,LocalPolar,NewFindMatrices,LocalInterpolations
 @section @code{LocalLinear}
@@ -66,7 +59,8 @@ matrices of local linear interpolation
 
 @example
 [Example] 
-LocalLiner[NewFindMatrices[Configuration2]]
+LocalLiner[NewFindMatrices[Configuration2]][0.5]@math{=}
+@{@{@{-0.125, 0.125@}, @{-0.5, -0.5@}@}, @{@{-0.875, -0.375@}, @{1.5, 0.@}@}@}
 @c @image{img/RoachGraph,,4cm}
 @end example
 
@@ -86,12 +80,6 @@ matrices computed by NewFindMatrices[@var{conf_}]
 matrices of local polar interpolation
 @end table
 
-@example
-[Example] 
-LocalPolar[NewFindMatrices[Configuration2]]
-@c @image{img/RoachGraph,,4cm}
-@end example
-
 @node LocalAlexa,LocalLogExp,LocalPolar,LocalInterpolations
 @section @code{LocalAlexa}
 @findex LocalAlexa
@@ -108,12 +96,6 @@ matrices computed by NewFindMatrices[@var{conf_}]
 matrices of local alexa interpolation
 @end table
 
-@example
-[Example] 
-LocalAlexa[NewFindMatrices[Configuration2]]
-@c @image{img/RoachGraph,,4cm}
-@end example
-
 @node LocalLogExp,LocalInterpolations,LocalAlexa,LocalInterpolations
 @section @code{LocalLogExp}
 @findex LocalLogExp
@@ -129,12 +111,6 @@ matrices computed by NewFindMatrices[@var{conf_}]
 @item return
 matrices of local log-exp interpolation
 @end table
-
-@example
-[Example] 
-LocalLogExp[NewFindMatrices[Configuration2]]
-@c @image{img/RoachGraph,,4cm}
-@end example
 
 @node LocalInterpolations,LocalInterpolations,RotateAngle, Special Graphs
 @section @code{LocalInterpolations}
@@ -155,7 +131,15 @@ configuration
 
 @example
 [Example] 
-LocalInterpolations[LocalPolar,Configuration2]
+LocalInterpolations[LocalPolar,Configuration2][t]@math{=}
+@{@{@{(1 + 0.352786 t) Cos[3.03094 t] + 0.855844 t Sin[3.03094 t], 
+0.855844 t Cos[3.03094 t] + (1 - 0.0889399 t) Sin[3.03094 t]@}, 
+@{0.855844 t Cos[3.03094 t] - 1. (1 + 0.352786 t) Sin[3.03094 t],
+(1 - 0.0889399 t) Cos[3.03094 t] - 0.855844 t Sin[3.03094 t]@}@},
+@{@{(1 + 1.65165 t) Cos[2.35619 t] + 0.176777 t Sin[2.35619 t], 
+-0.176777 t Cos[2.35619 t] - 1. (1 + 0.237437 t) Sin[2.35619 t]@}, 
+@{-0.176777 t Cos[2.35619 t] + (1 + 1.65165 t) Sin[2.35619 t], 
+(1 + 0.237437 t) Cos[2.35619 t] - 0.176777 t Sin[2.35619 t]@}@}@}
 @c @image{img/RoachGraph,,4cm}
 @end example
 
