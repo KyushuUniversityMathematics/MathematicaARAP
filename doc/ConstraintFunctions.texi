@@ -6,7 +6,7 @@
 
 @table @t
 @item ConstMatrix[@var{m}_,@var{st}_]
-::Compute constraint function of a vertex you choice in matrix form
+::Compute a matrix part of a constraint function of a specific vertex you choice.
 @end table
 
 @table @var
@@ -24,7 +24,7 @@ matrix
 
 @table @t
 @item ConstMatrixM[@var{st}_,@var{en}_,@var{tri}_,@var{t}_]
-::Compute constraint function of barycenter in matrix form start triangles coordinates.
+::Compute a matrix part of a constraint function of barycenter .
 @end table
 
 @table @var
@@ -45,7 +45,6 @@ matrix
 ConstMatrixM[dataS2,dataE2,dataT2,0.5]
 @c @image{img/RoachGraph,,4cm}
 @end example
-fi
 
 @node ConstVectorM,ConstMatrix2,ConstMatrixM, Constraint Functions
 @section @code{ConstVectorM}
@@ -53,7 +52,7 @@ fi
 
 @table @t
 @item ConstVectorM[@var{st}_,@var{en}_,@var{tri}_,@var{t}_]
-::
+::Compute a vector part of a constraint function of barycenter.
 @end table
 
 @table @var
@@ -107,7 +106,7 @@ ConstMatrix2[2,1,2]
 
 @table @t
 @item ConstfixMatrix[@var{n}_,@var{k}_,@var{l}_,@var{st}_]
-::
+::Compute a matrix part of a constraint function fixing user - specified vector.
 @end table
 
 @table @var
@@ -134,7 +133,7 @@ ConstfixMatrix[2,1,2,dataS2]
 
 @table @t
 @item ConstfixVector[@var{n}_,@var{k}_,@var{l}_,@var{st}_]
-::
+::Compute a vector part of a constraint function fixing user - specified vector.
 @end table
 
 @table @var
@@ -160,7 +159,7 @@ ConstfixVector[2,1,2,dataS2]
 
 @table @t
 @item ConstPair[@var{m}_]
-::
+::Compute pair of matrix and vector of a constraint function of a specific vertex you choice.
 @end table
 
 @table @var
@@ -183,7 +182,7 @@ ConstPair[1]
 
 @table @t
 @item ConstPair[@var{m}_,@var{n}_]
-::
+::Compute pair of matrix and vector of a constraint function of a specific two vertices you choice.
 @end table
 
 @table @var
