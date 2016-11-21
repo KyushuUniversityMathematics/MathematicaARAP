@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     82613,       1609]
-NotebookOptionsPosition[     81218,       1556]
-NotebookOutlinePosition[     81639,       1574]
-CellTagsIndexPosition[     81596,       1571]
+NotebookDataLength[     78018,       1495]
+NotebookOptionsPosition[     76623,       1442]
+NotebookOutlinePosition[     77044,       1460]
+CellTagsIndexPosition[     77001,       1457]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -180,15 +180,12 @@ Cell[BoxData[
    3.68749081586666*^9, {3.687949634500699*^9, 3.687949636203054*^9}}],
 
 Cell[BoxData[
- DynamicModuleBox[{$CellContext`GU$$ = {{{
-    1.5, 0, -0.125, -0.125, 0, 0, -0.375, 0.125}, {
-    0, 1.5, 0.125, -0.125, 0, 0, -0.125, -0.375}, {-0.125, 0.125, 1.125, 
-     0, -0.125, -0.125, 0.125, 0.}, {-0.125, -0.125, 0, 1.125, 0.125, -0.125, 
-     0., 0.125}, {0, 0, -0.125, 0.125, 0.5, 0, -0.375, -0.125}, {
-    0, 0, -0.125, -0.125, 0, 0.5, 0.125, -0.375}, {-0.375, -0.125, 0.125, 
-     0., -0.375, 0.125, 0.625, 0}, {
-    0.125, -0.375, 0., 0.125, -0.125, -0.375, 0, 0.625}}, {
-   2., -2., 0., 4., 0, 0, 0, 0}}}, 
+ DynamicModuleBox[{$CellContext`GU$$ = \
+$CellContext`ARAP[$CellContext`LocalAlexa, $CellContext`QuadraticFormSim, 
+   Function[{$CellContext`conf$, $CellContext`t$}, $CellContext`ConstPair[
+     1][$CellContext`conf$, $CellContext`t$] + $CellContext`ConstPair[
+     2][$CellContext`conf$, $CellContext`t$]], {{{-1, 1}, {0, -2}, {1, 1}, {0,
+     2}}, {{2, 2}, {3, 4}, {-1, 3}, {0, 0}}, {{1, 2, 4}, {2, 3, 4}}}][0.]}, 
   TagBox[
    StyleBox[
     DynamicModuleBox[{$CellContext`x$$ = 0., Typeset`show$$ = True, 
@@ -237,7 +234,7 @@ $CellContext`ConstPair[
         ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
          "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
          True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-      ImageSizeCache->{333., {250., 256.}},
+      ImageSizeCache->{405., {250., 256.}},
       SingleEvaluation->True],
      Deinitialization:>None,
      DynamicModuleValues:>{},
@@ -701,147 +698,36 @@ Cell[BoxData[
    3.6877335292105618`*^9, 3.687733537571184*^9}, 3.6879500579360647`*^9}],
 
 Cell[BoxData[
- DynamicModuleBox[{$CellContext`GU$$ = {{{
-     Rational[3, 2], 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0}, {0, 
-     Rational[3, 2], 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0}, {
-     Rational[-1, 4], 0, 
-     Rational[1, 2], 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0}, {0, 
-     Rational[-1, 4], 0, 
-     Rational[1, 2], 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0}, {
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0}, {0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0}, {0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0}, {0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0}, {0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     0}, {0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 1, 0, 
-     Rational[-1, 2], 0, 
-     Rational[-1, 4], 0, 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4], 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 2], 0, 1, 0, 0, 0, 
-     Rational[-1, 4]}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 
-     Rational[1, 2], 0, 
-     Rational[-1, 4], 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-     Rational[-1, 4], 0, 0, 0, 
-     Rational[1, 2], 0, 
-     Rational[-1, 4]}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 4], 0, 
-     Rational[1, 2], 0}, {
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 
-     Rational[-1, 4], 0, 
-     Rational[-1, 4], 0, 
-     Rational[1, 2]}}, {9.357846708797332, 0.283300585667267, 
-   1.7663252851659559`, -1.263541440923078, 0.3246127622201467, 
-   0.568154107974973, -1.2865455731852948`, -2.242773987242149, 
-   0.07122771818813167, 3.273581899793598, -0.09188966688898326, 
-   2.136325259716217, 0.2527671333426841, 1.3169346493706477`, 
-   2.35263955525657, -1.7115421552389276`, 
-   0.15806125856860337`, -0.037177675574526226`, 
-   0.5283343254092191, -3.9550109390491452`, 0.9270193339684465, 
-   0.09655331705485093, -2.0382299002292603`, -3.0548071164840573`, \
--0.1639321227215047, 4.973239631845282, -0.31289840807977587`, 
-   4.081169552779105, -2.503010923191747, -1.1538896043703426`, \
--1.6364757410150559`, -3.3105160853197138`}}}, 
+ DynamicModuleBox[{$CellContext`GU$$ = \
+$CellContext`ARAP[$CellContext`LocalAlexa, $CellContext`QuadraticFormAlexa, 
+   Function[{$CellContext`conf$, $CellContext`t$}, {
+     Table[
+      Switch[$CellContext`i, 2 1 - 1, 
+       Switch[$CellContext`j, 2 1 - 1, 1, 
+        Blank[], 0], 2 1, 
+       Switch[$CellContext`j, 2 1, 1, 
+        Blank[], 0], 
+       Blank[], 0], {$CellContext`i, 1, 2 Length[
+         Part[$CellContext`conf$, 1]]}, {$CellContext`j, 1, 2 Length[
+         Part[$CellContext`conf$, 1]]}], 
+     Table[
+      Switch[$CellContext`i, 2 1 - 
+       1, (-2) ((1 - $CellContext`t$) 
+         Part[$CellContext`conf$, 1, 1, 1] + $CellContext`t$ 
+         Part[$CellContext`conf$, 2, 1, 1]), 2 
+       1, (-2) ((1 - $CellContext`t$) 
+         Part[$CellContext`conf$, 1, 1, 2] + $CellContext`t$ 
+         Part[$CellContext`conf$, 2, 1, 2]), 
+       Blank[], 0], {$CellContext`i, 1, 2 Length[
+         Part[$CellContext`conf$, 1]]}]}], {{{-6, 0}, {-6, 2}, {-4, 0}, {-4, 
+    2}, {-2, 0}, {-2, 2}, {0, 0}, {0, 2}, {2, 0}, {2, 2}, {4, 0}, {4, 2}, {6, 
+    0}, {6, 2}, {8, 0}, {8, 
+    2}}, {{0, 0}, {0, 1}, {4, -4}, {5, -4}, {0, -8}, {
+     0, -9.5}, {-4, -4}, {-5.5, -4}, {0, 6}, {0, 8}, {8, -2}, {10, -3}, {
+     0, -13}, {0, -15}, {-8, -4}, {-10, -4}}, {{1, 2, 3}, {3, 4, 5}, {5, 6, 
+    7}, {7, 8, 9}, {9, 10, 11}, {11, 12, 13}, {13, 14, 15}, {2, 4, 3}, {4, 6, 
+    5}, {6, 8, 7}, {8, 10, 9}, {10, 12, 11}, {12, 14, 13}, {14, 16, 15}}}][
+  0.35784568786621096`]}, 
   TagBox[
    StyleBox[
     DynamicModuleBox[{$CellContext`x$$ = 0.35784568786621096`, 
@@ -1573,7 +1459,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 1123, 21, 78, "Input"],
+Cell[558, 20, 1123, 21, 136, "Input"],
 Cell[CellGroupData[{
 Cell[1706, 45, 292, 6, 28, "Input"],
 Cell[2001, 53, 2402, 50, 233, "Output"]
@@ -1584,32 +1470,32 @@ Cell[4847, 117, 2554, 51, 233, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[7438, 173, 347, 6, 28, "Input"],
-Cell[7788, 181, 3740, 73, 523, "Output"]
+Cell[7788, 181, 3636, 70, 523, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11565, 259, 659, 11, 28, "Input"],
-Cell[12227, 272, 5389, 94, 505, "Output"]
+Cell[11461, 256, 659, 11, 28, "Input"],
+Cell[12123, 269, 5389, 94, 505, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17653, 371, 266, 5, 28, "Input"],
-Cell[17922, 378, 6652, 125, 505, "Output"]
+Cell[17549, 368, 266, 5, 28, "Input"],
+Cell[17818, 375, 6652, 125, 505, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[24611, 508, 339, 6, 28, "Input"],
-Cell[24953, 516, 9794, 173, 197, "Output"]
+Cell[24507, 505, 339, 6, 28, "Input"],
+Cell[24849, 513, 9794, 173, 197, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[34784, 694, 341, 6, 28, "Input"],
-Cell[35128, 702, 11205, 237, 505, "Output"]
+Cell[34680, 691, 341, 6, 28, "Input"],
+Cell[35024, 699, 6714, 126, 505, "Output"]
 }, Open  ]],
-Cell[46348, 942, 271, 5, 28, "Input"],
+Cell[41753, 828, 271, 5, 28, "Input"],
 Cell[CellGroupData[{
-Cell[46644, 951, 274, 5, 28, "Input"],
-Cell[46921, 958, 16423, 277, 138, "Output"]
+Cell[42049, 837, 274, 5, 28, "Input"],
+Cell[42326, 844, 16423, 277, 138, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[63381, 1240, 300, 6, 28, "Input"],
-Cell[63684, 1248, 17518, 305, 219, "Output"]
+Cell[58786, 1126, 300, 6, 28, "Input"],
+Cell[59089, 1134, 17518, 305, 219, "Output"]
 }, Open  ]]
 }
 ]

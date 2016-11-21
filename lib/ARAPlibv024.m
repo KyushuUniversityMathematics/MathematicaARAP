@@ -5,7 +5,7 @@
 (*Kyushu University 2016*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Basic Functions*)
 
 
@@ -89,7 +89,7 @@ Table[ToExpression["v"~StringJoin~ToString[i]~StringJoin~"y"],{i,1,n}]}];
 NormF[m_]:=Total[Map[#^2&,Flatten[m]]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*QuadraticFormMatrix + LinearFormVector*)
 
 
@@ -107,7 +107,7 @@ allzero=Map[#->0&,vl];
 Map[Coefficient[poly,#]/.allzero&,vl]]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*FindMatrix etc*)
 
 
@@ -132,7 +132,7 @@ Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]]];
 FindAffineMatrices[V1_,V2_,tindex_]:=FindAffineMatrix[VtoTriangle[V1,#],VtoTriangle[V2,#]]&/@ tindex
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*EmbedMatrix,EmbedVector*)
 
 
@@ -256,7 +256,7 @@ F1v[VtoTriangle[P,T[[i]]],A]]
 ,{i,1,Length[T]}]];*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Local Interpolation*)
 
 
@@ -295,7 +295,7 @@ LocalInterpolations[local_,conf_]:=Function[{t},
 
 
 (* ::Section:: *)
-(*Constraint,Energy*)
+(*Constraint Functions*)
 
 
 (*Const\:306evn^2\:306e\:4fc2\:6570,m:\:9802\:70b9\:9078\:629e*)
@@ -404,7 +404,7 @@ h=energy[local,conf][t][[2]]
 ]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Animation*)
 
 
