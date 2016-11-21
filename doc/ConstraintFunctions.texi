@@ -46,7 +46,7 @@ ConstMatrixM[dataS2,dataE2,dataT2,0.5]
 @c @image{img/RoachGraph,,4cm}
 @end example
 
-@node ConstVectorM,ConstMatrix2,ConstMatrixM, Constraint Functions
+@node ConstVectorM,ConstfixMatrix,ConstMatrixM, Constraint Functions
 @section @code{ConstVectorM}
 @findex ConstVectorM
 
@@ -75,32 +75,7 @@ ConstVectorM[dataS2,dataE2,dataT2,0.5]
 @end example
 
 
-@node ConstMatrix2,ConstfixMatrix,ConstVectorM, Constraint Functions
-@section @code{ConstMatrix2}
-@findex ConstMatrix2
-
-@table @t
-@item ConstMatrix2[@var{n}_,@var{k}_,@var{l}_]
-::
-@end table
-
-@table @var
-@item @var{n}
-weight of constraint function
-@item @var{k},@var{l}
-Choice two numbers you want to fix.
-@item return
-matrix
-@end table
-
-@example
-[Example] 
-ConstMatrix2[2,1,2]
-@c @image{img/RoachGraph,,4cm}
-@end example
-
-
-@node ConstfixMatrix,ConstfixVector,ConstMatrix2, Constraint Functions
+@node ConstfixMatrix,ConstfixVector,ConstVectorM, Constraint Functions
 @section @code{ConstfixMatrix}
 @findex ConstfixMatrix
 
@@ -159,7 +134,7 @@ ConstfixVector[2,1,2,dataS2]
 
 @table @t
 @item ConstPair[@var{m}_]
-::Compute pair of matrix and vector of a constraint function of a specific vertex you choice.
+::Compute a pair of matrix and vector of a constraint function of a specific vertex you choice.
 @end table
 
 @table @var
@@ -182,7 +157,7 @@ ConstPair[1]
 
 @table @t
 @item ConstPair[@var{m}_,@var{n}_]
-::Compute pair of matrix and vector of a constraint function of a specific two vertices you choice.
+::Compute a pair of matrix and vector of a constraint function of a specific two vertices you choice.
 @end table
 
 @table @var
