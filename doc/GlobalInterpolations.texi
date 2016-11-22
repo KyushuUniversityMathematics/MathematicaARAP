@@ -6,7 +6,7 @@
 
 @table @t
 @item QuadraticFormAlexa[@var{local}_,@var{conf}_]
-::Compute a error function using Alexa's method.
+::a error function using Alexa's method
 @end table
 
 @table @var
@@ -25,7 +25,7 @@ configuration
 
 @table @t
 @item QuadraticFormSim[@var{local}_,@var{conf}_]
-::Compute a error function using similarity preserving method.
+::a error function using similarity preserving method
 @end table
 
 @table @var
@@ -44,7 +44,7 @@ configuration
 
 @table @t
 @item ARAP[@var{local}_,@var{energy}_,@var{const}_,@var{conf}_]
-::Compute a global error function in matrix form. 
+::a global error function in matrix form
 @end table
 
 @table @var
@@ -62,7 +62,7 @@ configuration
 
 @example
 [Example] 
-ARAP[LocalPolar,QuadraticFormAlexa,ConstPair[1],Configuration2][1]
+ARAP[LocalPolar,QuadraticFormAlexa,ConstPair[1],Configuration2][1]@math{=}
 @{@{@{2, 0, -(1/4), 0, 0, 0, -(3/4), 0@},
 @{0, 2, 0, -(1/4), 0, 0, 0, -(3/4)@},
 @{-(1/4), 0, 1/4, 0, -(1/4), 0, 1/4, 0@},

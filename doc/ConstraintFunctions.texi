@@ -6,7 +6,7 @@
 
 @table @t
 @item ConstMatrix[@var{m}_,@var{st}_]
-::Compute a matrix part of a constraint function of a specific vertex you choice.
+::a matrix part of a constraint function of a specific vertex you choice
 @end table
 
 @table @var
@@ -24,7 +24,7 @@ matrix
 
 @table @t
 @item ConstMatrixM[@var{st}_,@var{en}_,@var{tri}_,@var{t}_]
-::Compute a matrix part of a constraint function of barycenter .
+::a matrix part of a constraint function of barycenter
 @end table
 
 @table @var
@@ -60,7 +60,7 @@ ConstMatrixM[dataS2,dataE2,dataT2,0.5]@math{=}
 
 @table @t
 @item ConstVectorM[@var{st}_,@var{en}_,@var{tri}_,@var{t}_]
-::Compute a vector part of a constraint function of barycenter.
+::a vector part of a constraint function of barycenter
 @end table
 
 @table @var
@@ -90,7 +90,7 @@ ConstVectorM[dataS2,dataE2,dataT2,0.5]@math{=}
 
 @table @t
 @item ConstfixMatrix[@var{n}_,@var{k}_,@var{l}_,@var{st}_]
-::Compute a matrix part of a constraint function fixing user - specified vector.
+::a matrix part of a constraint function fixing user - specified vector
 @end table
 
 @table @var
@@ -125,7 +125,7 @@ ConstfixMatrix[2,1,2,dataS2]@math{=}
 
 @table @t
 @item ConstfixVector[@var{n}_,@var{k}_,@var{l}_,@var{st}_]
-::Compute a vector part of a constraint function fixing user - specified vector.
+::a vector part of a constraint function fixing user - specified vector
 @end table
 
 @table @var
@@ -151,7 +151,7 @@ ConstfixVector[2,1,2,dataS2]@math{=}@{2, -6, -2, 6, 0, 0, 0, 0@}
 
 @table @t
 @item ConstPair[@var{m}_]
-::Compute a pair of matrix and vector of a constraint function of a specific vertex you choice.
+::a pair of matrix and vector of a constraint function of a specific vertex you choice
 @end table
 
 @table @var
@@ -183,7 +183,7 @@ ConstPair[1][Configuration,s]@math{=}
 
 @table @t
 @item ConstPair[@var{m}_,@var{n}_]
-::Compute a pair of matrix and vector of a constraint function of a specific two vertices you choice.
+::a pair of matrix and vector of a constraint function of a specific two vertices you choice
 @end table
 
 @table @var
@@ -215,7 +215,7 @@ ConstPair[1,2][Configuration2,s]@math{=}
 
 @table @t
 @item DoubleMatrix[@var{m}_]
-::
+::Return matrix appearing elements and 0 in turn.
 @end table
 
 @table @var

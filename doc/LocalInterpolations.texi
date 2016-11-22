@@ -47,7 +47,7 @@ NewFindMatrices[Configuration2]@math{=}
 
 @table @t
 @item LocalLinear[@var{m}_]
-::compute a local linear interpolations depend on time
+::a local linear interpolations depend on time
 @end table
 
 @table @var
@@ -70,7 +70,7 @@ LocalLiner[NewFindMatrices[Configuration2]][0.5]@math{=}
 
 @table @t
 @item LocalPolar[@var{m}_]
-::compute a local polar interpolations depend on time
+::a local polar interpolations depend on time
 @end table
 
 @table @var
@@ -86,7 +86,7 @@ matrices of local polar interpolation
 
 @table @t
 @item LocalAlexa[@var{m}_]
-::compute a local ARAP interpolations depend on time
+::a local ARAP interpolations depend on time
 @end table
 
 @table @var
@@ -102,7 +102,7 @@ matrices of local alexa interpolation
 
 @table @t
 @item LocalLogExp[@var{m}_]
-::compute a local log-exp interpolations depend on time
+::a local log-exp interpolations depend on time
 @end table
 
 @table @var
@@ -118,7 +118,7 @@ matrices of local log-exp interpolation
 
 @table @t
 @item LocalInterpolations[@var{local}_,@var{conf}_]
-::compute local interpolations that you choice
+::local interpolations that you choice
 @end table
 
 @table @var
