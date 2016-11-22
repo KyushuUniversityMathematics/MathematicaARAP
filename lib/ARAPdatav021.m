@@ -56,6 +56,18 @@ snakeT={{1,2,3},{3,4,5},{5,6,7},{7,8,9},{9,10,11},{11,12,13},{13,14,15},
 ConfigurationSnake={snakeS,snakeE,snakeT};
 
 
+HorizontalSnake[n_]:=Flatten[Table[{{i,0},{i,1}},{i,0,n-1}],1];
+VerticalSnake[n_]:=Flatten[Table[{{1,i},{0,i}},{i,0,n-1}],1];
+SnakeTriangle[n_]:=Flatten[Table[{{2i+1,2i+2,2(i+1)+1},{2(i+1)+1,2(i+1),2(i+2)}},
+{i,0,n-2}],1];
+LinearInterpolateSnake2D[n_,t_]:=MakePolygon[
+LinearInterpolation[pt[{1,1},HorizontalSnake[n]],
+pt[{1,1},VerticalSnake[n]],t],SnakeTriangle[n]];
+PolarInterpolateSnake2D[n_,t_]:=MakePolygon[
+PolarInterpolation[pt[{1,1},HorizontalSnake[n]],
+pt[{1,1},VerticalSnake[n]],t],SnakeTriangle[n]]
+
+
 (* ::Section::Closed:: *)
 (*ConfigurationSnakeRotation*)
 

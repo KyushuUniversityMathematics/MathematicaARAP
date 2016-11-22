@@ -14,10 +14,10 @@ n=Length[tindex];
 cl=ColorData[35,"ColorList"];
 MapIndexed[{ColorData["TemperatureMap"][If[n ==1,1,(#2[[1]]-1)/(n-1)]],
 Polygon[{V[[#1[[1]]]],V[[#1[[2]]]],V[[#1[[3]]]]}]}&,tindex]];
-HorizontalSnake[n_]:=Flatten[Table[{{i,0},{i,1}},{i,0,n-1}],1];
+(*HorizontalSnake[n_]:=Flatten[Table[{{i,0},{i,1}},{i,0,n-1}],1];
 VerticalSnake[n_]:=Flatten[Table[{{1,i},{0,i}},{i,0,n-1}],1];
 SnakeTriangle[n_]:=Flatten[Table[{{2i+1,2i+2,2(i+1)+1},{2(i+1)+1,2(i+1),2(i+2)}},
-{i,0,n-2}],1];
+{i,0,n-2}],1];*)
 AnimationRange[conf_]:={Min[#],Max[#]}&/@Transpose[conf[[1]]~Join~conf[[2]]];
 (*l:list*)
 AnimationRange2[range1_,range2_]:=AnimationRange[{Transpose[range1]~Join~Transpose[range2],{},{}}];
@@ -46,12 +46,12 @@ PolarInterpolation[p_,q_,t_]:=Map[PolarInterpolate[#[[1]],#[[2]],#[[3]]]&,
   Transpose[{p,q,Table[t,{Length[p]}]}]];
 (* \:70b9\:5217 pl \:3092 p \:3060\:3051\:5e73\:884c\:79fb\:52d5\:3059\:308b *)
 pt[p_,pl_]:=Map[p+#&,pl];
-LinearInterpolateSnake2D[n_,t_]:=MakePolygon[
+(*LinearInterpolateSnake2D[n_,t_]:=MakePolygon[
 LinearInterpolation[pt[{1,1},HorizontalSnake[n]],
 pt[{1,1},VerticalSnake[n]],t],SnakeTriangle[n]];
 PolarInterpolateSnake2D[n_,t_]:=MakePolygon[
 PolarInterpolation[pt[{1,1},HorizontalSnake[n]],
-pt[{1,1},VerticalSnake[n]],t],SnakeTriangle[n]]
+pt[{1,1},VerticalSnake[n]],t],SnakeTriangle[n]]*)
 
 
 (**)
@@ -94,7 +94,7 @@ NormF[m_]:=Total[Map[#^2&,Flatten[m]]];
 
 
 (*poly:\:591a\:9805\:5f0f\:3001vl:\:5909\:6570\:5217*)
-QuadraticFormVariableMatrix[vl_]:=Outer[#1 #2&,vl,vl,1]
+(*QuadraticFormVariableMatrix[vl_]:=Outer[#1 #2&,vl,vl,1]
 Div2if[n_,l_]:=Table[If[n==i,l[[i]],l[[i]]/2],{i,1,Length[l]}];
 Div2Matrix[m_]:=MapIndexed[Div2if[First[#2],#1]&,m];
 (* QuadraticFormMatrix *)
@@ -104,7 +104,7 @@ Flatten[QuadraticFormVariableMatrix[vl],1]],Length[vl]]];
 (* LinearFormVector *)
 LinearFormVector[poly_,vl_]:=Module[{allzero},
 allzero=Map[#->0&,vl];
-Map[Coefficient[poly,#]/.allzero&,vl]]
+Map[Coefficient[poly,#]/.allzero&,vl]]*)
 
 
 (* ::Section::Closed:: *)
@@ -132,7 +132,7 @@ Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]]];
 FindAffineMatrices[V1_,V2_,tindex_]:=FindAffineMatrix[VtoTriangle[V1,#],VtoTriangle[V2,#]]&/@ tindex
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*EmbedMatrix,EmbedVector*)
 
 
@@ -294,7 +294,7 @@ LocalInterpolations[local_,conf_]:=Function[{t},
 (local[#][t]&)/@ NewFindMatrices[conf]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Constraint Functions*)
 
 
@@ -372,7 +372,7 @@ Y0[l_]:=Flatten[Transpose[{Table[0,{Length[l]}],l}]];
 Flatten[Map[{X0[#],Y0[#]}&,m],1]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Global Interpolation*)
 (*(Embed\:3092\:7528\:3044\:305f\:3082\:306e\:3001Alexa)*)
 
