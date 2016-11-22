@@ -132,7 +132,7 @@ Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]]];
 FindAffineMatrices[V1_,V2_,tindex_]:=FindAffineMatrix[VtoTriangle[V1,#],VtoTriangle[V2,#]]&/@ tindex
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*EmbedMatrix,EmbedVector*)
 
 
@@ -256,7 +256,7 @@ F1v[VtoTriangle[P,T[[i]]],A]]
 ,{i,1,Length[T]}]];*)
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Local Interpolation*)
 
 
@@ -271,11 +271,6 @@ NewFindMatrices[conf_]:=FindMatrices[conf[[1]],conf[[2]],conf[[3]]];
 (*m:\:884c\:5217*)
 (**)
 LocalLinear[m_]:=Function[{t},(1-t) IdentityMatrix[2] + t m];
-LocalPolar[m_]:=Function[{t},
-Module[{p,q,\[Theta]},
-{p,q}=PolarDecompositionPlus[m];
-\[Theta]=RotateAngle[p,0];
-RotationMatrix[t \[Theta]].((1-t) IdentityMatrix[2] + t q)]];
 LocalAlexa[m_]:=Function[{t},
 Module[{p,q,\[Theta]},
 {p,q}=PolarDecompositionPlus[m];
