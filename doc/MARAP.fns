@@ -40,8 +40,7 @@
 \entry {\code {LocalAlexa}}{19}
 \entry {\code {LocalInterpolations}}{20}
 \entry {\code {LocalLinear}}{19}
-\entry {\code {LocalLogExp}}{20}
-\entry {\code {LocalPolar}}{19}
+\entry {\code {LocalLogExp}}{19}
 \initial {M}
 \entry {\code {MakePolygon}}{2}
 \initial {N}

@@ -45,9 +45,8 @@
 \entry{RotateAngle}{19}{\code {RotateAngle}}
 \entry{NewFindMatrices}{19}{\code {NewFindMatrices}}
 \entry{LocalLinear}{19}{\code {LocalLinear}}
-\entry{LocalPolar}{19}{\code {LocalPolar}}
 \entry{LocalAlexa}{19}{\code {LocalAlexa}}
-\entry{LocalLogExp}{20}{\code {LocalLogExp}}
+\entry{LocalLogExp}{19}{\code {LocalLogExp}}
 \entry{LocalInterpolations}{20}{\code {LocalInterpolations}}
 \entry{ConstMatrix}{21}{\code {ConstMatrix}}
 \entry{ConstMatrixM}{21}{\code {ConstMatrixM}}

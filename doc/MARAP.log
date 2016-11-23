@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdfetex 2016.6.4)  22 NOV 2016 12:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdfetex 2016.6.4)  22 NOV 2016 12:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -367,10 +367,10 @@ texinfo.tex: doing @include of DrawAnimation.texi
 pdfTeX warning: pdfetex (file ./img/exShowState.pdf): PDF inclusion: multiple p
 dfs with page group included in a single page
 > [25] <./img/exListAnimation.pdf>) (Index) [26] [27]
-Overfull \vbox (11.19965pt too high) has occurred while \output is active
+Overfull \vbox (3.0771pt too high) has occurred while \output is active
 \vbox(643.2+2.0)x433.62
 .\glue(\topskip) 0.0
-.\vbox(654.39964+2.0)x433.62
+.\vbox(646.2771+2.0)x433.62
 ..\mark{\gdef \thischaptername {Index}\gdef \thischapternum {}\gdef \thischapte
 r \ETC.}
 ..\write0{@unnchapentry{Index}{10001}{Index}{\folio }}
@@ -382,10 +382,10 @@ r \ETC.}
 
 [28] ) 
 Here is how much of TeX's memory you used:
- 3546 strings out of 494660
- 37592 string characters out of 6148423
- 98113 words of memory out of 5000000
- 4958 multiletter control sequences out of 15000+600000
+ 3541 strings out of 494660
+ 37527 string characters out of 6148423
+ 97987 words of memory out of 5000000
+ 4954 multiletter control sequences out of 15000+600000
  34236 words of font info for 116 fonts, out of 8000000 for 9000
  1457 hyphenation exceptions out of 8191
  15i,6n,16p,313b,575s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -404,10 +404,10 @@ cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/loc
 al/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local
 /texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on MARAP.pdf (32 pages, 249729 bytes).
+Output written on MARAP.pdf (32 pages, 249267 bytes).
 PDF statistics:
- 748 PDF objects out of 1000 (max. 8388607)
- 650 compressed objects within 7 object streams
- 81 named destinations out of 1000 (max. 500000)
- 652 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 742 PDF objects out of 1000 (max. 8388607)
+ 644 compressed objects within 7 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 644 words of extra memory for PDF output out of 10000 (max. 10000000)
 

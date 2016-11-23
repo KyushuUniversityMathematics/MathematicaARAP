@@ -41,7 +41,7 @@ NewFindMatrices[Configuration2]@math{=}
 @c @image{img/RoachGraph,,4cm}
 @end example
 
-@node LocalLinear,LocalPolar,NewFindMatrices,LocalInterpolations
+@node LocalLinear,LocalAlexa,NewFindMatrices,LocalInterpolations
 @section @code{LocalLinear}
 @findex LocalLinear
 
@@ -64,23 +64,7 @@ LocalLiner[NewFindMatrices[Configuration2]][0.5]@math{=}
 @c @image{img/RoachGraph,,4cm}
 @end example
 
-@node LocalPolar,LocalAlexa,LocalLinear,LocalInterpolations
-@section @code{LocalPolar}
-@findex LocalPolar
-
-@table @t
-@item LocalPolar[@var{m}_]
-::a local polar interpolations depend on time
-@end table
-
-@table @var
-@item @var{m}
-matrices computed by NewFindMatrices[@var{conf_}]
-@item return
-matrices of local polar interpolation
-@end table
-
-@node LocalAlexa,LocalLogExp,LocalPolar,LocalInterpolations
+@node LocalAlexa,LocalLogExp,LocalLinear,LocalInterpolations
 @section @code{LocalAlexa}
 @findex LocalAlexa
 

@@ -49,10 +49,9 @@
 @numsecentry{@code {RotateAngle}}{4.1}{RotateAngle}{19}
 @numsecentry{@code {NewFindMatrices}}{4.2}{NewFindMatrices}{19}
 @numsecentry{@code {LocalLinear}}{4.3}{LocalLinear}{19}
-@numsecentry{@code {LocalPolar}}{4.4}{LocalPolar}{19}
-@numsecentry{@code {LocalAlexa}}{4.5}{LocalAlexa}{19}
-@numsecentry{@code {LocalLogExp}}{4.6}{LocalLogExp}{20}
-@numsecentry{@code {LocalInterpolations}}{4.7}{LocalInterpolations}{20}
+@numsecentry{@code {LocalAlexa}}{4.4}{LocalAlexa}{19}
+@numsecentry{@code {LocalLogExp}}{4.5}{LocalLogExp}{19}
+@numsecentry{@code {LocalInterpolations}}{4.6}{LocalInterpolations}{20}
 @numchapentry{Constraint Functions}{5}{Constraint Functions}{21}
 @numsecentry{@code {ConstMatrix}}{5.1}{ConstMatrix}{21}
 @numsecentry{@code {ConstMatrixM}}{5.2}{ConstMatrixM}{21}
