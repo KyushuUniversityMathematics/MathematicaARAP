@@ -378,6 +378,75 @@ by using a symboic computation using Mathematica.
 \end{eqnarray*}
 \end{screen}
 
+\begin{prop}\label{prop:sim}
+%%Constraintについて書く
+$S = (s_1,s_2,\cdots ,s_n),E = (e_1,e_2, \cdots ,e_n),V = (v_1,v_2,\cdots,v_n), 1 \leq k \leq n$とするとき,\\
+\begin{eqnarray*}
+&&\|(1-t)s_k + t e_k - v_k\|^2 \\
+&=& \|(1-t)s_{kx} + t e_{kx} - v_{kx}\|^2 + \|(1-t)s_{ky} + t e_{ky} - v_{ky}\|^2\\
+&=&((1-t)s_{kx} + t e_{kx} - v_{kx})^2 + ((1-t)s_{ky} + t e_{ky} - v_{ky})^2\\
+&=& 
+\left(
+     \begin{array}{ccccc}
+      v_{1x} & v_{1y} & \cdots & v_{nx}  &v_{ny}
+     \end{array}
+  \right)
+\left(
+     \begin{array}{cc}
+ 	\multicolumn{2}{c}{\multirow{2}{*}{\mbox {\smash{\Large $m_{ij}$ }}}} \\
+    	\multicolumn{2}{c}{}\\
+     \end{array}
+  \right)
+ \left(
+     \begin{array}{c}
+ 	v_{1x}\\
+	v_{1y}\\
+	\vdots \\
+	v_{nx}\\
+	v_{ny}   
+     \end{array}
+  \right)+
+\left(
+     \begin{array}{cccccccc}
+      0 & \cdots & 0 & p_{kx}  & p_{ky} & 0 & \cdots &0\\ 
+     \end{array}
+  \right)
+ \left(
+     \begin{array}{c}
+ 	v_{1x}\\
+	\vdots \\
+	v_{(k-1)y}\\
+	v_{kx}\\
+	v_{ky}\\
+	v_{(k+1)x}\\
+	\vdots\\
+	v_{ky}   
+     \end{array}
+  \right) + C_k
+\end{eqnarray*}
+where\\
+\begin{eqnarray*}
+m_{ij} &=&
+\begin{cases}
+1\quad(i,j=2k-1 \lor i,j = 2k)\\
+0\quad(other)
+\end{cases}\\
+p_{kx} &=& -2((1-t)s_{kx} + t e_{kx})\\
+p_{ky} &=& -2((1-t)s_{ky} + t e_{ky})\\
+C_k &=& ((1-t)s_{kx}+t e_{kx})^2 + ((1-t)s_{ky} + t e_{ky})^2
+\end{eqnarray*}
+\end{prop}
+
+\begin{prop}
+%%Constraint(重心)について書く
+$S = (s_1,s_2,\cdots ,s_n),E = (e_1,e_2, \cdots ,e_n),V = (v_1,v_2,\cdots,v_n)$,\\
+$s_m = \displaystyle \frac{1}{n}  \sum^n_{i}s_i,e_m = \frac{1}{n} \displaystyle \sum^n_{i}e_i,v_m = \frac{1}{n} \displaystyle \sum^n_{i}v_i,$とするとき,\\
+\begin{eqnarray*}
+&&\|(1-t)s_m + t e_m - v_m\|^2 \\
+&=& \|(1-t)s_{mx} + t e_{mx} - v_{mx}\|^2 + \|(1-t)s_{my} + t e_{my} - v_{my}\|^2 \\
+&=&((1-t)s_{mx} + t e_{mx} - v_{mx})^2 + ((1-t)s_{my} + t e_{my} - v_{my})^2\\
+\end{eqnarray*}
+\end{prop}
 
 \section{ARAP}
 
