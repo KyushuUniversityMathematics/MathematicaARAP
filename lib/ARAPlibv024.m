@@ -1,7 +1,7 @@
 (* ::Package:: *)
 
 (* ::Chapter:: *)
-(*ARAPlib.m (Mathematica Modules 2016/11/17)*)
+(*ARAPlib.m (Mathematica Modules 2016/12/20)*)
 (*Kyushu University 2016*)
 
 
@@ -85,6 +85,10 @@ Polygon[#]}&,tl]];
 (* valiable names list with size n *)
 ValNames[n_]:=Transpose[{Table[ToExpression["v"~StringJoin~ToString[i]~StringJoin~"x"],{i,1,n}],
 Table[ToExpression["v"~StringJoin~ToString[i]~StringJoin~"y"],{i,1,n}]}];
+ValNames[s_,n_]:=Transpose[{Table[ToExpression[s~StringJoin~ToString[i]~StringJoin~"x"],{i,1,n}],
+Table[ToExpression[s~StringJoin~ToString[i]~StringJoin~"y"],{i,1,n}]}];
+Const1[n_]:=Function[{conf,t},Total[#^2&/@((1-t)conf[[1]][[n]]+t conf[[2]][[n]]
+-ValNames[Length[conf[[1]]]][[n]])]];
 (**)
 NormF[m_]:=Total[Map[#^2&,Flatten[m]]];
 
@@ -94,7 +98,7 @@ NormF[m_]:=Total[Map[#^2&,Flatten[m]]];
 
 
 (*poly:\:591a\:9805\:5f0f\:3001vl:\:5909\:6570\:5217*)
-(*QuadraticFormVariableMatrix[vl_]:=Outer[#1 #2&,vl,vl,1]
+QuadraticFormVariableMatrix[vl_]:=Outer[#1 #2&,vl,vl,1]
 Div2if[n_,l_]:=Table[If[n==i,l[[i]],l[[i]]/2],{i,1,Length[l]}];
 Div2Matrix[m_]:=MapIndexed[Div2if[First[#2],#1]&,m];
 (* QuadraticFormMatrix *)
@@ -104,7 +108,7 @@ Flatten[QuadraticFormVariableMatrix[vl],1]],Length[vl]]];
 (* LinearFormVector *)
 LinearFormVector[poly_,vl_]:=Module[{allzero},
 allzero=Map[#->0&,vl];
-Map[Coefficient[poly,#]/.allzero&,vl]]*)
+Map[Coefficient[poly,#]/.allzero&,vl]]
 
 
 (* ::Section::Closed:: *)
@@ -256,7 +260,7 @@ F1v[VtoTriangle[P,T[[i]]],A]]
 ,{i,1,Length[T]}]];*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Local Interpolation*)
 
 
@@ -289,8 +293,23 @@ LocalInterpolations[local_,conf_]:=Function[{t},
 (local[#][t]&)/@ NewFindMatrices[conf]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Constraint Functions*)
+
+
+Const1[n_]:=Function[{conf,t},Total[#^2&/@((1-t)conf[[1]][[n]]+t conf[[2]][[n]]
+-ValNames[Length[conf[[1]]]][[n]])]];
+ConstM[conf_,t_]:= Total[#^2&/@((1-t)Mean[conf[[1]]]+t Mean[conf[[2]]]
+-Mean[ValNames[Length[conf[[1]]]]])];
+Constfix[k_,l_]:=Function[{conf,t},Total[#^2&/@(ValNames[Length[conf[[1]]]][[k]]
+-ValNames[Length[conf[[1]]]][[l]]-(conf[[1]][[k]] -conf[[1]][[l]]))]];
+(*Constfix2[k_,l_]:=Function[{conf,t},Total[#^2&/@(ValNames[Length[conf[[1]]]][[k]]
+-ValNames[Length[conf[[1]]]][[l]]-Ekl[k,l][conf,t])]];*)
+Constfix2[k_,l_]:=Function[{conf,t},Module[{st,n},
+st = conf[[1]];
+n = Length[st];
+Total[#^2&/@(ValNames[n][[k]]
+-ValNames[n][[l]]-RotationMatrix[2\[Pi] t].(st[[k]]-st[[l]]))]]];
 
 
 (*Const\:306evn^2\:306e\:4fc2\:6570,m:\:9802\:70b9\:9078\:629e*)
@@ -304,22 +323,41 @@ ConstMatrix[m_,st_]:=Table[Switch[i,
 2m,-2((1-t)st[[m,2]]+t en[[m,2]]),_,0],{i,1,2Length[st]}];*)
 
 (*\:91cd\:5fc3\:3092\:9078\:629e*)
-ConstMatrixM[st_,en_,tri_,t_]:=DoubleMatrix[Table[1,{i,1, Length[st]},{j,1 , Length[st]}]/(Length[st]^2)];
+ConstMatrixM[conf_,t_]:=DoubleMatrix[Table[1,{i,1, Length[conf[[1]]]},{j,1 , Length[conf[[1]]]}]/(Length[conf[[1]]]^2)];
+ConstVectorM[conf_,t_]:=Module[{st,en,p,x,y},
+st = conf[[1]];
+en = conf[[2]];
+p=(1/Length[st]) Map[-2((1-t)#[[1]]+t #[[2]]){Table[1,{i,1,Length[st]}]}&,Transpose[{Mean[st],Mean[en]}]];
+x=Flatten[Transpose[{Flatten[p[[1]]],Table[0,{Length[st]}]}]];
+y=Flatten[Transpose[{Table[0,{Length[st]}],Flatten[p[[2]]]}]];
+x+y];
+(*ConstMatrixM[st_,en_,tri_,t_]:=DoubleMatrix[Table[1,{i,1, Length[st]},{j,1 , Length[st]}]/(Length[st]^2)];
 ConstVectorM[st_,en_,tri_,t_]:=Module[{p,x,y},
 p=(1/Length[st]^2) Map[-2((1-t)#[[1]]+t #[[2]]){Table[1,{i,1,Length[st]}]}&,Transpose[{Mean[st],Mean[en]}]];
 x=Flatten[Transpose[{Flatten[p[[1]]],Table[0,{Length[st]}]}]];
 y=Flatten[Transpose[{Table[0,{Length[st]}],Flatten[p[[2]]]}]];
-x+y];
-(*elk=ek-el*)
-Ekl[k_,l_]:=Function[{conf,t},RotationMatrix[2\[Pi] t].(conf[[1,k]]-conf[[1,l]])];
-Constfix2[k_,l_]:=Function[{conf,t},Total[#^2&/@(ValNames[Length[conf[[1]]]][[k]]
--ValNames[Length[conf[[1]]]][[l]]-Ekl[k,l][conf,t])]];
-(*vkx\[Times]vlx\:306e\:9805*)
-(*vkx\[Times]vlx\:306e\:9805*)
+x+y];*)
+
+(*Constfix*)
+ConstfixMatrix[k_,l_]:= Function[{conf,t},DoubleMatrix[EmbedMatrix[Length[conf[[1]]],k,l,{{1,-1},{-1,1}}]]];
+ConstfixVector[k_,l_]:=Function[{conf,t},Module[{st},
+st = conf[[1]];
+Table[Switch[i,2k-1,-2(st[[k,1]]-st[[l,1]]),2k,-2(st[[k,2]]-st[[l,2]]),
+2l-1,2(st[[k,1]]-st[[l,1]]),2l,2(st[[k,2]]-st[[l,2]]),_,0],{i,1,2Length[st]}]]];
+(*Constfix2:\:56de\:8ee2\:884c\:5217*)
+(*Constfix2Matrix = ConstfixMatrix*)
+Constfix2Vector[k_,l_]:=Function[{conf,t},Module[{st},
+st = conf[[1]];
+EmbedVector2[Length[st],k,l,
+{-2 st[[k,1]]Cos[2 \[Pi] t]+2 st[[l,1]]Cos[2 \[Pi] t]+2 st[[k,2]]Sin[2 \[Pi] t]-2 st[[l,2]]Sin[2 \[Pi] t],
+-2 st[[k,2]]Cos[2 \[Pi] t]+2 st[[l,2]]Cos[2 \[Pi] t]-2 st[[k,1]]Sin[2 \[Pi] t]+2 st[[l,1]]Sin[2 \[Pi] t],
+2 st[[k,1]]Cos[2 \[Pi] t]-2 st[[l,1]]Cos[2 \[Pi] t]-2 st[[k,2]]Sin[2 \[Pi] t]+2 st[[l,2]]Sin[2 \[Pi] t],
+2st[[k,2]]Cos[2 \[Pi] t]-2 st[[l,2]]Cos[2 \[Pi] t]+2 st[[k,1]]Sin[2 \[Pi] t]-2 st[[l,1]]Sin[2 \[Pi] t]}]]];
+
+(*Ekl[k_,l_]:=Function[{conf,t},RotationMatrix[2\[Pi] t].(conf[[1,k]]-conf[[1,l]])];
 ConstMatrix2[n_,k_,l_]:=Table[Switch[i,
 2k-1,Switch[j,2l-1,1,_,0],
 2k,Switch[j,2l,1,_,0],_,0],{i,1,2n},{j,1,2n}];
-(*\:4e8c\:6b21\:306e\:9805\:3092\:307e\:3068\:3081\:308b*)
 ConstfixMatrix[n_,k_,l_,st_]:=Module[{C1,C2},
 C1 = Table[Switch[i,2k-1,Switch[j,2l-1,1,_,0],
 2k,Switch[j,2l,1,_,0],_,0],{i,1,2Length[st]},{j,1,2Length[st]}];
@@ -330,11 +368,7 @@ n ConstMatrix[k,st]+n ConstMatrix[l,st]
 ConstfixVector[n_,k_,l_,st_]:=Table[Switch[i,
 2k-1,-2(st[[k,1]]-st[[l,1]]),2k,-2(st[[k,2]]-st[[l,2]]),
 2l-1,2(st[[k,1]]-st[[l,1]]),2l,2(st[[k,2]]-st[[l,2]]),_,0],{i,1,2Length[st]}];
-
-(*elk'= R(2\[Pi]t).elk = Ekl[et,k,l,t]*)
-(*Constfix2Matrix\:306fConstfixMatrix\:3068\:540c\:69d8*)
-(*\:5de5\:4e8b\:4e2d*)
-(*Constfix2Vector[n_,k_,l_,st_,t_]:=Table[Switch[i,
+Constfix2Vector[n_,k_,l_,st_,t_]:=Table[Switch[i,
 2k-1,-2 Ekl[st,k,l,t][[1]],2k,-2Ekl[st,k,l,t][[2]],
 2 l-1,2Ekl[st,k,l,t][[1]],2 l ,2Ekl[st,k,l,t][[2]],_,0],{i,1,2Length[st]}];*)
 
@@ -349,14 +383,11 @@ Table[Switch[i,
 2m,-2((1-t)conf[[1,m,2]]+t conf[[2,m,2]]),_,0],{i,1,2Length[conf[[1]]]}]
 }]
 ConstPair[m_,n_]:=Function[{conf,t},ConstPair[m][conf,t]+ConstPair[n][conf,t]];
-(*ConstPairM:=Function[{conf,t},{
-DoubleMatrix[Table[1,{i,1, Length[conf[[1]]]},{j,1 , Length[conf[[1]]]}]/(Length[conf[[1]]]^2)],
-Module[{p,x,y},
-p=(1/Length[conf[[1]]]^2) Map[-2((1-t)#[[1]]+t #[[2]]){Table[1,{i,1,Length[conf[[1]]]}]}&,Transpose[{Mean[conf[[1]]],Mean[conf[[2]]]}]];
-x=Flatten[Transpose[{Flatten[p[[1]]],Table[0,{Length[conf[[1]]]}]}]];
-y=Flatten[Transpose[{Table[0,{Length[conf[[1]]]}],Flatten[p[[2]]]}]];
-x+y];
-}]*)
+ConstPairM:=Function[{conf,t},{ConstMatrixM[conf,t],ConstVectorM[conf,t]}];
+ConstPairfix[k_,l_]:=Function[{conf,t},
+{ConstfixMatrix[k,l][conf,t],ConstfixVector[k,l][conf,t]}];
+ConstPairfix2[k_,l_]:=Function[{conf,t},
+{ConstfixMatrix[k,l][conf,t],Constfix2Vector[k,l][conf,t]}];
 (*ConstM,Constfix\:306f\:6e96\:5099\:4e2d*)
 
 

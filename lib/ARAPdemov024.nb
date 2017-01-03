@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     88316,       1689]
-NotebookOptionsPosition[     86799,       1633]
-NotebookOutlinePosition[     87220,       1651]
-CellTagsIndexPosition[     87177,       1648]
+NotebookDataLength[     88604,       1698]
+NotebookOptionsPosition[     87050,       1641]
+NotebookOutlinePosition[     87471,       1659]
+CellTagsIndexPosition[     87428,       1656]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -40,6 +40,10 @@ Cell[BoxData[{
    3.6863684733605967`*^9, 3.686368473918097*^9}, {3.6874390091368523`*^9, 
    3.6874390094471292`*^9}, 3.687490631263009*^9, {3.687949441678225*^9, 
    3.687949441859963*^9}, {3.688480170253461*^9, 3.6884802458795*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[AliasDelimiter]", "\[AliasDelimiter]"}]], "Input",
+ CellChangeTimes->{{3.6895544581755333`*^9, 3.689554459767666*^9}}],
 
 Cell[CellGroupData[{
 
@@ -410,22 +414,26 @@ Cell[BoxData[
       0, 0, 
      Rational[-1, 4], 0, 
      Rational[-1, 4], 0, 
-     Rational[1, 2]}}, {2.0000000000000004`, -1.5000000000000002`, 
-   2.500000000000001, -3., -3.0000000000000004`, 
-   8.049116928532385*^-16, -6.000000000000002, -0.2500000000000007, 
-   1.3877787807814457`*^-15, 2.5, -0.2500000000000002, 6.999999999999998, 
-   2.5000000000000018`, 3.000000000000004, 7.000000000000001, 
-   3.250000000000003, 1.999999999999999, -7.000000000000004, 
-   2.2499999999999973`, -13.5, -6.0000000000000036`, -2.4999999999999973`, \
--11.999999999999998`, 0.49999999999999845`, 4.773959005888173*^-15, 
-   7.9999999999999964`, -2.220446049250313*^-16, 13.500000000000004`, 
-   3., -4.5, 5.999999999999999, -5.500000000000001}}}, 
+     Rational[1, 2]}}, {11.149885995950395`, 0.6638245725725933, 
+   1.403751353210105, -1.065753821601062, 0.3873879153119367, 
+   1.3315655594438756`, -0.5776428622996079, -2.093935431987749, 
+   0.022596653945088918`, 
+   2.697928450965583, -0.013815407195858609`, -0.3154966622500681, \
+-0.005570506456271385, 1.6333403191743647`, 
+   1.147884762553824, -1.9537541557707088`, 0.04184651279974158, 
+   1.1806792282002114`, 0.22554290443296487`, -2.632776962102353, 
+   0.7830576083260645, 
+   1.323505685895247, -0.7911945566726741, -2.442288442324311, \
+-0.112312956814689, 3.1647413958517348`, -0.13667715338167974`, 
+   0.20441299883082875`, -2.0695459614281915`, 
+   0.2091818312243483, -1.6760416228377888`, -1.905174566122535}}}, 
   TagBox[
    StyleBox[
-    DynamicModuleBox[{$CellContext`x$$ = 1., Typeset`show$$ = True, 
-     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-     "\"\:540d\:79f0\:672a\:5b9a\:7fa9\"", Typeset`specs$$ = {{
+    DynamicModuleBox[{$CellContext`x$$ = 0.18507061004638672`, 
+     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+     1, Typeset`name$$ = "\"\:540d\:79f0\:672a\:5b9a\:7fa9\"", 
+     Typeset`specs$$ = {{
        Hold[$CellContext`x$$], 0, 1}}, Typeset`size$$ = {360., {205., 209.}}, 
      Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
      True, $CellContext`x$886$$ = 0}, 
@@ -502,7 +510,7 @@ $CellContext`ARAP[$CellContext`LocalAlexa, $CellContext`QuadraticFormAlexa,
         ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
          "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
          True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-      ImageSizeCache->{411., {244., 255.}},
+      ImageSizeCache->{405., {241., 247.}},
       SingleEvaluation->True],
      Deinitialization:>None,
      DynamicModuleValues:>{},
@@ -958,7 +966,7 @@ $CellContext`ConstPair[
         ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
          "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
          True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-      ImageSizeCache->{411., {244., 255.}},
+      ImageSizeCache->{405., {241., 247.}},
       SingleEvaluation->True],
      Deinitialization:>None,
      DynamicModuleValues:>{},
@@ -1436,7 +1444,7 @@ $CellContext`ARAP[$CellContext`LocalAlexa, $CellContext`QuadraticFormAlexa,
         ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
          "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
          True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-      ImageSizeCache->{411., {253., 264.}},
+      ImageSizeCache->{405., {250., 256.}},
       SingleEvaluation->True],
      Deinitialization:>None,
      DynamicModuleValues:>{},
@@ -1606,7 +1614,7 @@ $CellContext`ConstPair[
         ControlType -> Animator, AppearanceElements -> None, DefaultBaseStyle -> 
          "Animate", DefaultLabelStyle -> "AnimateLabel", SynchronousUpdating -> 
          True, ShrinkingDelay -> 10.}, "DefaultOptions" :> {}],
-      ImageSizeCache->{411., {253., 264.}},
+      ImageSizeCache->{405., {250., 256.}},
       SingleEvaluation->True],
      Deinitialization:>None,
      DynamicModuleValues:>{},
@@ -1651,46 +1659,47 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 1123, 21, 78, "Input"],
+Cell[1684, 43, 144, 2, 28, "Input"],
 Cell[CellGroupData[{
-Cell[1706, 45, 292, 6, 28, "Input"],
-Cell[2001, 53, 2563, 51, 233, "Output"]
+Cell[1853, 49, 292, 6, 28, "Input"],
+Cell[2148, 57, 2563, 51, 233, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4601, 109, 404, 7, 28, "Input"],
-Cell[5008, 118, 2724, 52, 233, "Output"]
+Cell[4748, 113, 404, 7, 28, "Input"],
+Cell[5155, 122, 2724, 52, 233, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7769, 175, 347, 6, 28, "Input"],
-Cell[8119, 183, 4583, 86, 523, "Output"]
+Cell[7916, 179, 347, 6, 28, "Input"],
+Cell[8266, 187, 4583, 86, 523, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[12739, 274, 341, 6, 79, "Input"],
-Cell[13083, 282, 11177, 235, 524, "Output"]
+Cell[12886, 278, 341, 6, 28, "Input"],
+Cell[13230, 286, 11281, 239, 505, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[24297, 522, 321, 6, 79, "Input"],
-Cell[24621, 530, 16475, 278, 146, "Output"]
+Cell[24548, 530, 321, 6, 28, "Input"],
+Cell[24872, 538, 16475, 278, 138, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[41133, 813, 659, 11, 79, "Input"],
-Cell[41795, 826, 9141, 149, 524, "Output"]
+Cell[41384, 821, 659, 11, 28, "Input"],
+Cell[42046, 834, 9141, 149, 505, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[50973, 980, 300, 6, 79, "Input"],
-Cell[51276, 988, 17568, 306, 227, "Output"]
+Cell[51224, 988, 300, 6, 28, "Input"],
+Cell[51527, 996, 17568, 306, 219, "Output"]
 }, Open  ]],
-Cell[68859, 1297, 92, 1, 48, "Input"],
+Cell[69110, 1305, 92, 1, 28, "Input"],
 Cell[CellGroupData[{
-Cell[68976, 1302, 257, 5, 48, "Input"],
-Cell[69236, 1309, 8116, 141, 542, "Output"]
+Cell[69227, 1310, 257, 5, 28, "Input"],
+Cell[69487, 1317, 8116, 141, 523, "Output"]
 }, Open  ]],
-Cell[77367, 1453, 360, 7, 79, "Input"],
-Cell[77730, 1462, 85, 1, 48, "Input"],
+Cell[77618, 1461, 360, 7, 28, "Input"],
+Cell[77981, 1470, 85, 1, 28, "Input"],
 Cell[CellGroupData[{
-Cell[77840, 1467, 278, 6, 79, "Input"],
-Cell[78121, 1475, 8276, 145, 542, "Output"]
+Cell[78091, 1475, 278, 6, 28, "Input"],
+Cell[78372, 1483, 8276, 145, 523, "Output"]
 }, Open  ]],
-Cell[86412, 1623, 383, 8, 79, "Input"]
+Cell[86663, 1631, 383, 8, 28, "Input"]
 }
 ]
 *)
