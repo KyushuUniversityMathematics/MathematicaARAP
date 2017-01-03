@@ -293,7 +293,7 @@ LocalInterpolations[local_,conf_]:=Function[{t},
 (local[#][t]&)/@ NewFindMatrices[conf]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Constraint Functions*)
 
 
