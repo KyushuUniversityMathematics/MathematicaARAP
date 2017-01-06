@@ -136,7 +136,7 @@ Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]]];
 FindAffineMatrices[V1_,V2_,tindex_]:=FindAffineMatrix[VtoTriangle[V1,#],VtoTriangle[V2,#]]&/@ tindex
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*EmbedMatrix,EmbedVector*)
 
 
@@ -235,10 +235,17 @@ p6=-2 a1y m21+2 b1y m21+2 a1x m22-2 b1x m22;
 
 
 (*EmbedVector*)
+EmbedVector[n_,i_,V_]:=
+Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],_,0],
+{m,1,2n}];
 EmbedVector[n_,i_,j_,k_,V_]:=
 Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
 2*j-1,V[[3]],2*j,V[[4]],
 2*k-1,V[[5]],2*k,V[[6]],_,0],
+{m,1,2n}];
+EmbedVector2[n_,i_,j_,V_]:=
+Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
+2*j-1,V[[3]],2*j,V[[4]],_,0],
 {m,1,2n}];
 
 
@@ -293,7 +300,7 @@ LocalInterpolations[local_,conf_]:=Function[{t},
 (local[#][t]&)/@ NewFindMatrices[conf]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Constraint Functions*)
 
 
@@ -339,7 +346,8 @@ y=Flatten[Transpose[{Table[0,{Length[st]}],Flatten[p[[2]]]}]];
 x+y];*)
 
 (*Constfix*)
-ConstfixMatrix[k_,l_]:= Function[{conf,t},DoubleMatrix[EmbedMatrix[Length[conf[[1]]],k,l,{{1,-1},{-1,1}}]]];
+ConstfixMatrix[k_,l_]:= Function[{conf,t},
+DoubleMatrix[EmbedMatrix[Length[conf[[1]]],k,l,{{1,-1},{-1,1}}]]];
 ConstfixVector[k_,l_]:=Function[{conf,t},Module[{st},
 st = conf[[1]];
 Table[Switch[i,2k-1,-2(st[[k,1]]-st[[l,1]]),2k,-2(st[[k,2]]-st[[l,2]]),
@@ -353,6 +361,12 @@ EmbedVector2[Length[st],k,l,
 -2 st[[k,2]]Cos[2 \[Pi] t]+2 st[[l,2]]Cos[2 \[Pi] t]-2 st[[k,1]]Sin[2 \[Pi] t]+2 st[[l,1]]Sin[2 \[Pi] t],
 2 st[[k,1]]Cos[2 \[Pi] t]-2 st[[l,1]]Cos[2 \[Pi] t]-2 st[[k,2]]Sin[2 \[Pi] t]+2 st[[l,2]]Sin[2 \[Pi] t],
 2st[[k,2]]Cos[2 \[Pi] t]-2 st[[l,2]]Cos[2 \[Pi] t]+2 st[[k,1]]Sin[2 \[Pi] t]-2 st[[l,1]]Sin[2 \[Pi] t]}]]];
+Constfix2Vector2[k_,l_]:=Function[{conf,t},Module[{st,px,py},
+st = conf[[1]];
+px = -2  st[[k,1]]Cos[2 \[Pi] t]+2 st[[l,1]] Cos[2 \[Pi] t]+2st[[k,2]]  Sin[2 \[Pi] t]-2 st[[l,2]] Sin[2 \[Pi] t];
+py = -2 st[[k,2]] Cos[2 \[Pi] t]+2 st[[l,2]] Cos[2 \[Pi] t]-2 st[[k,1]] Sin[2 \[Pi] t]+2 st[[l,1]] Sin[2 \[Pi] t];
+EmbedVector2[Length[conf[[1]]],k,l,{px,py,-px,-py}]
+]];
 
 (*Ekl[k_,l_]:=Function[{conf,t},RotationMatrix[2\[Pi] t].(conf[[1,k]]-conf[[1,l]])];
 ConstMatrix2[n_,k_,l_]:=Table[Switch[i,
@@ -382,6 +396,12 @@ Table[Switch[i,
 2m-1,-2((1-t)conf[[1,m,1]]+t conf[[2,m,1]]),
 2m,-2((1-t)conf[[1,m,2]]+t conf[[2,m,2]]),_,0],{i,1,2Length[conf[[1]]]}]
 }]
+ConstPair2[k_]:=
+Function[{conf,t},
+{EmbedMatrix[2Length[conf[[1]]],2k-1,2k,{{1,0},{0,1}}],
+EmbedVector[Length[conf[[1]]],k,
+{-2(1-t)conf[[1,k,1]] + t conf[[2,k,1]],-2(1-t)conf[[1,k,2]] + t conf[[2,k,2]]}]}
+];
 ConstPair[m_,n_]:=Function[{conf,t},ConstPair[m][conf,t]+ConstPair[n][conf,t]];
 ConstPairM:=Function[{conf,t},{ConstMatrixM[conf,t],ConstVectorM[conf,t]}];
 ConstPairfix[k_,l_]:=Function[{conf,t},
