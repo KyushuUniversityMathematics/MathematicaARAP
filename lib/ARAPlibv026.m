@@ -1,7 +1,7 @@
 (* ::Package:: *)
 
 (* ::Title:: *)
-(*ARAPlib.m *)
+(*ARAPlib.m (Ver.0.26)*)
 (*(Mathematica ARAP Modules 2017/02/04)*)
 
 
