@@ -1,33 +1,11 @@
 (* ::Package:: *)
 
-(* ::Title:: *)
-(*ARAPlib.m (Ver.0.26)*)
-(*(Mathematica ARAP Modules 2017/02/04)*)
+(* ::Chapter:: *)
+(*ARAPlib.m (Mathematica Modules 2016/12/20)*)
+(*Kyushu University 2016*)
 
 
-(* ::Text:: *)
-(*Copyright (c) 2017  Yoshihiro Mizoguchi , Tomomi HIrano , Kyushu University*)
-(**)
-(*Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell*)
-(*copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:*)
-(*The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.*)
-(*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*)
-
-
-(* ::Text:: *)
-(*Last Update : 2017/02/04 *)
-(*Ver. 0.26 published : 2017/02/04 *)
-
-
-BeginPackage["ARAPlib`"];
-
-
-Begin["`Private`"];
-
-End[];
-
-
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Basic Functions*)
 
 
@@ -80,6 +58,7 @@ pt[{1,1},VerticalSnake[n]],t],SnakeTriangle[n]]*)
 PolarDecomposition[m_]:=Module[{u,w,v},
 {u,w,v}=SingularValueDecomposition[m]//N;
 {u.Transpose[v],v.w.Transpose[v]}];
+(* *)
 PolarDecompositionPlus[m_]:=Module[{p,q,s,pt,qt},
 {p,q}=PolarDecomposition[m];
 pt=Transpose[p];qt=Transpose[q];
@@ -115,7 +94,7 @@ Const1[n_]:=Function[{conf,t},Total[#^2&/@((1-t)conf[[1]][[n]]+t conf[[2]][[n]]
 NormF[m_]:=Total[Map[#^2&,Flatten[m]]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*QuadraticFormMatrix + LinearFormVector*)
 
 
@@ -133,7 +112,7 @@ allzero=Map[#->0&,vl];
 Map[Coefficient[poly,#]/.allzero&,vl]]
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*FindMatrix etc*)
 
 
@@ -158,7 +137,7 @@ Join[Transpose[Tri2],{{1,1,1}}].Inverse[Join[Transpose[Tri1],{{1,1,1}}]]];
 FindAffineMatrices[V1_,V2_,tindex_]:=FindAffineMatrix[VtoTriangle[V1,#],VtoTriangle[V2,#]]&/@ tindex
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*EmbedMatrix,EmbedVector*)
 
 
@@ -184,7 +163,6 @@ p22=a1x^2+a1y^2-2 a1x c1x+c1x^2-2 a1y c1y+c1y^2;
 p23=-(a1x^2+a1y^2+b1x c1x-a1x (b1x+c1x)+b1y c1y-a1y (b1y+c1y));
 p33=a1x^2+a1y^2-2 a1x b1x+b1x^2-2 a1y b1y+b1y^2;
 {{p11/q,p12/q,p13/q},{p12/q,p22/q,p23/q},{p13/q,p23/q,p33/q}}];
-F1a::usage="F1a[{p1,p2,p3}, M] : \[DoubleStruckCapitalR][3,3], p1,p2,p3:\[DoubleStruckCapitalR][2],  M:\[DoubleStruckCapitalR][2,2]";
 (**)
 F2a[{{a1x_,a1y_},{b1x_,b1y_},{c1x_,c1y_}},{{m11_,m12_},{m21_,m22_}}]:=
 Module[{fm,cm,m1222,m1121,X,Y0,Y1,Y2,Y3,Y4,Y5,Y6},
@@ -208,7 +186,6 @@ Y6=((a1x-c1x) (2 a1y cm-2 c1y cm+(a1x-c1x) m1121)+(a1y-c1y)^2 m1222);
 {{Y5/(fm X^2),0,Y4/(fm X^2),-(Y0/(fm X)),Y1/(fm X^2),Y0/(fm X)},{0,Y5/(fm X^2),Y0/(fm X),Y4/(fm X^2),-(Y0/(fm X)),Y1/(fm X^2)},
 {Y4/(fm X^2),Y0/(fm X),Y6/(fm X^2),0,-(Y2/(fm X^2)),-(Y0/(fm X))},{-(Y0/(fm X)),Y4/(fm X^2),0,Y6/(fm X^2),Y0/(fm X),-(Y2/(fm X^2))},
 {Y1/(fm X^2),-(Y0/(fm X)),-(Y2/(fm X^2)),Y0/(fm X),Y3/(fm X^2),0},{Y0/(fm X),Y1/(fm X^2),-(Y0/(fm X)),-(Y2/(fm X^2)),0,Y3/(fm X^2)}}];
-F2a::usage="F2a[{p1,p2,p3}, M] : \[DoubleStruckCapitalR][6,6], p1,p2,p3:\[DoubleStruckCapitalR][2],  M:\[DoubleStruckCapitalR][2,2]";
 
 (*EmbedMatrix*)
 EmbedMatrix[n_,i_,j_,M_]:=Table[Switch[k,
@@ -220,8 +197,8 @@ i,Switch[l,i,M[[1,1]],j,M[[1,2]],k,M[[1,3]],_,0],
 j,Switch[l,i,M[[2,1]],j,M[[2,2]],k,M[[2,3]],_,0],
 k,Switch[l,i,M[[3,1]],j,M[[3,2]],k,M[[3,3]],_,0],_,0],
 {m,1,n},{l,1,n}];
-EmbedMatrix::usage="EmbedMatrix[n,i,j,(k,)M]:\[DoubleStruckCapitalR][n,n], i,j(,k):\[DoubleStruckCapitalN], M:\[DoubleStruckCapitalR][2,2](,\[DoubleStruckCapitalR][3,3])";
-(* *)
+
+(*6\[Times]6\[Rule] 8\[Times]8*)
 EmbedMatrix2[n_,i_,j_,k_,M_]:=Table[Switch[m,
 2*i-1,Switch[l,2*i-1,M[[1,1]],2*i,M[[1,2]],
 2*j-1,M[[1,3]],2*j,M[[1,4]],
@@ -241,8 +218,6 @@ EmbedMatrix2[n_,i_,j_,k_,M_]:=Table[Switch[m,
 2*k,Switch[l,2*i-1,M[[6,1]],2*i,M[[6,2]],
 2*j-1,M[[6,3]],2*j,M[[6,4]],2*k-1,M[[6,5]],
 2*k,M[[6,6]],_,0],_,0],{m,1,2n},{l,1,2n}];
-EmbedMatrix2::usage="EmbedMatrix2[n,i,j,k,M]:\[DoubleStruckCapitalR][2n,2n], i,j,k:\[DoubleStruckCapitalN], M:R[6,6]";
-
 
 
 (*LineatFormVector\:306e\:7d50\:679c\:3092\:7528\:3044\:3066\:76f4\:63a5\:4f5c\:6210\:3057\:305f\:3082\:306e*)
@@ -257,8 +232,6 @@ p4=2 a1y m21-2 c1y m21-2 a1x m22+2 c1x m22;
 p5=-2 a1y m11+2 b1y m11+2 a1x m12-2 b1x m12;
 p6=-2 a1y m21+2 b1y m21+2 a1x m22-2 b1x m22;
 {p1/q,p2/q,p3/-q,p4/-q,p5/-q,p6/-q}];
-F1v::usage="F1v[{p1,p2,p3}, M] : R[6], p1,p2,p3:\[DoubleStruckCapitalR][2], M:\[DoubleStruckCapitalR][2,2]";
-
 (*F2v[P1_,P2_,A_]:=LinearFormVector[En2[P1,P2,A],Flatten[P2]];*)
 
 
@@ -271,14 +244,10 @@ Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
 2*j-1,V[[3]],2*j,V[[4]],
 2*k-1,V[[5]],2*k,V[[6]],_,0],
 {m,1,2n}];
-EmbedVector::usage="EmbedVector[n,i,j,(k,)V] : \[DoubleStruckCapitalR][n], i,j(,k):\[DoubleStruckCapitalN], V:\[DoubleStruckCapitalR][4](\[DoubleStruckCapitalR][6])";
-(* *)
 EmbedVector2[n_,i_,j_,V_]:=
 Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
 2*j-1,V[[3]],2*j,V[[4]],_,0],
 {m,1,2n}];
-EmbedVector2::usage="EmbedVector2[n,i,j,V] : \[DoubleStruckCapitalR][2n], i,j:\[DoubleStruckCapitalN], V:R[4]";
-
 
 
 (*QuadraticMatrix\:3092\:57cb\:3081\:8fbc\:3093\:3060\:884c\:5217\:306e\:548c Fn*)
@@ -299,7 +268,7 @@ F1v[VtoTriangle[P,T[[i]]],A]]
 ,{i,1,Length[T]}]];*)
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Local Interpolation*)
 
 
@@ -320,6 +289,7 @@ Module[{p,q,\[Theta]},
 {p,q}=PolarDecompositionPlus[m];
 \[Theta]=RotateAngle[p,0];
 RotationMatrix[t \[Theta]].((1-t) IdentityMatrix[2] + t q)]];
+(* *)
 LocalLogExp[m_]:=Function[{t},
 Module[{p,q,s,\[Theta],evec,eval},
 {p,q}=PolarDecompositionPlus[m];
@@ -327,14 +297,13 @@ Module[{p,q,s,\[Theta],evec,eval},
 \[Theta]=RotateAngle[p,0];
 RotationMatrix[t \[Theta]].Transpose[evec].DiagonalMatrix[{eval[[1]]^t,eval[[2]]^t}].evec
 ]];
-LocalAlexa::usage="LocalAlexa[M][t]=R^t\[CenterDot]S^t, M=R\[CenterDot]S, R:SO+(2), S:Sym+(2), t:\[DoubleStruckCapitalR]";
 (*Flag\:306f\:4fdd\:7559?*)
 
 LocalInterpolations[local_,conf_]:=Function[{t},
 (local[#][t]&)/@ NewFindMatrices[conf]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Constraint Functions*)
 
 
@@ -402,6 +371,24 @@ py = -2 st[[k,2]] Cos[2 \[Pi] t]+2 st[[l,2]] Cos[2 \[Pi] t]-2 st[[k,1]] Sin[2 \[
 EmbedVector2[Length[conf[[1]]],k,l,{px,py,-px,-py}]
 ]];
 
+(*Ekl[k_,l_]:=Function[{conf,t},RotationMatrix[2\[Pi] t].(conf[[1,k]]-conf[[1,l]])];
+ConstMatrix2[n_,k_,l_]:=Table[Switch[i,
+2k-1,Switch[j,2l-1,1,_,0],
+2k,Switch[j,2l,1,_,0],_,0],{i,1,2n},{j,1,2n}];
+ConstfixMatrix[n_,k_,l_,st_]:=Module[{C1,C2},
+C1 = Table[Switch[i,2k-1,Switch[j,2l-1,1,_,0],
+2k,Switch[j,2l,1,_,0],_,0],{i,1,2Length[st]},{j,1,2Length[st]}];
+C2 = Table[Switch[i,2l-1,Switch[j,2k-1,1,_,0],
+2l,Switch[j,2k,1,_,0],_,0],{i,1,2Length[st]},{j,1,2Length[st]}];
+n ConstMatrix[k,st]+n ConstMatrix[l,st]
+-n C1-n C2];
+ConstfixVector[n_,k_,l_,st_]:=Table[Switch[i,
+2k-1,-2(st[[k,1]]-st[[l,1]]),2k,-2(st[[k,2]]-st[[l,2]]),
+2l-1,2(st[[k,1]]-st[[l,1]]),2l,2(st[[k,2]]-st[[l,2]]),_,0],{i,1,2Length[st]}];
+Constfix2Vector[n_,k_,l_,st_,t_]:=Table[Switch[i,
+2k-1,-2 Ekl[st,k,l,t][[1]],2k,-2Ekl[st,k,l,t][[2]],
+2 l-1,2Ekl[st,k,l,t][[1]],2 l ,2Ekl[st,k,l,t][[2]],_,0],{i,1,2Length[st]}];*)
+
 
 (*ARAP\:306eConst*)
 ConstPair[m_]:=Function[{conf,t},{
@@ -434,47 +421,35 @@ Y0[l_]:=Flatten[Transpose[{Table[0,{Length[l]}],l}]];
 Flatten[Map[{X0[#],Y0[#]}&,m],1]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Global Interpolation*)
 (*(Embed\:3092\:7528\:3044\:305f\:3082\:306e\:3001Alexa)*)
 
 
 (*energy*)
 (*Alexa\:306eMatrix,Vector*)
-QuadraticFormAlexa[local_,{st_,en_,tri_}]:=Function[{t},
-Module[{n,Qs},
-n=Length[st];
-Qs=Transpose[{VtoTriangles[st,tri],LocalInterpolations[local,{st,en,tri}][t]}];
-{
+QuadraticFormAlexa[local_,conf_]:=Function[{t},{
 DoubleMatrix[
-Total[Map[EmbedMatrix[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
-      Transpose[{Map[F1a[#[[1]],#[[2]]]&,
-      Qs
-      ],tri}]]]
-      ],
+Total[Map[EmbedMatrix[Length[conf[[1]]],#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
+Transpose[
+{Map[F1a[#[[1]],#[[2]]]&,
+Transpose[{VtoTriangles[conf[[1]],conf[[3]]],LocalInterpolations[local,conf][t]}]],
+conf[[3]]}]]]],
 Flatten[
-Total[Map[EmbedVector[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
-      Transpose[{Map[F1v[#[[1]],#[[2]]]&, Qs],tri}]]]
-      ]
-}
-]];
-
-QuadraticFormAlexa::usage="QudadraticFormAlexa[local,conf][t]:{R[2n,2n],R[2n]},
-local:\[DoubleStruckCapitalR]\[RightArrow]R[2,2], conf:{R[2,n],R[2,n],\[DoubleStruckCapitalN][3,k]}";
+Total[Map[EmbedVector[Length[conf[[1]]],#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
+Transpose[
+{Map[F1v[#[[1]],#[[2]]]&,
+Transpose[{VtoTriangles[conf[[1]],conf[[3]]],LocalInterpolations[local,conf][t]}]],
+conf[[3]]}]]]]
+}];
 (*Sim\:306eMatrix,Vector*)
-QuadraticFormSim[local_,{st_,en_,tri_}]:=Function[{t},
-Module[{n,Qs},
-n=Length[st];
-Qs=Transpose[{VtoTriangles[st,tri],LocalInterpolations[local,{st,en,tri}][t]}];
-{
-Total[Map[EmbedMatrix2[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
-          Transpose[{Map[F2a[#[[1]],#[[2]]]&,Qs],tri}]]
-          ],
-Table[0,{2 n}]
-}
-]];
-QuadraticFormSim::usage="QudadraticFormSim[local,conf][t]:{R[2n,2n],R[2n]},
-local:\[DoubleStruckCapitalR]\[RightArrow]R[2,2], conf:{R[2,n],R[2,n],\[DoubleStruckCapitalN][3,k]}";
+QuadraticFormSim[local_,conf_]:=Function[{t},{
+Total[Map[
+EmbedMatrix2[Length[conf[[1]]],#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
+Transpose[{Map[F2a[#[[1]],#[[2]]]&,
+Transpose[{VtoTriangles[conf[[1]],conf[[3]]],LocalInterpolations[local,conf][t]}]],
+conf[[3]]}]]],
+Table[0,{i,1,2Length[conf[[1]]]}]}];
 (**)
 ARAP[local_,energy_,const_,conf_]:=Function[{t},
 Module[{G,h},
@@ -486,27 +461,34 @@ h=energy[local,conf][t][[2]]
 ]];
 
 
-(* ::Section:: *)
+(* ::Section::Closed:: *)
 (*Animation*)
 
 
 (* *)
-ShowStatus[{st_,en_,tri_}]:=
+ShowStatus[st_,en_,tri_,plotrange_]:=
 Show[Graphics[{MakePolygon[st,tri],MakePolygon[en,tri]}],
-PlotRange->AnimationRange[{st,en,tri}],Frame->True]
+PlotRange->plotrange,Frame->True]
 (* *)
 DrawAnimation[local_,energy_,const_,conf_]:=
 DynamicModule[{GU},
 Animate[
-GU=ARAP[local,energy,const,conf][t];
+GU=ARAP[local,energy,const,conf][x];
 Show[Graphics[MakePolygon[
 Partition[-0.5 Inverse[GU[[1]]].GU[[2]],2],conf[[3]]],
-PlotRange -> AnimationRange[conf]]],{t,0,1}, 
+PlotRange -> AnimationRange[conf]]],{x,0,1}, 
 AnimationRunning->False,AnimationRepetitions->1]];
-DrawAnimation::usage="DrawAnimation[local,energy,const,conf]";
 
 
 (* Export["filename.mov",ListAnimation[k,local,energy,const,conf]] *)
+(*ListAnimation[k_,local_,energy_,const_,conf_]:=
+Module[{GU},
+Table[
+GU=ARAP[local,energy,const,conf][i/(k-1)];
+Show[Graphics[MakePolygon[
+Partition[-0.5 Inverse[GU[[1]]].GU[[2]],2],conf[[3]]],
+PlotRange -> AnimationRange[conf]
+]],{i,0,k-1}]];*)
 ListAnimation[k_,local_,energy_,const_,conf_]:=
 Module[{GU,V,range,table},
 range = {conf[[1,1]],conf[[1,1]]};
@@ -516,7 +498,134 @@ V=Partition[-0.5 Inverse[GU[[1]]].GU[[2]],2];
 range=AnimationRange2[range,AnimationRange[{V,{},{}}]];
 MakePolygon[V,conf[[3]]],{i,0,k-1}];
 Map[Graphics[#,PlotRange->range]&,table]];
-ListAnimation::usage="LisgtAnimation[k,local,energy,const,conf]";
 
 
-EndPackage[];
+(* ::Section:: *)
+(*Compile*)
+
+
+cF1a=Compile[{{p,_Real,2},{m,_Real,2}},
+Module[{a1x,a1y,b1x,b1y,c1x,c1y,m11,m12,m21,m22,q,p11,p12,p13,p22,p23,p33},
+a1x=p[[1,1]];a1y=p[[1,2]];b1x=p[[2,1]];b1y=p[[2,2]];c1x=p[[3,1]];c1y=p[[3,2]];
+m11=m[[1,1]];m12=m[[1,2]];m21=m[[2,1]];m22=m[[2,2]];
+q=(a1y b1x-a1x b1y-a1y c1x+b1y c1x+a1x c1y-b1x c1y)^2;
+p11=b1x^2+b1y^2-2 b1x c1x+c1x^2-2 b1y c1y+c1y^2;
+p12=-(a1x b1x+a1y b1y-a1x c1x-b1x c1x+c1x^2-a1y c1y-b1y c1y+c1y^2);
+p13=-b1x^2+a1x (b1x-c1x)+b1x c1x+(a1y-b1y) (b1y-c1y);
+p22=a1x^2+a1y^2-2 a1x c1x+c1x^2-2 a1y c1y+c1y^2;
+p23=-(a1x^2+a1y^2+b1x c1x-a1x (b1x+c1x)+b1y c1y-a1y (b1y+c1y));
+p33=a1x^2+a1y^2-2 a1x b1x+b1x^2-2 a1y b1y+b1y^2;
+{{p11/q,p12/q,p13/q},{p12/q,p22/q,p23/q},{p13/q,p23/q,p33/q}}]];
+(**)
+cF1v:=Compile[{{p,_Real,2},{m,_Real,2}},
+Module[{a1x,a1y,b1x,b1y,c1x,c1y,m11,m12,m21,m22,q,p1,p2,p3,p4,p5,p6},
+a1x=p[[1,1]];a1y=p[[1,2]];b1x=p[[2,1]];b1y=p[[2,2]];c1x=p[[3,1]];c1y=p[[3,2]];
+m11=m[[1,1]];m12=m[[1,2]];m21=m[[2,1]];m22=m[[2,2]];
+q=a1y b1x-a1x b1y-a1y c1x+b1y c1x+a1x c1y-b1x c1y;
+p1=2 b1y m11-2 c1y m11-2 b1x m12+2 c1x m12;
+p2=2 b1y m21-2 c1y m21-2 b1x m22+2 c1x m22;
+p3=2 a1y m11-2 c1y m11-2 a1x m12+2 c1x m12;
+p4=2 a1y m21-2 c1y m21-2 a1x m22+2 c1x m22;
+p5=-2 a1y m11+2 b1y m11+2 a1x m12-2 b1x m12;
+p6=-2 a1y m21+2 b1y m21+2 a1x m22-2 b1x m22;
+{p1/q,p2/q,p3/-q,p4/-q,p5/-q,p6/-q}]];
+(* *)
+cFindMatrix=Compile[{{Tri1,_Real,2},{Tri2,_Real,2}},
+Module[{m},
+m = {{Tri2[[1,1]],Tri2[[2,1]],Tri2[[3,1]]},
+{Tri2[[1,2]],Tri2[[2,2]],Tri2[[3,2]]},
+{1.0,1.0,1.0}}.Inverse[
+{{Tri1[[1,1]],Tri1[[2,1]],Tri1[[3,1]]},
+{Tri1[[1,2]],Tri1[[2,2]],Tri1[[3,2]]},
+{1.0,1.0,1.0}}];
+{{m[[1,1]],m[[1,2]]},{m[[2,1]],m[[2,2]]}}]];
+(* *)
+cLocalAlexa[m_,t_]:=
+Module[{p,q,\[Theta]},
+{p,q}=PolarDecomposition[m];
+\[Theta]=RotateAngle[p,0];
+RotationMatrix[t \[Theta]].{{1.0-t+(t q[[1,1]]),(t q[[1,2]])},{(t q[[2,1]]),1.0-t+(t q[[2,2]])}}];
+
+
+cARAP=Compile[{{start,_Real,2},{target,_Real,2},{triangle,_Integer,2},{t,_Real}},
+Module[{s0,t0,ti,M,En,Vn,k,l,vlen,tlen,gmatrix,uvector},
+k=1;l=2;vlen=Length[start];tlen=Length[triangle];
+gmatrix=Table[0.0,{i,2*vlen},{j,2*vlen}];
+uvector=Table[0.0,{i,2*vlen}];
+Do[ti=triangle[[it]];
+s0={start[[ti[[1]]]],start[[ti[[2]]]],start[[ti[[3]]]]};
+t0={target[[ti[[1]]]],target[[ti[[2]]]],target[[ti[[3]]]]};
+M=cLocalAlexa[cFindMatrix[s0,t0],t]; En=cF1a[s0,M];Vn=cF1v[s0,M];
+Do[Do[
+gmatrix[[2ti[[i]]-1,2ti[[j]]-1]]=gmatrix[[2ti[[i]]-1,2ti[[j]]-1]]+En[[i,j]];
+gmatrix[[2ti[[i]],2ti[[j]]]]=gmatrix[[2ti[[i]],2ti[[j]]]]+En[[i,j]];
+,{j,3}];
+uvector[[2*ti[[i]]-1]]=uvector[[2*ti[[i]]-1]]+Vn[[2*i-1]];
+uvector[[2*ti[[i]]]]=uvector[[2*ti[[i]]]]+Vn[[2*i]];
+,{i,3}];
+,{it,tlen}];
+(* constraint (k) *)
+gmatrix[[2k-1,2k-1]]=gmatrix[[2k-1,2k-1]]+1;
+gmatrix[[2k,2k]]=gmatrix[[2k,2k]]+1;
+uvector[[2k-1]]=uvector[[2k-1]]-2((1-t)start[[k,1]]+t target[[k,1]]);
+uvector[[2k]]=uvector[[2k]]-2((1-t)start[[k,2]]+t target[[k,2]]);
+Partition[-0.5 Inverse[gmatrix].uvector,2]
+]];
+(* *)
+cARAPg=Compile[{{start,_Real,2},{target,_Real,2},{triangle,_Integer,2},{t,_Real}},
+Module[{s0,t0,ti,M,En,Vn,k,l,vlen,tlen,gmatrix,uvector},
+k=1;l=2;vlen=Length[start];tlen=Length[triangle];
+gmatrix=Table[0.0,{i,2*vlen},{j,2*vlen}];
+Do[ti=triangle[[it]];s0=start[[ti]];t0=target[[ti]];
+M=LocalAlexa[FindMatrix[s0,t0]][t]; En=cF1a[s0,M];Vn=cF1v[s0,M];
+Do[Do[
+gmatrix[[2ti[[i]]-1,2ti[[j]]-1]]=gmatrix[[2ti[[i]]-1,2ti[[j]]-1]]+En[[i,j]];
+gmatrix[[2ti[[i]],2ti[[j]]]]=gmatrix[[2ti[[i]],2ti[[j]]]]+En[[i,j]];
+,{j,3}];,{i,3}];
+,{it,tlen}];
+(* constraint (k) *)
+gmatrix[[2k-1,2k-1]]=gmatrix[[2k-1,2k-1]]+1;
+gmatrix[[2k,2k]]=gmatrix[[2k,2k]]+1;
+-0.5 Inverse[gmatrix]
+]];
+(* *)
+cARAPu=Compile[{{start,_Real,2},{target,_Real,2},{triangle,_Integer,2},{t,_Real},{gmatrix,_Real,2}},
+Module[{s0,t0,ti,M,En,Vn,k,l,vlen,tlen,uvector},
+k=1;l=2;vlen=Length[start];tlen=Length[triangle];
+uvector=Table[0.0,{i,2*vlen}];
+Do[ti=triangle[[it]];s0=start[[ti]];t0=target[[ti]];
+M=LocalAlexa[FindMatrix[s0,t0]][t]; En=cF1a[s0,M];Vn=cF1v[s0,M];
+Do[
+uvector[[2*ti[[i]]-1]]=uvector[[2*ti[[i]]-1]]+Vn[[2*i-1]];
+uvector[[2*ti[[i]]]]=uvector[[2*ti[[i]]]]+Vn[[2*i]];
+,{i,3}];
+,{it,tlen}];
+(* constraint (k) *)
+uvector[[2k-1]]=uvector[[2k-1]]-2((1-t)start[[k,1]]+t target[[k,1]]);
+uvector[[2k]]=uvector[[2k]]-2((1-t)start[[k,2]]+t target[[k,2]]);
+Partition[gmatrix.uvector,2]
+]];
+
+
+(* *)
+cListAnimation[k_,conf_]:=
+Module[{V,range,table,gmatrix},
+range = {conf[[1,1]],conf[[1,1]]};
+gmatrix=cARAPg[conf[[1]],conf[[2]],conf[[3]],0.0];
+table=Table[
+V=cARAPu[conf[[1]],conf[[2]],conf[[3]],N[i/(k-1)],gmatrix];
+range=AnimationRange2[range,AnimationRange[{V,{},{}}]];
+MakePolygon[V,conf[[3]]],{i,0,k-1}];
+Map[Graphics[#,PlotRange->range]&,table]];
+(* *)
+cDrawAnimation[k_,conf_]:=
+DynamicModule[{GU,V,range,table,gmatrix},
+range = {conf[[1,1]],conf[[1,1]]};
+gmatrix=cARAPg[conf[[1]],conf[[2]],conf[[3]],0.0];
+table=Table[
+V=cARAPu[conf[[1]],conf[[2]],conf[[3]],N[i/(k-1)],gmatrix];
+range=AnimationRange2[range,AnimationRange[{V,{},{}}]];
+MakePolygon[V,conf[[3]]],{i,0,k-1}];
+Animate[Graphics[table[[Floor[x(k-1)]+1]],
+PlotRange -> range],{x,0,1}, 
+AnimationRunning->False,AnimationRepetitions->1]];
