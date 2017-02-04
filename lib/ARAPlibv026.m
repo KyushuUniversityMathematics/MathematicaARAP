@@ -1,11 +1,33 @@
 (* ::Package:: *)
 
-(* ::Chapter:: *)
-(*ARAPlib.m (Mathematica Modules 2016/12/20)*)
-(*Kyushu University 2016*)
+(* ::Title:: *)
+(*ARAPlib.m *)
+(*(Mathematica ARAP Modules 2017/02/04)*)
 
 
-(* ::Section::Closed:: *)
+(* ::Text:: *)
+(*Copyright (c) 2017  Yoshihiro Mizoguchi , Tomomi HIrano , Kyushu University*)
+(**)
+(*Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell*)
+(*copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:*)
+(*The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.*)
+(*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*)
+
+
+(* ::Text:: *)
+(*Last Update : 2017/02/04 *)
+(*Ver. 0.26 published : 2017/02/04 *)
+
+
+BeginPackage["ARAPlib`"];
+
+
+Begin["`Private`"];
+
+End[];
+
+
+(* ::Section:: *)
 (*Basic Functions*)
 
 
@@ -93,7 +115,7 @@ Const1[n_]:=Function[{conf,t},Total[#^2&/@((1-t)conf[[1]][[n]]+t conf[[2]][[n]]
 NormF[m_]:=Total[Map[#^2&,Flatten[m]]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*QuadraticFormMatrix + LinearFormVector*)
 
 
@@ -111,7 +133,7 @@ allzero=Map[#->0&,vl];
 Map[Coefficient[poly,#]/.allzero&,vl]]
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*FindMatrix etc*)
 
 
@@ -162,6 +184,7 @@ p22=a1x^2+a1y^2-2 a1x c1x+c1x^2-2 a1y c1y+c1y^2;
 p23=-(a1x^2+a1y^2+b1x c1x-a1x (b1x+c1x)+b1y c1y-a1y (b1y+c1y));
 p33=a1x^2+a1y^2-2 a1x b1x+b1x^2-2 a1y b1y+b1y^2;
 {{p11/q,p12/q,p13/q},{p12/q,p22/q,p23/q},{p13/q,p23/q,p33/q}}];
+F1a::usage="F1a[{p1,p2,p3}, A] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(3\[Times]3\)]\), p1,p2,p3:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\), A:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\)";
 (**)
 F2a[{{a1x_,a1y_},{b1x_,b1y_},{c1x_,c1y_}},{{m11_,m12_},{m21_,m22_}}]:=
 Module[{fm,cm,m1222,m1121,X,Y0,Y1,Y2,Y3,Y4,Y5,Y6},
@@ -185,6 +208,7 @@ Y6=((a1x-c1x) (2 a1y cm-2 c1y cm+(a1x-c1x) m1121)+(a1y-c1y)^2 m1222);
 {{Y5/(fm X^2),0,Y4/(fm X^2),-(Y0/(fm X)),Y1/(fm X^2),Y0/(fm X)},{0,Y5/(fm X^2),Y0/(fm X),Y4/(fm X^2),-(Y0/(fm X)),Y1/(fm X^2)},
 {Y4/(fm X^2),Y0/(fm X),Y6/(fm X^2),0,-(Y2/(fm X^2)),-(Y0/(fm X))},{-(Y0/(fm X)),Y4/(fm X^2),0,Y6/(fm X^2),Y0/(fm X),-(Y2/(fm X^2))},
 {Y1/(fm X^2),-(Y0/(fm X)),-(Y2/(fm X^2)),Y0/(fm X),Y3/(fm X^2),0},{Y0/(fm X),Y1/(fm X^2),-(Y0/(fm X)),-(Y2/(fm X^2)),0,Y3/(fm X^2)}}];
+F2a::usage="F2a[{p1,p2,p3}, M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(6\[Times]6\)]\), p1,p2,p3:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\), M:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\)";
 
 (*EmbedMatrix*)
 EmbedMatrix[n_,i_,j_,M_]:=Table[Switch[k,
@@ -196,8 +220,8 @@ i,Switch[l,i,M[[1,1]],j,M[[1,2]],k,M[[1,3]],_,0],
 j,Switch[l,i,M[[2,1]],j,M[[2,2]],k,M[[2,3]],_,0],
 k,Switch[l,i,M[[3,1]],j,M[[3,2]],k,M[[3,3]],_,0],_,0],
 {m,1,n},{l,1,n}];
-
-(*6\[Times]6\[Rule] 8\[Times]8*)
+EmbedMatrix::usage="EmbedMatrix[n,i,j,(k,)M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(n\[Times]n\)]\), i,j,k:\[DoubleStruckCapitalN], M:\!\(\*SuperscriptBox[\(R\), \(2\[Times]2\)]\)(\!\(\*SuperscriptBox[\(R\), \(3\[Times]3\)]\))";
+(* *)
 EmbedMatrix2[n_,i_,j_,k_,M_]:=Table[Switch[m,
 2*i-1,Switch[l,2*i-1,M[[1,1]],2*i,M[[1,2]],
 2*j-1,M[[1,3]],2*j,M[[1,4]],
@@ -217,6 +241,8 @@ EmbedMatrix2[n_,i_,j_,k_,M_]:=Table[Switch[m,
 2*k,Switch[l,2*i-1,M[[6,1]],2*i,M[[6,2]],
 2*j-1,M[[6,3]],2*j,M[[6,4]],2*k-1,M[[6,5]],
 2*k,M[[6,6]],_,0],_,0],{m,1,2n},{l,1,2n}];
+EmbedMatrix2::usage="EmbedMatrix2[n,i,j,k,M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\), i,j,k:\[DoubleStruckCapitalN], M:\!\(\*SuperscriptBox[\(R\), \(6\[Times]6\)]\)";
+
 
 
 (*LineatFormVector\:306e\:7d50\:679c\:3092\:7528\:3044\:3066\:76f4\:63a5\:4f5c\:6210\:3057\:305f\:3082\:306e*)
@@ -231,6 +257,8 @@ p4=2 a1y m21-2 c1y m21-2 a1x m22+2 c1x m22;
 p5=-2 a1y m11+2 b1y m11+2 a1x m12-2 b1x m12;
 p6=-2 a1y m21+2 b1y m21+2 a1x m22-2 b1x m22;
 {p1/q,p2/q,p3/-q,p4/-q,p5/-q,p6/-q}];
+F1v::usage="F1v[{p1,p2,p3}, M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(3\[Times]3\)]\), p1,p2,p3:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\), M:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\)";
+
 (*F2v[P1_,P2_,A_]:=LinearFormVector[En2[P1,P2,A],Flatten[P2]];*)
 
 
@@ -243,10 +271,14 @@ Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
 2*j-1,V[[3]],2*j,V[[4]],
 2*k-1,V[[5]],2*k,V[[6]],_,0],
 {m,1,2n}];
+EmbedVector::usage="EmbedVector[n,i,j,(k,)V] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(n\[Times]n\)]\), i,j,k:\[DoubleStruckCapitalN], V:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(6\)]\))";
+(* *)
 EmbedVector2[n_,i_,j_,V_]:=
 Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
 2*j-1,V[[3]],2*j,V[[4]],_,0],
 {m,1,2n}];
+EmbedVector2::usage="EmbedVector2[n,i,j,V] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\), i,j:\[DoubleStruckCapitalN], V:\!\(\*SuperscriptBox[\(R\), \(4\)]\)";
+
 
 
 (*QuadraticMatrix\:3092\:57cb\:3081\:8fbc\:3093\:3060\:884c\:5217\:306e\:548c Fn*)
@@ -267,7 +299,7 @@ F1v[VtoTriangle[P,T[[i]]],A]]
 ,{i,1,Length[T]}]];*)
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Local Interpolation*)
 
 
@@ -282,6 +314,7 @@ NewFindMatrices[conf_]:=FindMatrices[conf[[1]],conf[[2]],conf[[3]]];
 (*m:\:884c\:5217*)
 (**)
 LocalLinear[m_]:=Function[{t},(1-t) IdentityMatrix[2] + t m];
+(* *)
 LocalAlexa[m_]:=Function[{t},
 Module[{p,q,\[Theta]},
 {p,q}=PolarDecompositionPlus[m];
@@ -294,6 +327,7 @@ Module[{p,q,s,\[Theta],evec,eval},
 \[Theta]=RotateAngle[p,0];
 RotationMatrix[t \[Theta]].Transpose[evec].DiagonalMatrix[{eval[[1]]^t,eval[[2]]^t}].evec
 ]];
+LocalAlexa::usage="LocalAlexa[M][t]=(\!\(\*SubscriptBox[\(R\), \(\[Theta]\)]\)\!\(\*SuperscriptBox[\()\), \(t\)]\)\[CenterDot]\!\(\*SuperscriptBox[\(S\), \(t\)]\), M=\!\(\*SubscriptBox[\(R\), \(\[Theta]\)]\)\[CenterDot]S:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\), t:\[DoubleStruckCapitalR], \!\(\*SubscriptBox[\(R\), \(\[Theta]\)]\):SO(2), S:\!\(\*SuperscriptBox[\(Sym\), \(+\)]\)(2)";
 (*Flag\:306f\:4fdd\:7559?*)
 
 LocalInterpolations[local_,conf_]:=Function[{t},
@@ -418,35 +452,47 @@ Y0[l_]:=Flatten[Transpose[{Table[0,{Length[l]}],l}]];
 Flatten[Map[{X0[#],Y0[#]}&,m],1]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Global Interpolation*)
 (*(Embed\:3092\:7528\:3044\:305f\:3082\:306e\:3001Alexa)*)
 
 
 (*energy*)
 (*Alexa\:306eMatrix,Vector*)
-QuadraticFormAlexa[local_,conf_]:=Function[{t},{
+QuadraticFormAlexa[local_,{st_,en_,tri_}]:=Function[{t},
+Module[{n,Qs},
+n=Length[st];
+Qs=Transpose[{VtoTriangles[st,tri],LocalInterpolations[local,{st,en,tri}][t]}];
+{
 DoubleMatrix[
-Total[Map[EmbedMatrix[Length[conf[[1]]],#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
-Transpose[
-{Map[F1a[#[[1]],#[[2]]]&,
-Transpose[{VtoTriangles[conf[[1]],conf[[3]]],LocalInterpolations[local,conf][t]}]],
-conf[[3]]}]]]],
+Total[Map[EmbedMatrix[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
+      Transpose[{Map[F1a[#[[1]],#[[2]]]&,
+      Qs
+      ],tri}]]]
+      ],
 Flatten[
-Total[Map[EmbedVector[Length[conf[[1]]],#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
-Transpose[
-{Map[F1v[#[[1]],#[[2]]]&,
-Transpose[{VtoTriangles[conf[[1]],conf[[3]]],LocalInterpolations[local,conf][t]}]],
-conf[[3]]}]]]]
-}];
+Total[Map[EmbedVector[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
+      Transpose[{Map[F1v[#[[1]],#[[2]]]&, Qs],tri}]]]
+      ]
+}
+]];
+
+QuadraticFormAlexa::usage="QudadraticFormAlexa[local,conf][t]:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\))\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\)]\)),
+ local:\[DoubleStruckCapitalR]\[RightArrow]\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\), conf:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalN]\), \(3\)]\)\!\(\*SuperscriptBox[\()\), \(k\)]\), t:\[DoubleStruckCapitalR]";
 (*Sim\:306eMatrix,Vector*)
-QuadraticFormSim[local_,conf_]:=Function[{t},{
-Total[Map[
-EmbedMatrix2[Length[conf[[1]]],#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
-Transpose[{Map[F2a[#[[1]],#[[2]]]&,
-Transpose[{VtoTriangles[conf[[1]],conf[[3]]],LocalInterpolations[local,conf][t]}]],
-conf[[3]]}]]],
-Table[0,{i,1,2Length[conf[[1]]]}]}];
+QuadraticFormSim[local_,{st_,en_,tri_}]:=Function[{t},
+Module[{n,Qs},
+n=Length[st];
+Qs=Transpose[{VtoTriangles[st,tri],LocalInterpolations[local,{st,en,tri}][t]}];
+{
+Total[Map[EmbedMatrix2[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
+          Transpose[{Map[F2a[#[[1]],#[[2]]]&,Qs],tri}]]
+          ],
+Table[0,{2 n}]
+}
+]];
+QuadraticFormSim::usage="QudadraticFormSim[local,conf][t]:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\))\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\)]\)),
+ local:\[DoubleStruckCapitalR]\[RightArrow]\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\), conf:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalN]\), \(3\)]\)\!\(\*SuperscriptBox[\()\), \(k\)]\), t:\[DoubleStruckCapitalR]";
 (**)
 ARAP[local_,energy_,const_,conf_]:=Function[{t},
 Module[{G,h},
@@ -458,34 +504,27 @@ h=energy[local,conf][t][[2]]
 ]];
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Animation*)
 
 
 (* *)
-ShowStatus[st_,en_,tri_,plotrange_]:=
+ShowStatus[{st_,en_,tri_}]:=
 Show[Graphics[{MakePolygon[st,tri],MakePolygon[en,tri]}],
-PlotRange->plotrange,Frame->True]
+PlotRange->AnimationRange[{st,en,tri}],Frame->True]
 (* *)
 DrawAnimation[local_,energy_,const_,conf_]:=
 DynamicModule[{GU},
 Animate[
-GU=ARAP[local,energy,const,conf][x];
+GU=ARAP[local,energy,const,conf][t];
 Show[Graphics[MakePolygon[
 Partition[-0.5 Inverse[GU[[1]]].GU[[2]],2],conf[[3]]],
-PlotRange -> AnimationRange[conf]]],{x,0,1}, 
+PlotRange -> AnimationRange[conf]]],{t,0,1}, 
 AnimationRunning->False,AnimationRepetitions->1]];
+DrawAnimation::usage="DrawAnimation[local,energy,const,conf]";
 
 
 (* Export["filename.mov",ListAnimation[k,local,energy,const,conf]] *)
-(*ListAnimation[k_,local_,energy_,const_,conf_]:=
-Module[{GU},
-Table[
-GU=ARAP[local,energy,const,conf][i/(k-1)];
-Show[Graphics[MakePolygon[
-Partition[-0.5 Inverse[GU[[1]]].GU[[2]],2],conf[[3]]],
-PlotRange -> AnimationRange[conf]
-]],{i,0,k-1}]];*)
 ListAnimation[k_,local_,energy_,const_,conf_]:=
 Module[{GU,V,range,table},
 range = {conf[[1,1]],conf[[1,1]]};
@@ -495,3 +534,7 @@ V=Partition[-0.5 Inverse[GU[[1]]].GU[[2]],2];
 range=AnimationRange2[range,AnimationRange[{V,{},{}}]];
 MakePolygon[V,conf[[3]]],{i,0,k-1}];
 Map[Graphics[#,PlotRange->range]&,table]];
+ListAnimation::usage="LisgtAnimation[k,local,energy,const,conf]";
+
+
+EndPackage[];
