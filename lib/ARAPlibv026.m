@@ -184,7 +184,7 @@ p22=a1x^2+a1y^2-2 a1x c1x+c1x^2-2 a1y c1y+c1y^2;
 p23=-(a1x^2+a1y^2+b1x c1x-a1x (b1x+c1x)+b1y c1y-a1y (b1y+c1y));
 p33=a1x^2+a1y^2-2 a1x b1x+b1x^2-2 a1y b1y+b1y^2;
 {{p11/q,p12/q,p13/q},{p12/q,p22/q,p23/q},{p13/q,p23/q,p33/q}}];
-F1a::usage="F1a[{p1,p2,p3}, A] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(3\[Times]3\)]\), p1,p2,p3:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\), A:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\)";
+F1a::usage="F1a[{p1,p2,p3}, M] : \[DoubleStruckCapitalR][3,3], p1,p2,p3:\[DoubleStruckCapitalR][2],  M:\[DoubleStruckCapitalR][2,2]";
 (**)
 F2a[{{a1x_,a1y_},{b1x_,b1y_},{c1x_,c1y_}},{{m11_,m12_},{m21_,m22_}}]:=
 Module[{fm,cm,m1222,m1121,X,Y0,Y1,Y2,Y3,Y4,Y5,Y6},
@@ -208,7 +208,7 @@ Y6=((a1x-c1x) (2 a1y cm-2 c1y cm+(a1x-c1x) m1121)+(a1y-c1y)^2 m1222);
 {{Y5/(fm X^2),0,Y4/(fm X^2),-(Y0/(fm X)),Y1/(fm X^2),Y0/(fm X)},{0,Y5/(fm X^2),Y0/(fm X),Y4/(fm X^2),-(Y0/(fm X)),Y1/(fm X^2)},
 {Y4/(fm X^2),Y0/(fm X),Y6/(fm X^2),0,-(Y2/(fm X^2)),-(Y0/(fm X))},{-(Y0/(fm X)),Y4/(fm X^2),0,Y6/(fm X^2),Y0/(fm X),-(Y2/(fm X^2))},
 {Y1/(fm X^2),-(Y0/(fm X)),-(Y2/(fm X^2)),Y0/(fm X),Y3/(fm X^2),0},{Y0/(fm X),Y1/(fm X^2),-(Y0/(fm X)),-(Y2/(fm X^2)),0,Y3/(fm X^2)}}];
-F2a::usage="F2a[{p1,p2,p3}, M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(6\[Times]6\)]\), p1,p2,p3:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\), M:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\)";
+F2a::usage="F2a[{p1,p2,p3}, M] : \[DoubleStruckCapitalR][6,6], p1,p2,p3:\[DoubleStruckCapitalR][2],  M:\[DoubleStruckCapitalR][2,2]";
 
 (*EmbedMatrix*)
 EmbedMatrix[n_,i_,j_,M_]:=Table[Switch[k,
@@ -220,7 +220,7 @@ i,Switch[l,i,M[[1,1]],j,M[[1,2]],k,M[[1,3]],_,0],
 j,Switch[l,i,M[[2,1]],j,M[[2,2]],k,M[[2,3]],_,0],
 k,Switch[l,i,M[[3,1]],j,M[[3,2]],k,M[[3,3]],_,0],_,0],
 {m,1,n},{l,1,n}];
-EmbedMatrix::usage="EmbedMatrix[n,i,j,(k,)M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(n\[Times]n\)]\), i,j,k:\[DoubleStruckCapitalN], M:\!\(\*SuperscriptBox[\(R\), \(2\[Times]2\)]\)(\!\(\*SuperscriptBox[\(R\), \(3\[Times]3\)]\))";
+EmbedMatrix::usage="EmbedMatrix[n,i,j,(k,)M]:\[DoubleStruckCapitalR][n,n], i,j(,k):\[DoubleStruckCapitalN], M:\[DoubleStruckCapitalR][2,2](,\[DoubleStruckCapitalR][3,3])";
 (* *)
 EmbedMatrix2[n_,i_,j_,k_,M_]:=Table[Switch[m,
 2*i-1,Switch[l,2*i-1,M[[1,1]],2*i,M[[1,2]],
@@ -241,7 +241,7 @@ EmbedMatrix2[n_,i_,j_,k_,M_]:=Table[Switch[m,
 2*k,Switch[l,2*i-1,M[[6,1]],2*i,M[[6,2]],
 2*j-1,M[[6,3]],2*j,M[[6,4]],2*k-1,M[[6,5]],
 2*k,M[[6,6]],_,0],_,0],{m,1,2n},{l,1,2n}];
-EmbedMatrix2::usage="EmbedMatrix2[n,i,j,k,M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\), i,j,k:\[DoubleStruckCapitalN], M:\!\(\*SuperscriptBox[\(R\), \(6\[Times]6\)]\)";
+EmbedMatrix2::usage="EmbedMatrix2[n,i,j,k,M]:\[DoubleStruckCapitalR][2n,2n], i,j,k:\[DoubleStruckCapitalN], M:R[6,6]";
 
 
 
@@ -257,7 +257,7 @@ p4=2 a1y m21-2 c1y m21-2 a1x m22+2 c1x m22;
 p5=-2 a1y m11+2 b1y m11+2 a1x m12-2 b1x m12;
 p6=-2 a1y m21+2 b1y m21+2 a1x m22-2 b1x m22;
 {p1/q,p2/q,p3/-q,p4/-q,p5/-q,p6/-q}];
-F1v::usage="F1v[{p1,p2,p3}, M] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(3\[Times]3\)]\), p1,p2,p3:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\), M:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\)";
+F1v::usage="F1v[{p1,p2,p3}, M] : R[6], p1,p2,p3:\[DoubleStruckCapitalR][2], M:\[DoubleStruckCapitalR][2,2]";
 
 (*F2v[P1_,P2_,A_]:=LinearFormVector[En2[P1,P2,A],Flatten[P2]];*)
 
@@ -271,13 +271,13 @@ Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
 2*j-1,V[[3]],2*j,V[[4]],
 2*k-1,V[[5]],2*k,V[[6]],_,0],
 {m,1,2n}];
-EmbedVector::usage="EmbedVector[n,i,j,(k,)V] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(n\[Times]n\)]\), i,j,k:\[DoubleStruckCapitalN], V:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(6\)]\))";
+EmbedVector::usage="EmbedVector[n,i,j,(k,)V] : \[DoubleStruckCapitalR][n], i,j(,k):\[DoubleStruckCapitalN], V:\[DoubleStruckCapitalR][4](\[DoubleStruckCapitalR][6])";
 (* *)
 EmbedVector2[n_,i_,j_,V_]:=
 Table[Switch[m,2*i-1,V[[1]],2*i,V[[2]],
 2*j-1,V[[3]],2*j,V[[4]],_,0],
 {m,1,2n}];
-EmbedVector2::usage="EmbedVector2[n,i,j,V] : \!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\), i,j:\[DoubleStruckCapitalN], V:\!\(\*SuperscriptBox[\(R\), \(4\)]\)";
+EmbedVector2::usage="EmbedVector2[n,i,j,V] : \[DoubleStruckCapitalR][2n], i,j:\[DoubleStruckCapitalN], V:R[4]";
 
 
 
@@ -327,7 +327,7 @@ Module[{p,q,s,\[Theta],evec,eval},
 \[Theta]=RotateAngle[p,0];
 RotationMatrix[t \[Theta]].Transpose[evec].DiagonalMatrix[{eval[[1]]^t,eval[[2]]^t}].evec
 ]];
-LocalAlexa::usage="LocalAlexa[M][t]=(\!\(\*SubscriptBox[\(R\), \(\[Theta]\)]\)\!\(\*SuperscriptBox[\()\), \(t\)]\)\[CenterDot]\!\(\*SuperscriptBox[\(S\), \(t\)]\), M=\!\(\*SubscriptBox[\(R\), \(\[Theta]\)]\)\[CenterDot]S:\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\), t:\[DoubleStruckCapitalR], \!\(\*SubscriptBox[\(R\), \(\[Theta]\)]\):SO(2), S:\!\(\*SuperscriptBox[\(Sym\), \(+\)]\)(2)";
+LocalAlexa::usage="LocalAlexa[M][t]=R^t\[CenterDot]S^t, M=R\[CenterDot]S, R:SO+(2), S:Sym+(2), t:\[DoubleStruckCapitalR]";
 (*Flag\:306f\:4fdd\:7559?*)
 
 LocalInterpolations[local_,conf_]:=Function[{t},
@@ -402,24 +402,6 @@ py = -2 st[[k,2]] Cos[2 \[Pi] t]+2 st[[l,2]] Cos[2 \[Pi] t]-2 st[[k,1]] Sin[2 \[
 EmbedVector2[Length[conf[[1]]],k,l,{px,py,-px,-py}]
 ]];
 
-(*Ekl[k_,l_]:=Function[{conf,t},RotationMatrix[2\[Pi] t].(conf[[1,k]]-conf[[1,l]])];
-ConstMatrix2[n_,k_,l_]:=Table[Switch[i,
-2k-1,Switch[j,2l-1,1,_,0],
-2k,Switch[j,2l,1,_,0],_,0],{i,1,2n},{j,1,2n}];
-ConstfixMatrix[n_,k_,l_,st_]:=Module[{C1,C2},
-C1 = Table[Switch[i,2k-1,Switch[j,2l-1,1,_,0],
-2k,Switch[j,2l,1,_,0],_,0],{i,1,2Length[st]},{j,1,2Length[st]}];
-C2 = Table[Switch[i,2l-1,Switch[j,2k-1,1,_,0],
-2l,Switch[j,2k,1,_,0],_,0],{i,1,2Length[st]},{j,1,2Length[st]}];
-n ConstMatrix[k,st]+n ConstMatrix[l,st]
--n C1-n C2];
-ConstfixVector[n_,k_,l_,st_]:=Table[Switch[i,
-2k-1,-2(st[[k,1]]-st[[l,1]]),2k,-2(st[[k,2]]-st[[l,2]]),
-2l-1,2(st[[k,1]]-st[[l,1]]),2l,2(st[[k,2]]-st[[l,2]]),_,0],{i,1,2Length[st]}];
-Constfix2Vector[n_,k_,l_,st_,t_]:=Table[Switch[i,
-2k-1,-2 Ekl[st,k,l,t][[1]],2k,-2Ekl[st,k,l,t][[2]],
-2 l-1,2Ekl[st,k,l,t][[1]],2 l ,2Ekl[st,k,l,t][[2]],_,0],{i,1,2Length[st]}];*)
-
 
 (*ARAP\:306eConst*)
 ConstPair[m_]:=Function[{conf,t},{
@@ -477,8 +459,8 @@ Total[Map[EmbedVector[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
 }
 ]];
 
-QuadraticFormAlexa::usage="QudadraticFormAlexa[local,conf][t]:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\))\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\)]\)),
- local:\[DoubleStruckCapitalR]\[RightArrow]\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\), conf:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalN]\), \(3\)]\)\!\(\*SuperscriptBox[\()\), \(k\)]\), t:\[DoubleStruckCapitalR]";
+QuadraticFormAlexa::usage="QudadraticFormAlexa[local,conf][t]:{R[2n,2n],R[2n]},
+local:\[DoubleStruckCapitalR]\[RightArrow]R[2,2], conf:{R[2,n],R[2,n],\[DoubleStruckCapitalN][3,k]}";
 (*Sim\:306eMatrix,Vector*)
 QuadraticFormSim[local_,{st_,en_,tri_}]:=Function[{t},
 Module[{n,Qs},
@@ -491,8 +473,8 @@ Total[Map[EmbedMatrix2[n,#[[2,1]],#[[2,2]],#[[2,3]],#[[1]]]&,
 Table[0,{2 n}]
 }
 ]];
-QuadraticFormSim::usage="QudadraticFormSim[local,conf][t]:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\[Times]2  n\)]\))\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2  n\)]\)),
- local:\[DoubleStruckCapitalR]\[RightArrow]\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\[Times]2\)]\), conf:(\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalR]\), \(2\)]\)\!\(\*SuperscriptBox[\()\), \(n\)]\)\[Times](\!\(\*SuperscriptBox[\(\[DoubleStruckCapitalN]\), \(3\)]\)\!\(\*SuperscriptBox[\()\), \(k\)]\), t:\[DoubleStruckCapitalR]";
+QuadraticFormSim::usage="QudadraticFormSim[local,conf][t]:{R[2n,2n],R[2n]},
+local:\[DoubleStruckCapitalR]\[RightArrow]R[2,2], conf:{R[2,n],R[2,n],\[DoubleStruckCapitalN][3,k]}";
 (**)
 ARAP[local_,energy_,const_,conf_]:=Function[{t},
 Module[{G,h},
